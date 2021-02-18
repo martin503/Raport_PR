@@ -1,0 +1,27 @@
+PageRank Performance Test [500000 nodes, SingleThreadedPageRankComputer] took:   6.40858s
+PageRank Performance Test [500000 nodes, MultiThreadedPageRankComputer[1]] took:   6.67339s
+PageRank Performance Test [500000 nodes, MultiThreadedPageRankComputer[2]] took:   4.56166s
+PageRank Performance Test [500000 nodes, MultiThreadedPageRankComputer[3]] took:   4.10992s
+PageRank Performance Test [500000 nodes, MultiThreadedPageRankComputer[4]] took:    4.0118s
+PageRank Performance Test [500000 nodes, MultiThreadedPageRankComputer[8]] took:   3.32475s
+
+PageRank Performance Test [100 nodes, SingleThreadedPageRankComputer] took:  0.005301s
+PageRank Performance Test [1000 nodes, SingleThreadedPageRankComputer] took:  0.928836s
+PageRank Performance Test [2000 nodes, SingleThreadedPageRankComputer] took:   3.78333s
+PageRank Performance Test [2000 nodes, MultiThreadedPageRankComputer[1]] took:    3.5117s
+PageRank Performance Test [2000 nodes, MultiThreadedPageRankComputer[2]] took:   2.09883s
+PageRank Performance Test [2000 nodes, MultiThreadedPageRankComputer[3]] took:   1.53083s
+PageRank Performance Test [2000 nodes, MultiThreadedPageRankComputer[4]] took:   1.40437s
+PageRank Performance Test [2000 nodes, MultiThreadedPageRankComputer[8]] took:  0.998161s
+PageRank Performance Test [500000 nodes, SingleThreadedPageRankComputer] took:    6.3613s
+PageRank Performance Test [500000 nodes, MultiThreadedPageRankComputer[1]] took:   7.06779s
+PageRank Performance Test [500000 nodes, MultiThreadedPageRankComputer[2]] took:   5.13842s
+PageRank Performance Test [500000 nodes, MultiThreadedPageRankComputer[3]] took:   4.58537s
+PageRank Performance Test [500000 nodes, MultiThreadedPageRankComputer[4]] took:   4.09481s
+PageRank Performance Test [500000 nodes, MultiThreadedPageRankComputer[8]] took:   3.60981s
+E2E Test [SingleThreadedPageRankComputer] took:   11.8554s
+E2E Test [MultiThreadedPageRankComputer[1]] took:     11.73s
+E2E Test [MultiThreadedPageRankComputer[2]] took:   6.43656s
+E2E Test [MultiThreadedPageRankComputer[3]] took:   4.73547s
+E2E Test [MultiThreadedPageRankComputer[4]] took:    3.9876s
+E2E Test [MultiThreadedPageRankComputer[8]] took:   2.89824s

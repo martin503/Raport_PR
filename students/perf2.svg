@@ -1,0 +1,1368 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="470" onload="init(evt)" viewBox="0 0 1200 470" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
+<!-- NOTES:  -->
+<defs>
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#eeeeb0" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	text { font-family:Verdana; font-size:12px; fill:rgb(0,0,0); }
+	#search, #ignorecase { opacity:0.1; cursor:pointer; }
+	#search:hover, #search.show, #ignorecase:hover, #ignorecase.show { opacity:1; }
+	#subtitle { text-anchor:middle; font-color:rgb(160,160,160); }
+	#title { text-anchor:middle; font-size:17px}
+	#unzoom { cursor:pointer; }
+	#frames > *:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+	.hide { display:none; }
+	.parent { opacity:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	"use strict";
+	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn;
+	function init(evt) {
+		details = document.getElementById("details").firstChild;
+		searchbtn = document.getElementById("search");
+		ignorecaseBtn = document.getElementById("ignorecase");
+		unzoombtn = document.getElementById("unzoom");
+		matchedtxt = document.getElementById("matched");
+		svg = document.getElementsByTagName("svg")[0];
+		searching = 0;
+		currentSearchTerm = null;
+	}
+
+	window.addEventListener("click", function(e) {
+		var target = find_group(e.target);
+		if (target) {
+			if (target.nodeName == "a") {
+				if (e.ctrlKey === false) return;
+				e.preventDefault();
+			}
+			if (target.classList.contains("parent")) unzoom();
+			zoom(target);
+		}
+		else if (e.target.id == "unzoom") unzoom();
+		else if (e.target.id == "search") search_prompt();
+		else if (e.target.id == "ignorecase") toggle_ignorecase();
+	}, false)
+
+	// mouse-over for info
+	// show
+	window.addEventListener("mouseover", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = "Function: " + g_to_text(target);
+	}, false)
+
+	// clear
+	window.addEventListener("mouseout", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = ' ';
+	}, false)
+
+	// ctrl-F for search
+	window.addEventListener("keydown",function (e) {
+		if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+			e.preventDefault();
+			search_prompt();
+		}
+	}, false)
+
+	// ctrl-I to toggle case-sensitive search
+	window.addEventListener("keydown",function (e) {
+		if (e.ctrlKey && e.keyCode === 73) {
+			e.preventDefault();
+			toggle_ignorecase();
+		}
+	}, false)
+
+	// functions
+	function find_child(node, selector) {
+		var children = node.querySelectorAll(selector);
+		if (children.length) return children[0];
+		return;
+	}
+	function find_group(node) {
+		var parent = node.parentElement;
+		if (!parent) return;
+		if (parent.id == "frames") return node;
+		return find_group(parent);
+	}
+	function orig_save(e, attr, val) {
+		if (e.attributes["_orig_" + attr] != undefined) return;
+		if (e.attributes[attr] == undefined) return;
+		if (val == undefined) val = e.attributes[attr].value;
+		e.setAttribute("_orig_" + attr, val);
+	}
+	function orig_load(e, attr) {
+		if (e.attributes["_orig_"+attr] == undefined) return;
+		e.attributes[attr].value = e.attributes["_orig_" + attr].value;
+		e.removeAttribute("_orig_"+attr);
+	}
+	function g_to_text(e) {
+		var text = find_child(e, "title").firstChild.nodeValue;
+		return (text)
+	}
+	function g_to_func(e) {
+		var func = g_to_text(e);
+		// if there's any manipulation we want to do to the function
+		// name before it's searched, do it here before returning.
+		return (func);
+	}
+	function update_text(e) {
+		var r = find_child(e, "rect");
+		var t = find_child(e, "text");
+		var w = parseFloat(r.attributes.width.value) -3;
+		var txt = find_child(e, "title").textContent.replace(/\([^(]*\)$/,"");
+		t.attributes.x.value = parseFloat(r.attributes.x.value) + 3;
+
+		// Smaller than this size won't fit anything
+		if (w < 2 * 12 * 0.59) {
+			t.textContent = "";
+			return;
+		}
+
+		t.textContent = txt;
+		// Fit in full text width
+		if (/^ *$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
+			return;
+
+		for (var x = txt.length - 2; x > 0; x--) {
+			if (t.getSubStringLength(0, x + 2) <= w) {
+				t.textContent = txt.substring(0, x) + "..";
+				return;
+			}
+		}
+		t.textContent = "";
+	}
+
+	// zoom
+	function zoom_reset(e) {
+		if (e.attributes != undefined) {
+			orig_load(e, "x");
+			orig_load(e, "width");
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_reset(c[i]);
+		}
+	}
+	function zoom_child(e, x, ratio) {
+		if (e.attributes != undefined) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = (parseFloat(e.attributes.x.value) - x - 10) * ratio + 10;
+				if (e.tagName == "text")
+					e.attributes.x.value = find_child(e.parentNode, "rect[x]").attributes.x.value + 3;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseFloat(e.attributes.width.value) * ratio;
+			}
+		}
+
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_child(c[i], x - 10, ratio);
+		}
+	}
+	function zoom_parent(e) {
+		if (e.attributes) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = 10;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseInt(svg.width.baseVal.value) - (10 * 2);
+			}
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_parent(c[i]);
+		}
+	}
+	function zoom(node) {
+		var attr = find_child(node, "rect").attributes;
+		var width = parseFloat(attr.width.value);
+		var xmin = parseFloat(attr.x.value);
+		var xmax = parseFloat(xmin + width);
+		var ymin = parseFloat(attr.y.value);
+		var ratio = (svg.width.baseVal.value - 2 * 10) / width;
+
+		// XXX: Workaround for JavaScript float issues (fix me)
+		var fudge = 0.0001;
+
+		unzoombtn.classList.remove("hide");
+
+		var el = document.getElementById("frames").children;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var a = find_child(e, "rect").attributes;
+			var ex = parseFloat(a.x.value);
+			var ew = parseFloat(a.width.value);
+			var upstack;
+			// Is it an ancestor
+			if (0 == 0) {
+				upstack = parseFloat(a.y.value) > ymin;
+			} else {
+				upstack = parseFloat(a.y.value) < ymin;
+			}
+			if (upstack) {
+				// Direct ancestor
+				if (ex <= xmin && (ex+ew+fudge) >= xmax) {
+					e.classList.add("parent");
+					zoom_parent(e);
+					update_text(e);
+				}
+				// not in current path
+				else
+					e.classList.add("hide");
+			}
+			// Children maybe
+			else {
+				// no common path
+				if (ex < xmin || ex + fudge >= xmax) {
+					e.classList.add("hide");
+				}
+				else {
+					zoom_child(e, xmin, ratio);
+					update_text(e);
+				}
+			}
+		}
+		search();
+	}
+	function unzoom() {
+		unzoombtn.classList.add("hide");
+		var el = document.getElementById("frames").children;
+		for(var i = 0; i < el.length; i++) {
+			el[i].classList.remove("parent");
+			el[i].classList.remove("hide");
+			zoom_reset(el[i]);
+			update_text(el[i]);
+		}
+		search();
+	}
+
+	// search
+	function toggle_ignorecase() {
+		ignorecase = !ignorecase;
+		if (ignorecase) {
+			ignorecaseBtn.classList.add("show");
+		} else {
+			ignorecaseBtn.classList.remove("show");
+		}
+		reset_search();
+		search();
+	}
+	function reset_search() {
+		var el = document.querySelectorAll("#frames rect");
+		for (var i = 0; i < el.length; i++) {
+			orig_load(el[i], "fill")
+		}
+	}
+	function search_prompt() {
+		if (!searching) {
+			var term = prompt("Enter a search term (regexp " +
+			    "allowed, eg: ^ext4_)"
+			    + (ignorecase ? ", ignoring case" : "")
+			    + "\nPress Ctrl-i to toggle case sensitivity", "");
+			if (term != null) {
+				currentSearchTerm = term;
+				search();
+			}
+		} else {
+			reset_search();
+			searching = 0;
+			currentSearchTerm = null;
+			searchbtn.classList.remove("show");
+			searchbtn.firstChild.nodeValue = "Search"
+			matchedtxt.classList.add("hide");
+			matchedtxt.firstChild.nodeValue = ""
+		}
+	}
+	function search(term) {
+		if (currentSearchTerm === null) return;
+		var term = currentSearchTerm;
+
+		var re = new RegExp(term, ignorecase ? 'i' : '');
+		var el = document.getElementById("frames").children;
+		var matches = new Object();
+		var maxwidth = 0;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var func = g_to_func(e);
+			var rect = find_child(e, "rect");
+			if (func == null || rect == null)
+				continue;
+
+			// Save max width. Only works as we have a root frame
+			var w = parseFloat(rect.attributes.width.value);
+			if (w > maxwidth)
+				maxwidth = w;
+
+			if (func.match(re)) {
+				// highlight
+				var x = parseFloat(rect.attributes.x.value);
+				orig_save(rect, "fill");
+				rect.attributes.fill.value = "rgb(230,0,230)";
+
+				// remember matches
+				if (matches[x] == undefined) {
+					matches[x] = w;
+				} else {
+					if (w > matches[x]) {
+						// overwrite with parent
+						matches[x] = w;
+					}
+				}
+				searching = 1;
+			}
+		}
+		if (!searching)
+			return;
+
+		searchbtn.classList.add("show");
+		searchbtn.firstChild.nodeValue = "Reset Search";
+
+		// calculate percent matched, excluding vertical overlap
+		var count = 0;
+		var lastx = -1;
+		var lastw = 0;
+		var keys = Array();
+		for (k in matches) {
+			if (matches.hasOwnProperty(k))
+				keys.push(k);
+		}
+		// sort the matched frames by their x location
+		// ascending, then width descending
+		keys.sort(function(a, b){
+			return a - b;
+		});
+		// Step through frames saving only the biggest bottom-up frames
+		// thanks to the sort order. This relies on the tree property
+		// where children are always smaller than their parents.
+		var fudge = 0.0001;	// JavaScript floating point
+		for (var k in keys) {
+			var x = parseFloat(keys[k]);
+			var w = matches[keys[k]];
+			if (x >= lastx + lastw - fudge) {
+				count += w;
+				lastx = x;
+				lastw = w;
+			}
+		}
+		// display matched percent
+		matchedtxt.classList.remove("hide");
+		var pct = 100 * count / maxwidth;
+		if (pct != 100) pct = pct.toFixed(1)
+		matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
+	}
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="470.0" fill="url(#background)"  />
+<text id="title" x="600.00" y="24" >Flame Graph</text>
+<text id="details" x="10.00" y="453" > </text>
+<text id="unzoom" x="10.00" y="24" class="hide">Reset Zoom</text>
+<text id="search" x="1090.00" y="24" >Search</text>
+<text id="ignorecase" x="1174.00" y="24" >ic</text>
+<text id="matched" x="1090.00" y="453" > </text>
+<g id="frames">
+<g >
+<title>std::char_traits&lt;char&gt;::copy (1 samples, 0.57%)</title><rect x="50.7" y="197" width="6.8" height="15.0" fill="rgb(207,180,17)" rx="2" ry="2" />
+<text  x="53.69" y="207.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;Page, (2 samples, 1.15%)</title><rect x="728.9" y="325" width="13.5" height="15.0" fill="rgb(240,57,42)" rx="2" ry="2" />
+<text  x="731.85" y="335.5" ></text>
+</g>
+<g >
+<title>PageId::PageId (1 samples, 0.57%)</title><rect x="1095.1" y="197" width="6.7" height="15.0" fill="rgb(231,115,32)" rx="2" ry="2" />
+<text  x="1098.06" y="207.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;PageId, (1 samples, 0.57%)</title><rect x="77.8" y="325" width="6.8" height="15.0" fill="rgb(222,29,0)" rx="2" ry="2" />
+<text  x="80.82" y="335.5" ></text>
+</g>
+<g >
+<title>MultiThreadedPageRankComputer::WorkerData::work (108 samples, 62.07%)</title><rect x="10.0" y="357" width="732.4" height="15.0" fill="rgb(209,215,2)" rx="2" ry="2" />
+<text  x="13.00" y="367.5" >MultiThreadedPageRankComputer::WorkerData::work</text>
+</g>
+<g >
+<title>std::_Vector_base&lt;PageId, (4 samples, 2.30%)</title><rect x="783.1" y="197" width="27.1" height="15.0" fill="rgb(249,1,31)" rx="2" ry="2" />
+<text  x="786.10" y="207.5" >s..</text>
+</g>
+<g >
+<title>_int_free (2 samples, 1.15%)</title><rect x="403.3" y="245" width="13.6" height="15.0" fill="rgb(222,44,49)" rx="2" ry="2" />
+<text  x="406.33" y="255.5" ></text>
+</g>
+<g >
+<title>std::_Hash_bytes(void (11 samples, 6.32%)</title><rect x="633.9" y="245" width="74.6" height="15.0" fill="rgb(211,38,0)" rx="2" ry="2" />
+<text  x="636.91" y="255.5" >std::_Ha..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (5 samples, 2.87%)</title><rect x="1142.5" y="229" width="33.9" height="15.0" fill="rgb(233,57,9)" rx="2" ry="2" />
+<text  x="1145.53" y="239.5" >st..</text>
+</g>
+<g >
+<title>std::_Destroy&lt;PageId&gt; (1 samples, 0.57%)</title><rect x="1183.2" y="277" width="6.8" height="15.0" fill="rgb(214,208,6)" rx="2" ry="2" />
+<text  x="1186.22" y="287.5" ></text>
+</g>
+<g >
+<title>std::_Hashtable&lt;PageId, (10 samples, 5.75%)</title><rect x="742.4" y="309" width="67.8" height="15.0" fill="rgb(212,23,2)" rx="2" ry="2" />
+<text  x="745.41" y="319.5" >std::_H..</text>
+</g>
+<g >
+<title>main (66 samples, 37.93%)</title><rect x="742.4" y="405" width="447.6" height="15.0" fill="rgb(234,1,35)" rx="2" ry="2" />
+<text  x="745.41" y="415.5" >main</text>
+</g>
+<g >
+<title>Page::generateId (2 samples, 1.15%)</title><rect x="1129.0" y="341" width="13.5" height="15.0" fill="rgb(212,137,51)" rx="2" ry="2" />
+<text  x="1131.97" y="351.5" ></text>
+</g>
+<g >
+<title>MultiThreadedPageRankComputer::WorkerData::initContainersSequential (10 samples, 5.75%)</title><rect x="16.8" y="341" width="67.8" height="15.0" fill="rgb(231,8,18)" rx="2" ry="2" />
+<text  x="19.78" y="351.5" >MultiTh..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (5 samples, 2.87%)</title><rect x="16.8" y="245" width="33.9" height="15.0" fill="rgb(238,218,38)" rx="2" ry="2" />
+<text  x="19.78" y="255.5" >st..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1183.2" y="229" width="6.8" height="15.0" fill="rgb(241,196,26)" rx="2" ry="2" />
+<text  x="1186.22" y="239.5" ></text>
+</g>
+<g >
+<title>SimpleNetworkGenerator::generateNetworkOfSize (14 samples, 8.05%)</title><rect x="1095.1" y="373" width="94.9" height="15.0" fill="rgb(253,84,37)" rx="2" ry="2" />
+<text  x="1098.06" y="383.5" >SimpleNetwo..</text>
+</g>
+<g >
+<title>__gnu_cxx::new_allocator&lt;Page&gt;::construct&lt;Page, (2 samples, 1.15%)</title><rect x="728.9" y="293" width="13.5" height="15.0" fill="rgb(219,149,52)" rx="2" ry="2" />
+<text  x="731.85" y="303.5" ></text>
+</g>
+<g >
+<title>std::_Destroy&lt;Page&gt; (1 samples, 0.57%)</title><rect x="1088.3" y="293" width="6.8" height="15.0" fill="rgb(226,120,35)" rx="2" ry="2" />
+<text  x="1091.28" y="303.5" ></text>
+</g>
+<g >
+<title>std::__uninitialized_copy&lt;false&gt;::__uninit_copy&lt;__gnu_cxx::__normal_iterator&lt;PageId (2 samples, 1.15%)</title><rect x="728.9" y="213" width="13.5" height="15.0" fill="rgb(233,122,14)" rx="2" ry="2" />
+<text  x="731.85" y="223.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (19 samples, 10.92%)</title><rect x="260.9" y="293" width="128.9" height="15.0" fill="rgb(241,64,11)" rx="2" ry="2" />
+<text  x="263.92" y="303.5" >std::__cxx11::ba..</text>
+</g>
+<g >
+<title>PageId::PageId (3 samples, 1.72%)</title><rect x="708.5" y="197" width="20.4" height="15.0" fill="rgb(220,77,21)" rx="2" ry="2" />
+<text  x="711.51" y="207.5" ></text>
+</g>
+<g >
+<title>PageId::PageId (1 samples, 0.57%)</title><rect x="50.7" y="325" width="6.8" height="15.0" fill="rgb(224,74,49)" rx="2" ry="2" />
+<text  x="53.69" y="335.5" ></text>
+</g>
+<g >
+<title>Page::getId (5 samples, 2.87%)</title><rect x="16.8" y="325" width="33.9" height="15.0" fill="rgb(248,24,54)" rx="2" ry="2" />
+<text  x="19.78" y="335.5" >Pa..</text>
+</g>
+<g >
+<title>Page::addLink (5 samples, 2.87%)</title><rect x="1142.5" y="357" width="33.9" height="15.0" fill="rgb(247,85,30)" rx="2" ry="2" />
+<text  x="1145.53" y="367.5" >Pa..</text>
+</g>
+<g >
+<title>futex_wait_cancelable (26 samples, 14.94%)</title><rect x="84.6" y="261" width="176.3" height="15.0" fill="rgb(214,80,37)" rx="2" ry="2" />
+<text  x="87.60" y="271.5" >futex_wait_cancelable</text>
+</g>
+<g >
+<title>__gnu_cxx::new_allocator&lt;char&gt;::deallocate (6 samples, 3.45%)</title><rect x="742.4" y="53" width="40.7" height="15.0" fill="rgb(228,45,34)" rx="2" ry="2" />
+<text  x="745.41" y="63.5" >__g..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="50.7" y="213" width="6.8" height="15.0" fill="rgb(205,131,6)" rx="2" ry="2" />
+<text  x="53.69" y="223.5" ></text>
+</g>
+<g >
+<title>pageRankComputationWithNumNodes (66 samples, 37.93%)</title><rect x="742.4" y="389" width="447.6" height="15.0" fill="rgb(214,220,38)" rx="2" ry="2" />
+<text  x="745.41" y="399.5" >pageRankComputationWithNumNodes</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (2 samples, 1.15%)</title><rect x="1129.0" y="293" width="13.5" height="15.0" fill="rgb(241,217,46)" rx="2" ry="2" />
+<text  x="1131.97" y="303.5" ></text>
+</g>
+<g >
+<title>PageId::~PageId (6 samples, 3.45%)</title><rect x="742.4" y="133" width="40.7" height="15.0" fill="rgb(214,167,22)" rx="2" ry="2" />
+<text  x="745.41" y="143.5" >Pag..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (13 samples, 7.47%)</title><rect x="301.6" y="245" width="88.2" height="15.0" fill="rgb(219,178,54)" rx="2" ry="2" />
+<text  x="304.61" y="255.5" >std::__cxx..</text>
+</g>
+<g >
+<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (10 samples, 5.75%)</title><rect x="742.4" y="277" width="67.8" height="15.0" fill="rgb(235,150,6)" rx="2" ry="2" />
+<text  x="745.41" y="287.5" >std::__..</text>
+</g>
+<g >
+<title>MultiThreadedPageRankComputer::computeForNetwork (51 samples, 29.31%)</title><rect x="742.4" y="373" width="345.9" height="15.0" fill="rgb(237,156,16)" rx="2" ry="2" />
+<text  x="745.41" y="383.5" >MultiThreadedPageRankComputer::computeForNetwork</text>
+</g>
+<g >
+<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.57%)</title><rect x="627.1" y="293" width="6.8" height="15.0" fill="rgb(210,150,37)" rx="2" ry="2" />
+<text  x="630.13" y="303.5" ></text>
+</g>
+<g >
+<title>_IO_vfprintf_internal (2 samples, 1.15%)</title><rect x="1115.4" y="277" width="13.6" height="15.0" fill="rgb(231,1,24)" rx="2" ry="2" />
+<text  x="1118.40" y="287.5" ></text>
+</g>
+<g >
+<title>std::__detail::_Hashtable_base&lt;PageId, (2 samples, 1.15%)</title><rect x="64.3" y="245" width="13.5" height="15.0" fill="rgb(241,56,10)" rx="2" ry="2" />
+<text  x="67.25" y="255.5" ></text>
+</g>
+<g >
+<title>std::condition_variable::wait&lt;MultiThreadedPageRankComputer::WorkerData::wait()::{lambda()#1}&gt;(std::unique_lock&lt;std::mutex&gt;&amp;, (26 samples, 14.94%)</title><rect x="84.6" y="325" width="176.3" height="15.0" fill="rgb(223,199,24)" rx="2" ry="2" />
+<text  x="87.60" y="335.5" >std::condition_variabl..</text>
+</g>
+<g >
+<title>std::operator==&lt;char&gt; (10 samples, 5.75%)</title><rect x="559.3" y="213" width="67.8" height="15.0" fill="rgb(224,207,31)" rx="2" ry="2" />
+<text  x="562.31" y="223.5" >std::op..</text>
+</g>
+<g >
+<title>std::allocator_traits&lt;std::allocator&lt;char&gt; (6 samples, 3.45%)</title><rect x="742.4" y="69" width="40.7" height="15.0" fill="rgb(251,138,50)" rx="2" ry="2" />
+<text  x="745.41" y="79.5" >std..</text>
+</g>
+<g >
+<title>std::_Destroy_aux&lt;false&gt;::__destroy&lt;PageId*&gt; (1 samples, 0.57%)</title><rect x="1183.2" y="293" width="6.8" height="15.0" fill="rgb(205,51,53)" rx="2" ry="2" />
+<text  x="1186.22" y="303.5" ></text>
+</g>
+<g >
+<title>Page::Page (2 samples, 1.15%)</title><rect x="728.9" y="277" width="13.5" height="15.0" fill="rgb(205,54,30)" rx="2" ry="2" />
+<text  x="731.85" y="287.5" ></text>
+</g>
+<g >
+<title>MultiThreadedPageRankComputer::WorkerData::~WorkerData (10 samples, 5.75%)</title><rect x="742.4" y="357" width="67.8" height="15.0" fill="rgb(216,177,14)" rx="2" ry="2" />
+<text  x="745.41" y="367.5" >MultiTh..</text>
+</g>
+<g >
+<title>__gnu_cxx::__to_xstring&lt;std::__cxx11::basic_string&lt;char, (3 samples, 1.72%)</title><rect x="1108.6" y="309" width="20.4" height="15.0" fill="rgb(249,183,49)" rx="2" ry="2" />
+<text  x="1111.62" y="319.5" ></text>
+</g>
+<g >
+<title>__memmove_avx_unaligned_erms (12 samples, 6.90%)</title><rect x="301.6" y="197" width="81.4" height="15.0" fill="rgb(209,105,50)" rx="2" ry="2" />
+<text  x="304.61" y="207.5" >__memmove..</text>
+</g>
+<g >
+<title>__gnu_cxx::new_allocator&lt;PageId&gt;::deallocate (4 samples, 2.30%)</title><rect x="783.1" y="149" width="27.1" height="15.0" fill="rgb(252,84,7)" rx="2" ry="2" />
+<text  x="786.10" y="159.5" >_..</text>
+</g>
+<g >
+<title>std::unordered_map&lt;PageId, (3 samples, 1.72%)</title><rect x="57.5" y="325" width="20.3" height="15.0" fill="rgb(237,184,51)" rx="2" ry="2" />
+<text  x="60.47" y="335.5" ></text>
+</g>
+<g >
+<title>std::__detail::_Hash_code_base&lt;PageId, (11 samples, 6.32%)</title><rect x="633.9" y="309" width="74.6" height="15.0" fill="rgb(254,27,14)" rx="2" ry="2" />
+<text  x="636.91" y="319.5" >std::__d..</text>
+</g>
+<g >
+<title>std::__detail::_Mod_range_hashing::operator() (1 samples, 0.57%)</title><rect x="511.8" y="245" width="6.8" height="15.0" fill="rgb(222,199,14)" rx="2" ry="2" />
+<text  x="514.84" y="255.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="50.7" y="277" width="6.8" height="15.0" fill="rgb(222,48,54)" rx="2" ry="2" />
+<text  x="53.69" y="287.5" ></text>
+</g>
+<g >
+<title>std::thread::join() (41 samples, 23.56%)</title><rect x="810.2" y="357" width="278.1" height="15.0" fill="rgb(242,175,6)" rx="2" ry="2" />
+<text  x="813.23" y="367.5" >std::thread::join()</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1183.2" y="245" width="6.8" height="15.0" fill="rgb(250,40,9)" rx="2" ry="2" />
+<text  x="1186.22" y="255.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (14 samples, 8.05%)</title><rect x="294.8" y="261" width="95.0" height="15.0" fill="rgb(212,225,5)" rx="2" ry="2" />
+<text  x="297.83" y="271.5" >std::__cxx1..</text>
+</g>
+<g >
+<title>std::uninitialized_copy&lt;__gnu_cxx::__normal_iterator&lt;PageId (2 samples, 1.15%)</title><rect x="728.9" y="229" width="13.5" height="15.0" fill="rgb(224,185,20)" rx="2" ry="2" />
+<text  x="731.85" y="239.5" ></text>
+</g>
+<g >
+<title>_int_malloc (1 samples, 0.57%)</title><rect x="735.6" y="69" width="6.8" height="15.0" fill="rgb(207,18,46)" rx="2" ry="2" />
+<text  x="738.63" y="79.5" ></text>
+</g>
+<g >
+<title>std::__detail::_Map_base&lt;PageId, (43 samples, 24.71%)</title><rect x="416.9" y="325" width="291.6" height="15.0" fill="rgb(245,96,2)" rx="2" ry="2" />
+<text  x="419.90" y="335.5" >std::__detail::_Map_base&lt;PageId,</text>
+</g>
+<g >
+<title>std::condition_variable::wait(std::unique_lock&lt;std::mutex&gt;&amp;) (26 samples, 14.94%)</title><rect x="84.6" y="309" width="176.3" height="15.0" fill="rgb(240,143,51)" rx="2" ry="2" />
+<text  x="87.60" y="319.5" >std::condition_variabl..</text>
+</g>
+<g >
+<title>__memcmp_avx2_movbe (8 samples, 4.60%)</title><rect x="572.9" y="181" width="54.2" height="15.0" fill="rgb(219,63,0)" rx="2" ry="2" />
+<text  x="575.87" y="191.5" >__mem..</text>
+</g>
+<g >
+<title>__pthread_cond_wait_common (26 samples, 14.94%)</title><rect x="84.6" y="277" width="176.3" height="15.0" fill="rgb(253,31,17)" rx="2" ry="2" />
+<text  x="87.60" y="287.5" >__pthread_cond_wait_co..</text>
+</g>
+<g >
+<title>std::allocator_traits&lt;std::allocator&lt;char&gt; (4 samples, 2.30%)</title><rect x="389.8" y="277" width="27.1" height="15.0" fill="rgb(238,66,48)" rx="2" ry="2" />
+<text  x="392.77" y="287.5" >s..</text>
+</g>
+<g >
+<title>malloc_consolidate (1 samples, 0.57%)</title><rect x="1088.3" y="165" width="6.8" height="15.0" fill="rgb(225,104,43)" rx="2" ry="2" />
+<text  x="1091.28" y="175.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1095.1" y="165" width="6.7" height="15.0" fill="rgb(214,163,54)" rx="2" ry="2" />
+<text  x="1098.06" y="175.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (2 samples, 1.15%)</title><rect x="728.9" y="117" width="13.5" height="15.0" fill="rgb(241,220,30)" rx="2" ry="2" />
+<text  x="731.85" y="127.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (6 samples, 3.45%)</title><rect x="742.4" y="85" width="40.7" height="15.0" fill="rgb(237,177,6)" rx="2" ry="2" />
+<text  x="745.41" y="95.5" >std..</text>
+</g>
+<g >
+<title>PageId::~PageId (4 samples, 2.30%)</title><rect x="389.8" y="341" width="27.1" height="15.0" fill="rgb(248,1,33)" rx="2" ry="2" />
+<text  x="392.77" y="351.5" >P..</text>
+</g>
+<g >
+<title>std::_Hashtable&lt;PageId, (3 samples, 1.72%)</title><rect x="57.5" y="277" width="20.3" height="15.0" fill="rgb(214,136,26)" rx="2" ry="2" />
+<text  x="60.47" y="287.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;Page, (5 samples, 2.87%)</title><rect x="708.5" y="341" width="33.9" height="15.0" fill="rgb(220,59,30)" rx="2" ry="2" />
+<text  x="711.51" y="351.5" >st..</text>
+</g>
+<g >
+<title>std::vector&lt;Page, (1 samples, 0.57%)</title><rect x="1095.1" y="341" width="6.7" height="15.0" fill="rgb(214,27,16)" rx="2" ry="2" />
+<text  x="1098.06" y="351.5" ></text>
+</g>
+<g >
+<title>std::__uninitialized_copy_a&lt;__gnu_cxx::__normal_iterator&lt;PageId (2 samples, 1.15%)</title><rect x="728.9" y="245" width="13.5" height="15.0" fill="rgb(234,163,1)" rx="2" ry="2" />
+<text  x="731.85" y="255.5" ></text>
+</g>
+<g >
+<title>MultiThreadedPageRankComputer::WorkerData::wait (26 samples, 14.94%)</title><rect x="84.6" y="341" width="176.3" height="15.0" fill="rgb(209,100,4)" rx="2" ry="2" />
+<text  x="87.60" y="351.5" >MultiThreadedPageRankC..</text>
+</g>
+<g >
+<title>std::_Vector_base&lt;PageId, (1 samples, 0.57%)</title><rect x="1088.3" y="229" width="6.8" height="15.0" fill="rgb(212,10,38)" rx="2" ry="2" />
+<text  x="1091.28" y="239.5" ></text>
+</g>
+<g >
+<title>__GI___pthread_timedjoin_ex (41 samples, 23.56%)</title><rect x="810.2" y="341" width="278.1" height="15.0" fill="rgb(246,139,35)" rx="2" ry="2" />
+<text  x="813.23" y="351.5" >__GI___pthread_timedjoin_ex</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="722.1" y="85" width="6.8" height="15.0" fill="rgb(214,106,9)" rx="2" ry="2" />
+<text  x="725.07" y="95.5" ></text>
+</g>
+<g >
+<title>std::_Construct&lt;PageId, (3 samples, 1.72%)</title><rect x="708.5" y="213" width="20.4" height="15.0" fill="rgb(248,96,29)" rx="2" ry="2" />
+<text  x="711.51" y="223.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (5 samples, 2.87%)</title><rect x="16.8" y="293" width="33.9" height="15.0" fill="rgb(243,221,36)" rx="2" ry="2" />
+<text  x="19.78" y="303.5" >st..</text>
+</g>
+<g >
+<title>std::equal_to&lt;PageId&gt;::operator() (2 samples, 1.15%)</title><rect x="64.3" y="213" width="13.5" height="15.0" fill="rgb(253,43,29)" rx="2" ry="2" />
+<text  x="67.25" y="223.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;PageId, (1 samples, 0.57%)</title><rect x="77.8" y="309" width="6.8" height="15.0" fill="rgb(238,52,24)" rx="2" ry="2" />
+<text  x="80.82" y="319.5" ></text>
+</g>
+<g >
+<title>__gnu_cxx::new_allocator&lt;PageId&gt;::construct&lt;PageId, (1 samples, 0.57%)</title><rect x="77.8" y="261" width="6.8" height="15.0" fill="rgb(208,178,15)" rx="2" ry="2" />
+<text  x="80.82" y="271.5" ></text>
+</g>
+<g >
+<title>std::unordered_map&lt;PageId, (43 samples, 24.71%)</title><rect x="416.9" y="341" width="291.6" height="15.0" fill="rgb(213,188,7)" rx="2" ry="2" />
+<text  x="419.90" y="351.5" >std::unordered_map&lt;PageId,</text>
+</g>
+<g >
+<title>std::allocator_traits&lt;std::allocator&lt;char&gt; (1 samples, 0.57%)</title><rect x="1183.2" y="197" width="6.8" height="15.0" fill="rgb(205,33,7)" rx="2" ry="2" />
+<text  x="1186.22" y="207.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1095.1" y="133" width="6.7" height="15.0" fill="rgb(242,160,4)" rx="2" ry="2" />
+<text  x="1098.06" y="143.5" ></text>
+</g>
+<g >
+<title>PageId::operator== (2 samples, 1.15%)</title><rect x="64.3" y="197" width="13.5" height="15.0" fill="rgb(227,36,34)" rx="2" ry="2" />
+<text  x="67.25" y="207.5" ></text>
+</g>
+<g >
+<title>std::__detail::_Mod_range_hashing::operator() (1 samples, 0.57%)</title><rect x="627.1" y="277" width="6.8" height="15.0" fill="rgb(216,15,22)" rx="2" ry="2" />
+<text  x="630.13" y="287.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="50.7" y="245" width="6.8" height="15.0" fill="rgb(247,148,16)" rx="2" ry="2" />
+<text  x="53.69" y="255.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (3 samples, 1.72%)</title><rect x="708.5" y="133" width="20.4" height="15.0" fill="rgb(222,185,50)" rx="2" ry="2" />
+<text  x="711.51" y="143.5" ></text>
+</g>
+<g >
+<title>std::allocator_traits&lt;std::allocator&lt;PageId&gt; (4 samples, 2.30%)</title><rect x="783.1" y="165" width="27.1" height="15.0" fill="rgb(219,175,37)" rx="2" ry="2" />
+<text  x="786.10" y="175.5" >s..</text>
+</g>
+<g >
+<title>std::__uninitialized_copy_a&lt;__gnu_cxx::__normal_iterator&lt;PageId (1 samples, 0.57%)</title><rect x="1095.1" y="261" width="6.7" height="15.0" fill="rgb(236,75,53)" rx="2" ry="2" />
+<text  x="1098.06" y="271.5" ></text>
+</g>
+<g >
+<title>_IO_vsnprintf (2 samples, 1.15%)</title><rect x="1115.4" y="293" width="13.6" height="15.0" fill="rgb(210,40,21)" rx="2" ry="2" />
+<text  x="1118.40" y="303.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;PageId, (1 samples, 0.57%)</title><rect x="1183.2" y="341" width="6.8" height="15.0" fill="rgb(232,28,20)" rx="2" ry="2" />
+<text  x="1186.22" y="351.5" ></text>
+</g>
+<g >
+<title>std::_Destroy&lt;PageId*&gt; (6 samples, 3.45%)</title><rect x="742.4" y="181" width="40.7" height="15.0" fill="rgb(234,151,5)" rx="2" ry="2" />
+<text  x="745.41" y="191.5" >std..</text>
+</g>
+<g >
+<title>memcpy@plt (1 samples, 0.57%)</title><rect x="383.0" y="197" width="6.8" height="15.0" fill="rgb(230,71,35)" rx="2" ry="2" />
+<text  x="385.99" y="207.5" ></text>
+</g>
+<g >
+<title>_int_free (4 samples, 2.30%)</title><rect x="783.1" y="133" width="27.1" height="15.0" fill="rgb(246,218,35)" rx="2" ry="2" />
+<text  x="786.10" y="143.5" >_..</text>
+</g>
+<g >
+<title>SimpleIdGenerator::generateId (2 samples, 1.15%)</title><rect x="1129.0" y="325" width="13.5" height="15.0" fill="rgb(240,87,16)" rx="2" ry="2" />
+<text  x="1131.97" y="335.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (5 samples, 2.87%)</title><rect x="1142.5" y="245" width="33.9" height="15.0" fill="rgb(205,8,18)" rx="2" ry="2" />
+<text  x="1145.53" y="255.5" >st..</text>
+</g>
+<g >
+<title>Page::~Page (1 samples, 0.57%)</title><rect x="1088.3" y="277" width="6.8" height="15.0" fill="rgb(245,133,54)" rx="2" ry="2" />
+<text  x="1091.28" y="287.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1169.7" y="181" width="6.7" height="15.0" fill="rgb(248,195,11)" rx="2" ry="2" />
+<text  x="1172.66" y="191.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;Page, (1 samples, 0.57%)</title><rect x="1088.3" y="357" width="6.8" height="15.0" fill="rgb(221,38,4)" rx="2" ry="2" />
+<text  x="1091.28" y="367.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (2 samples, 1.15%)</title><rect x="1129.0" y="277" width="13.5" height="15.0" fill="rgb(222,209,17)" rx="2" ry="2" />
+<text  x="1131.97" y="287.5" ></text>
+</g>
+<g >
+<title>PageId::PageId (19 samples, 10.92%)</title><rect x="260.9" y="341" width="128.9" height="15.0" fill="rgb(208,142,43)" rx="2" ry="2" />
+<text  x="263.92" y="351.5" >PageId::PageId</text>
+</g>
+<g >
+<title>std::_Vector_base&lt;PageId, (4 samples, 2.30%)</title><rect x="783.1" y="181" width="27.1" height="15.0" fill="rgb(232,208,51)" rx="2" ry="2" />
+<text  x="786.10" y="191.5" >s..</text>
+</g>
+<g >
+<title>std::allocator_traits&lt;std::allocator&lt;PageId&gt; (5 samples, 2.87%)</title><rect x="1142.5" y="325" width="33.9" height="15.0" fill="rgb(205,62,28)" rx="2" ry="2" />
+<text  x="1145.53" y="335.5" >st..</text>
+</g>
+<g >
+<title>tcache_get (1 samples, 0.57%)</title><rect x="288.0" y="229" width="6.8" height="15.0" fill="rgb(237,70,0)" rx="2" ry="2" />
+<text  x="291.05" y="239.5" ></text>
+</g>
+<g >
+<title>start_thread (108 samples, 62.07%)</title><rect x="10.0" y="389" width="732.4" height="15.0" fill="rgb(236,220,3)" rx="2" ry="2" />
+<text  x="13.00" y="399.5" >start_thread</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (2 samples, 1.15%)</title><rect x="728.9" y="133" width="13.5" height="15.0" fill="rgb(233,88,4)" rx="2" ry="2" />
+<text  x="731.85" y="143.5" ></text>
+</g>
+<g >
+<title>std::equal_to&lt;PageId&gt;::operator() (10 samples, 5.75%)</title><rect x="559.3" y="245" width="67.8" height="15.0" fill="rgb(231,55,35)" rx="2" ry="2" />
+<text  x="562.31" y="255.5" >std::eq..</text>
+</g>
+<g >
+<title>PageId::~PageId (1 samples, 0.57%)</title><rect x="1183.2" y="261" width="6.8" height="15.0" fill="rgb(239,126,18)" rx="2" ry="2" />
+<text  x="1186.22" y="271.5" ></text>
+</g>
+<g >
+<title>std::allocator_traits&lt;std::allocator&lt;Page&gt; (1 samples, 0.57%)</title><rect x="1095.1" y="325" width="6.7" height="15.0" fill="rgb(248,70,40)" rx="2" ry="2" />
+<text  x="1098.06" y="335.5" ></text>
+</g>
+<g >
+<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.57%)</title><rect x="57.5" y="245" width="6.8" height="15.0" fill="rgb(249,64,52)" rx="2" ry="2" />
+<text  x="60.47" y="255.5" ></text>
+</g>
+<g >
+<title>PageId::operator== (10 samples, 5.75%)</title><rect x="559.3" y="229" width="67.8" height="15.0" fill="rgb(220,190,46)" rx="2" ry="2" />
+<text  x="562.31" y="239.5" >PageId:..</text>
+</g>
+<g >
+<title>std::_Hash_impl::hash (11 samples, 6.32%)</title><rect x="633.9" y="261" width="74.6" height="15.0" fill="rgb(208,149,25)" rx="2" ry="2" />
+<text  x="636.91" y="271.5" >std::_Ha..</text>
+</g>
+<g >
+<title>__gnu_cxx::new_allocator&lt;char&gt;::deallocate (1 samples, 0.57%)</title><rect x="1183.2" y="181" width="6.8" height="15.0" fill="rgb(237,212,24)" rx="2" ry="2" />
+<text  x="1186.22" y="191.5" ></text>
+</g>
+<g >
+<title>operator (2 samples, 1.15%)</title><rect x="728.9" y="101" width="13.5" height="15.0" fill="rgb(229,144,12)" rx="2" ry="2" />
+<text  x="731.85" y="111.5" ></text>
+</g>
+<g >
+<title>__GI___libc_malloc (1 samples, 0.57%)</title><rect x="1095.1" y="101" width="6.7" height="15.0" fill="rgb(223,32,33)" rx="2" ry="2" />
+<text  x="1098.06" y="111.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;PageId, (5 samples, 2.87%)</title><rect x="1142.5" y="341" width="33.9" height="15.0" fill="rgb(226,26,11)" rx="2" ry="2" />
+<text  x="1145.53" y="351.5" >st..</text>
+</g>
+<g >
+<title>_int_free (1 samples, 0.57%)</title><rect x="1183.2" y="165" width="6.8" height="15.0" fill="rgb(250,214,38)" rx="2" ry="2" />
+<text  x="1186.22" y="175.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (3 samples, 1.72%)</title><rect x="708.5" y="165" width="20.4" height="15.0" fill="rgb(223,62,53)" rx="2" ry="2" />
+<text  x="711.51" y="175.5" ></text>
+</g>
+<g >
+<title>std::_Hashtable&lt;PageId, (10 samples, 5.75%)</title><rect x="742.4" y="325" width="67.8" height="15.0" fill="rgb(235,57,28)" rx="2" ry="2" />
+<text  x="745.41" y="335.5" >std::_H..</text>
+</g>
+<g >
+<title>std::operator==&lt;char&gt; (2 samples, 1.15%)</title><rect x="64.3" y="181" width="13.5" height="15.0" fill="rgb(210,193,35)" rx="2" ry="2" />
+<text  x="67.25" y="191.5" ></text>
+</g>
+<g >
+<title>std::unordered_map&lt;PageId, (10 samples, 5.75%)</title><rect x="742.4" y="341" width="67.8" height="15.0" fill="rgb(233,209,54)" rx="2" ry="2" />
+<text  x="745.41" y="351.5" >std::un..</text>
+</g>
+<g >
+<title>operator (5 samples, 2.87%)</title><rect x="260.9" y="261" width="33.9" height="15.0" fill="rgb(231,225,45)" rx="2" ry="2" />
+<text  x="263.92" y="271.5" >op..</text>
+</g>
+<g >
+<title>std::vector&lt;PageId, (3 samples, 1.72%)</title><rect x="708.5" y="277" width="20.4" height="15.0" fill="rgb(222,32,24)" rx="2" ry="2" />
+<text  x="711.51" y="287.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (2 samples, 1.15%)</title><rect x="728.9" y="149" width="13.5" height="15.0" fill="rgb(246,81,1)" rx="2" ry="2" />
+<text  x="731.85" y="159.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="77.8" y="213" width="6.8" height="15.0" fill="rgb(221,75,4)" rx="2" ry="2" />
+<text  x="80.82" y="223.5" ></text>
+</g>
+<g >
+<title>?? (108 samples, 62.07%)</title><rect x="10.0" y="373" width="732.4" height="15.0" fill="rgb(224,106,32)" rx="2" ry="2" />
+<text  x="13.00" y="383.5" >??</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1135.7" y="261" width="6.8" height="15.0" fill="rgb(234,109,28)" rx="2" ry="2" />
+<text  x="1138.75" y="271.5" ></text>
+</g>
+<g >
+<title>std::uninitialized_copy&lt;__gnu_cxx::__normal_iterator&lt;PageId (1 samples, 0.57%)</title><rect x="1095.1" y="245" width="6.7" height="15.0" fill="rgb(214,43,8)" rx="2" ry="2" />
+<text  x="1098.06" y="255.5" ></text>
+</g>
+<g >
+<title>std::_Construct&lt;PageId, (2 samples, 1.15%)</title><rect x="728.9" y="197" width="13.5" height="15.0" fill="rgb(234,64,52)" rx="2" ry="2" />
+<text  x="731.85" y="207.5" ></text>
+</g>
+<g >
+<title>PageIdHash::operator() (11 samples, 6.32%)</title><rect x="633.9" y="293" width="74.6" height="15.0" fill="rgb(212,27,18)" rx="2" ry="2" />
+<text  x="636.91" y="303.5" >PageIdHa..</text>
+</g>
+<g >
+<title>std::_Destroy&lt;PageId*, (1 samples, 0.57%)</title><rect x="1183.2" y="325" width="6.8" height="15.0" fill="rgb(246,101,3)" rx="2" ry="2" />
+<text  x="1186.22" y="335.5" ></text>
+</g>
+<g >
+<title>std::_Hashtable&lt;PageId, (1 samples, 0.57%)</title><rect x="511.8" y="277" width="6.8" height="15.0" fill="rgb(251,178,6)" rx="2" ry="2" />
+<text  x="514.84" y="287.5" ></text>
+</g>
+<g >
+<title>Page::Page (3 samples, 1.72%)</title><rect x="708.5" y="293" width="20.4" height="15.0" fill="rgb(216,87,24)" rx="2" ry="2" />
+<text  x="711.51" y="303.5" ></text>
+</g>
+<g >
+<title>std:: (4 samples, 2.30%)</title><rect x="1101.8" y="325" width="27.2" height="15.0" fill="rgb(233,128,37)" rx="2" ry="2" />
+<text  x="1104.84" y="335.5" >s..</text>
+</g>
+<g >
+<title>std::allocator_traits&lt;std::allocator&lt;Page&gt; (3 samples, 1.72%)</title><rect x="708.5" y="325" width="20.4" height="15.0" fill="rgb(245,51,9)" rx="2" ry="2" />
+<text  x="711.51" y="335.5" ></text>
+</g>
+<g >
+<title>__gnu_cxx::new_allocator&lt;PageId&gt;::construct&lt;PageId, (5 samples, 2.87%)</title><rect x="1142.5" y="309" width="33.9" height="15.0" fill="rgb(207,28,37)" rx="2" ry="2" />
+<text  x="1145.53" y="319.5" >__..</text>
+</g>
+<g >
+<title>__GI___libc_malloc (4 samples, 2.30%)</title><rect x="16.8" y="213" width="27.1" height="15.0" fill="rgb(226,177,17)" rx="2" ry="2" />
+<text  x="19.78" y="223.5" >_..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1095.1" y="181" width="6.7" height="15.0" fill="rgb(214,33,49)" rx="2" ry="2" />
+<text  x="1098.06" y="191.5" ></text>
+</g>
+<g >
+<title>std::__uninitialized_copy&lt;false&gt;::__uninit_copy&lt;__gnu_cxx::__normal_iterator&lt;PageId (1 samples, 0.57%)</title><rect x="1095.1" y="229" width="6.7" height="15.0" fill="rgb(221,109,36)" rx="2" ry="2" />
+<text  x="1098.06" y="239.5" ></text>
+</g>
+<g >
+<title>std::hash&lt;std::__cxx11::basic_string&lt;char, (11 samples, 6.32%)</title><rect x="633.9" y="277" width="74.6" height="15.0" fill="rgb(214,214,28)" rx="2" ry="2" />
+<text  x="636.91" y="287.5" >std::has..</text>
+</g>
+<g >
+<title>operator (4 samples, 2.30%)</title><rect x="16.8" y="229" width="27.1" height="15.0" fill="rgb(221,169,2)" rx="2" ry="2" />
+<text  x="19.78" y="239.5" >o..</text>
+</g>
+<g >
+<title>_int_free (1 samples, 0.57%)</title><rect x="1088.3" y="181" width="6.8" height="15.0" fill="rgb(237,28,14)" rx="2" ry="2" />
+<text  x="1091.28" y="191.5" ></text>
+</g>
+<g >
+<title>operator (2 samples, 1.15%)</title><rect x="708.5" y="117" width="13.6" height="15.0" fill="rgb(222,216,28)" rx="2" ry="2" />
+<text  x="711.51" y="127.5" ></text>
+</g>
+<g >
+<title>std::_Hashtable&lt;PageId, (30 samples, 17.24%)</title><rect x="430.5" y="309" width="203.4" height="15.0" fill="rgb(209,42,43)" rx="2" ry="2" />
+<text  x="433.46" y="319.5" >std::_Hashtable&lt;PageId,</text>
+</g>
+<g >
+<title>PageId::PageId (1 samples, 0.57%)</title><rect x="77.8" y="245" width="6.8" height="15.0" fill="rgb(227,186,24)" rx="2" ry="2" />
+<text  x="80.82" y="255.5" ></text>
+</g>
+<g >
+<title>std::__uninitialized_copy&lt;false&gt;::__uninit_copy&lt;__gnu_cxx::__normal_iterator&lt;PageId (3 samples, 1.72%)</title><rect x="708.5" y="229" width="20.4" height="15.0" fill="rgb(252,57,31)" rx="2" ry="2" />
+<text  x="711.51" y="239.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (5 samples, 2.87%)</title><rect x="1142.5" y="261" width="33.9" height="15.0" fill="rgb(237,141,51)" rx="2" ry="2" />
+<text  x="1145.53" y="271.5" >st..</text>
+</g>
+<g >
+<title>__GI___libc_malloc (2 samples, 1.15%)</title><rect x="728.9" y="85" width="13.5" height="15.0" fill="rgb(205,60,39)" rx="2" ry="2" />
+<text  x="731.85" y="95.5" ></text>
+</g>
+<g >
+<title>std::_Hashtable&lt;PageId, (3 samples, 1.72%)</title><rect x="57.5" y="293" width="20.3" height="15.0" fill="rgb(212,177,10)" rx="2" ry="2" />
+<text  x="60.47" y="303.5" ></text>
+</g>
+<g >
+<title>std::allocator_traits&lt;std::allocator&lt;Page&gt; (2 samples, 1.15%)</title><rect x="728.9" y="309" width="13.5" height="15.0" fill="rgb(222,13,30)" rx="2" ry="2" />
+<text  x="731.85" y="319.5" ></text>
+</g>
+<g >
+<title>__GI___libc_free (3 samples, 1.72%)</title><rect x="742.4" y="37" width="20.4" height="15.0" fill="rgb(242,208,8)" rx="2" ry="2" />
+<text  x="745.41" y="47.5" ></text>
+</g>
+<g >
+<title>PageId::~PageId (1 samples, 0.57%)</title><rect x="1176.4" y="341" width="6.8" height="15.0" fill="rgb(245,210,23)" rx="2" ry="2" />
+<text  x="1179.44" y="351.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (19 samples, 10.92%)</title><rect x="260.9" y="277" width="128.9" height="15.0" fill="rgb(215,108,21)" rx="2" ry="2" />
+<text  x="263.92" y="287.5" >std::__cxx11::ba..</text>
+</g>
+<g >
+<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (10 samples, 5.75%)</title><rect x="742.4" y="245" width="67.8" height="15.0" fill="rgb(237,28,22)" rx="2" ry="2" />
+<text  x="745.41" y="255.5" >__gnu_c..</text>
+</g>
+<g >
+<title>std::vector&lt;PageId, (1 samples, 0.57%)</title><rect x="77.8" y="293" width="6.8" height="15.0" fill="rgb(206,206,7)" rx="2" ry="2" />
+<text  x="80.82" y="303.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (4 samples, 2.30%)</title><rect x="389.8" y="309" width="27.1" height="15.0" fill="rgb(236,157,27)" rx="2" ry="2" />
+<text  x="392.77" y="319.5" >s..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (19 samples, 10.92%)</title><rect x="260.9" y="309" width="128.9" height="15.0" fill="rgb(233,129,26)" rx="2" ry="2" />
+<text  x="263.92" y="319.5" >std::__cxx11::ba..</text>
+</g>
+<g >
+<title>__memcmp_avx2_movbe (2 samples, 1.15%)</title><rect x="64.3" y="149" width="13.5" height="15.0" fill="rgb(249,26,34)" rx="2" ry="2" />
+<text  x="67.25" y="159.5" ></text>
+</g>
+<g >
+<title>std::__uninitialized_copy_a&lt;__gnu_cxx::__normal_iterator&lt;PageId (3 samples, 1.72%)</title><rect x="708.5" y="261" width="20.4" height="15.0" fill="rgb(228,218,53)" rx="2" ry="2" />
+<text  x="711.51" y="271.5" ></text>
+</g>
+<g >
+<title>std::__detail::_Map_base&lt;PageId, (3 samples, 1.72%)</title><rect x="57.5" y="309" width="20.3" height="15.0" fill="rgb(218,229,50)" rx="2" ry="2" />
+<text  x="60.47" y="319.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1176.4" y="309" width="6.8" height="15.0" fill="rgb(235,178,50)" rx="2" ry="2" />
+<text  x="1179.44" y="319.5" ></text>
+</g>
+<g >
+<title>std::char_traits&lt;char&gt;::copy (13 samples, 7.47%)</title><rect x="301.6" y="213" width="88.2" height="15.0" fill="rgb(207,78,8)" rx="2" ry="2" />
+<text  x="304.61" y="223.5" >std::char_..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="722.1" y="117" width="6.8" height="15.0" fill="rgb(231,218,31)" rx="2" ry="2" />
+<text  x="725.07" y="127.5" ></text>
+</g>
+<g >
+<title>NetworkGenerator::generatePageFromNum (4 samples, 2.30%)</title><rect x="1101.8" y="341" width="27.2" height="15.0" fill="rgb(244,121,17)" rx="2" ry="2" />
+<text  x="1104.84" y="351.5" >N..</text>
+</g>
+<g >
+<title>std::__detail::_Equal_helper&lt;PageId, (16 samples, 9.20%)</title><rect x="518.6" y="261" width="108.5" height="15.0" fill="rgb(233,175,36)" rx="2" ry="2" />
+<text  x="521.62" y="271.5" >std::__detail..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="50.7" y="261" width="6.8" height="15.0" fill="rgb(226,210,11)" rx="2" ry="2" />
+<text  x="53.69" y="271.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;PageId, (1 samples, 0.57%)</title><rect x="1088.3" y="261" width="6.8" height="15.0" fill="rgb(210,27,1)" rx="2" ry="2" />
+<text  x="1091.28" y="271.5" ></text>
+</g>
+<g >
+<title>std::__detail::_Mod_range_hashing::operator() (1 samples, 0.57%)</title><rect x="57.5" y="229" width="6.8" height="15.0" fill="rgb(219,183,11)" rx="2" ry="2" />
+<text  x="60.47" y="239.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;PageId, (1 samples, 0.57%)</title><rect x="1095.1" y="277" width="6.7" height="15.0" fill="rgb(250,114,34)" rx="2" ry="2" />
+<text  x="1098.06" y="287.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (4 samples, 2.30%)</title><rect x="389.8" y="293" width="27.1" height="15.0" fill="rgb(221,154,11)" rx="2" ry="2" />
+<text  x="392.77" y="303.5" >s..</text>
+</g>
+<g >
+<title>std::char_traits&lt;char&gt;::compare (2 samples, 1.15%)</title><rect x="64.3" y="165" width="13.5" height="15.0" fill="rgb(210,194,51)" rx="2" ry="2" />
+<text  x="67.25" y="175.5" ></text>
+</g>
+<g >
+<title>std::uninitialized_copy&lt;__gnu_cxx::__normal_iterator&lt;PageId (3 samples, 1.72%)</title><rect x="708.5" y="245" width="20.4" height="15.0" fill="rgb(209,54,26)" rx="2" ry="2" />
+<text  x="711.51" y="255.5" ></text>
+</g>
+<g >
+<title>PageId::PageId (5 samples, 2.87%)</title><rect x="1142.5" y="293" width="33.9" height="15.0" fill="rgb(212,155,14)" rx="2" ry="2" />
+<text  x="1145.53" y="303.5" >Pa..</text>
+</g>
+<g >
+<title>__gnu_cxx::new_allocator&lt;Page&gt;::construct&lt;Page, (1 samples, 0.57%)</title><rect x="1095.1" y="309" width="6.7" height="15.0" fill="rgb(254,42,11)" rx="2" ry="2" />
+<text  x="1098.06" y="319.5" ></text>
+</g>
+<g >
+<title>std::__detail::_Hashtable_base&lt;PageId, (16 samples, 9.20%)</title><rect x="518.6" y="277" width="108.5" height="15.0" fill="rgb(245,69,28)" rx="2" ry="2" />
+<text  x="521.62" y="287.5" >std::__detail..</text>
+</g>
+<g >
+<title>__gnu_cxx::new_allocator&lt;Page&gt;::construct&lt;Page, (3 samples, 1.72%)</title><rect x="708.5" y="309" width="20.4" height="15.0" fill="rgb(229,131,10)" rx="2" ry="2" />
+<text  x="711.51" y="319.5" ></text>
+</g>
+<g >
+<title>std::operator+&lt;char, (2 samples, 1.15%)</title><rect x="1129.0" y="309" width="13.5" height="15.0" fill="rgb(253,50,46)" rx="2" ry="2" />
+<text  x="1131.97" y="319.5" ></text>
+</g>
+<g >
+<title>std::_Vector_base&lt;PageId, (1 samples, 0.57%)</title><rect x="1088.3" y="245" width="6.8" height="15.0" fill="rgb(246,62,28)" rx="2" ry="2" />
+<text  x="1091.28" y="255.5" ></text>
+</g>
+<g >
+<title>operator (1 samples, 0.57%)</title><rect x="1095.1" y="117" width="6.7" height="15.0" fill="rgb(210,127,19)" rx="2" ry="2" />
+<text  x="1098.06" y="127.5" ></text>
+</g>
+<g >
+<title>std::pair&lt;PageId (10 samples, 5.75%)</title><rect x="742.4" y="229" width="67.8" height="15.0" fill="rgb(224,145,53)" rx="2" ry="2" />
+<text  x="745.41" y="239.5" >std::pa..</text>
+</g>
+<g >
+<title>__memmove_avx_unaligned_erms (1 samples, 0.57%)</title><rect x="50.7" y="181" width="6.8" height="15.0" fill="rgb(245,177,31)" rx="2" ry="2" />
+<text  x="53.69" y="191.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="77.8" y="229" width="6.8" height="15.0" fill="rgb(244,193,32)" rx="2" ry="2" />
+<text  x="80.82" y="239.5" ></text>
+</g>
+<g >
+<title>std::_Destroy&lt;PageId*&gt; (1 samples, 0.57%)</title><rect x="1183.2" y="309" width="6.8" height="15.0" fill="rgb(240,25,1)" rx="2" ry="2" />
+<text  x="1186.22" y="319.5" ></text>
+</g>
+<g >
+<title>__GI___libc_free (2 samples, 1.15%)</title><rect x="389.8" y="245" width="13.5" height="15.0" fill="rgb(222,148,25)" rx="2" ry="2" />
+<text  x="392.77" y="255.5" ></text>
+</g>
+<g >
+<title>std::__detail::_Equal_helper&lt;PageId, (2 samples, 1.15%)</title><rect x="64.3" y="229" width="13.5" height="15.0" fill="rgb(254,20,31)" rx="2" ry="2" />
+<text  x="67.25" y="239.5" ></text>
+</g>
+<g >
+<title>__gnu_cxx::new_allocator&lt;char&gt;::deallocate (4 samples, 2.30%)</title><rect x="389.8" y="261" width="27.1" height="15.0" fill="rgb(211,181,5)" rx="2" ry="2" />
+<text  x="392.77" y="271.5" >_..</text>
+</g>
+<g >
+<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (10 samples, 5.75%)</title><rect x="742.4" y="293" width="67.8" height="15.0" fill="rgb(222,156,4)" rx="2" ry="2" />
+<text  x="745.41" y="303.5" >std::__..</text>
+</g>
+<g >
+<title>std::char_traits&lt;char&gt;::compare (10 samples, 5.75%)</title><rect x="559.3" y="197" width="67.8" height="15.0" fill="rgb(211,136,50)" rx="2" ry="2" />
+<text  x="562.31" y="207.5" >std::ch..</text>
+</g>
+<g >
+<title>std::allocator_traits&lt;std::allocator&lt;PageId&gt; (1 samples, 0.57%)</title><rect x="77.8" y="277" width="6.8" height="15.0" fill="rgb(247,80,27)" rx="2" ry="2" />
+<text  x="80.82" y="287.5" ></text>
+</g>
+<g >
+<title>std::_Destroy&lt;PageId*, (6 samples, 3.45%)</title><rect x="742.4" y="197" width="40.7" height="15.0" fill="rgb(248,105,37)" rx="2" ry="2" />
+<text  x="745.41" y="207.5" >std..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (5 samples, 2.87%)</title><rect x="1142.5" y="277" width="33.9" height="15.0" fill="rgb(224,109,30)" rx="2" ry="2" />
+<text  x="1145.53" y="287.5" >st..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1095.1" y="149" width="6.7" height="15.0" fill="rgb(208,20,7)" rx="2" ry="2" />
+<text  x="1098.06" y="159.5" ></text>
+</g>
+<g >
+<title>PageId::PageId (2 samples, 1.15%)</title><rect x="728.9" y="181" width="13.5" height="15.0" fill="rgb(214,15,54)" rx="2" ry="2" />
+<text  x="731.85" y="191.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;PageId, (2 samples, 1.15%)</title><rect x="728.9" y="261" width="13.5" height="15.0" fill="rgb(212,59,48)" rx="2" ry="2" />
+<text  x="731.85" y="271.5" ></text>
+</g>
+<g >
+<title>__gnu_cxx::new_allocator&lt;PageId&gt;::deallocate (1 samples, 0.57%)</title><rect x="1088.3" y="197" width="6.8" height="15.0" fill="rgb(238,112,21)" rx="2" ry="2" />
+<text  x="1091.28" y="207.5" ></text>
+</g>
+<g >
+<title>malloc_consolidate (4 samples, 2.30%)</title><rect x="783.1" y="117" width="27.1" height="15.0" fill="rgb(216,144,8)" rx="2" ry="2" />
+<text  x="786.10" y="127.5" >m..</text>
+</g>
+<g >
+<title>std::char_traits&lt;char&gt;::copy (1 samples, 0.57%)</title><rect x="722.1" y="69" width="6.8" height="15.0" fill="rgb(214,210,19)" rx="2" ry="2" />
+<text  x="725.07" y="79.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1176.4" y="325" width="6.8" height="15.0" fill="rgb(239,48,6)" rx="2" ry="2" />
+<text  x="1179.44" y="335.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1169.7" y="213" width="6.7" height="15.0" fill="rgb(207,13,51)" rx="2" ry="2" />
+<text  x="1172.66" y="223.5" ></text>
+</g>
+<g >
+<title>std::__detail::_Hashtable_base&lt;PageId, (2 samples, 1.15%)</title><rect x="64.3" y="261" width="13.5" height="15.0" fill="rgb(213,168,13)" rx="2" ry="2" />
+<text  x="67.25" y="271.5" ></text>
+</g>
+<g >
+<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.57%)</title><rect x="511.8" y="261" width="6.8" height="15.0" fill="rgb(222,24,32)" rx="2" ry="2" />
+<text  x="514.84" y="271.5" ></text>
+</g>
+<g >
+<title>__GI___libc_malloc (4 samples, 2.30%)</title><rect x="1142.5" y="197" width="27.2" height="15.0" fill="rgb(234,113,23)" rx="2" ry="2" />
+<text  x="1145.53" y="207.5" >_..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="43.9" y="229" width="6.8" height="15.0" fill="rgb(231,188,28)" rx="2" ry="2" />
+<text  x="46.91" y="239.5" ></text>
+</g>
+<g >
+<title>Page::~Page (2 samples, 1.15%)</title><rect x="1176.4" y="357" width="13.6" height="15.0" fill="rgb(245,1,40)" rx="2" ry="2" />
+<text  x="1179.44" y="367.5" ></text>
+</g>
+<g >
+<title>_int_malloc (2 samples, 1.15%)</title><rect x="1156.1" y="181" width="13.6" height="15.0" fill="rgb(212,46,18)" rx="2" ry="2" />
+<text  x="1159.09" y="191.5" ></text>
+</g>
+<g >
+<title>Network::addPage (1 samples, 0.57%)</title><rect x="1095.1" y="357" width="6.7" height="15.0" fill="rgb(234,8,33)" rx="2" ry="2" />
+<text  x="1098.06" y="367.5" ></text>
+</g>
+<g >
+<title>std::vector&lt;PageId, (10 samples, 5.75%)</title><rect x="742.4" y="213" width="67.8" height="15.0" fill="rgb(243,65,30)" rx="2" ry="2" />
+<text  x="745.41" y="223.5" >std::ve..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (5 samples, 2.87%)</title><rect x="16.8" y="277" width="33.9" height="15.0" fill="rgb(233,147,35)" rx="2" ry="2" />
+<text  x="19.78" y="287.5" >st..</text>
+</g>
+<g >
+<title>__pthread_cond_wait (26 samples, 14.94%)</title><rect x="84.6" y="293" width="176.3" height="15.0" fill="rgb(244,18,14)" rx="2" ry="2" />
+<text  x="87.60" y="303.5" >__pthread_cond_wait</text>
+</g>
+<g >
+<title>std::_Hashtable&lt;PageId, (1 samples, 0.57%)</title><rect x="57.5" y="261" width="6.8" height="15.0" fill="rgb(207,11,10)" rx="2" ry="2" />
+<text  x="60.47" y="271.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="43.9" y="213" width="6.8" height="15.0" fill="rgb(248,17,20)" rx="2" ry="2" />
+<text  x="46.91" y="223.5" ></text>
+</g>
+<g >
+<title>_int_malloc (2 samples, 1.15%)</title><rect x="30.3" y="197" width="13.6" height="15.0" fill="rgb(247,220,33)" rx="2" ry="2" />
+<text  x="33.34" y="207.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (4 samples, 2.30%)</title><rect x="389.8" y="325" width="27.1" height="15.0" fill="rgb(207,137,7)" rx="2" ry="2" />
+<text  x="392.77" y="335.5" >s..</text>
+</g>
+<g >
+<title>__memmove_avx_unaligned_erms (1 samples, 0.57%)</title><rect x="722.1" y="53" width="6.8" height="15.0" fill="rgb(236,0,50)" rx="2" ry="2" />
+<text  x="725.07" y="63.5" ></text>
+</g>
+<g >
+<title>std::_Destroy_aux&lt;false&gt;::__destroy&lt;PageId*&gt; (6 samples, 3.45%)</title><rect x="742.4" y="165" width="40.7" height="15.0" fill="rgb(212,179,50)" rx="2" ry="2" />
+<text  x="745.41" y="175.5" >std..</text>
+</g>
+<g >
+<title>__GI___libc_malloc (2 samples, 1.15%)</title><rect x="708.5" y="101" width="13.6" height="15.0" fill="rgb(226,187,37)" rx="2" ry="2" />
+<text  x="711.51" y="111.5" ></text>
+</g>
+<g >
+<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (10 samples, 5.75%)</title><rect x="742.4" y="261" width="67.8" height="15.0" fill="rgb(226,167,41)" rx="2" ry="2" />
+<text  x="745.41" y="271.5" >std::al..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (6 samples, 3.45%)</title><rect x="742.4" y="101" width="40.7" height="15.0" fill="rgb(243,113,41)" rx="2" ry="2" />
+<text  x="745.41" y="111.5" >std..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (2 samples, 1.15%)</title><rect x="728.9" y="165" width="13.5" height="15.0" fill="rgb(250,139,36)" rx="2" ry="2" />
+<text  x="731.85" y="175.5" ></text>
+</g>
+<g >
+<title>PageId::PageId (5 samples, 2.87%)</title><rect x="16.8" y="309" width="33.9" height="15.0" fill="rgb(209,185,41)" rx="2" ry="2" />
+<text  x="19.78" y="319.5" >Pa..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (19 samples, 10.92%)</title><rect x="260.9" y="325" width="128.9" height="15.0" fill="rgb(213,225,5)" rx="2" ry="2" />
+<text  x="263.92" y="335.5" >std::__cxx11::ba..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="722.1" y="101" width="6.8" height="15.0" fill="rgb(214,37,49)" rx="2" ry="2" />
+<text  x="725.07" y="111.5" ></text>
+</g>
+<g >
+<title>all (174 samples, 100%)</title><rect x="10.0" y="421" width="1180.0" height="15.0" fill="rgb(250,48,6)" rx="2" ry="2" />
+<text  x="13.00" y="431.5" ></text>
+</g>
+<g >
+<title>std::_Construct&lt;PageId, (1 samples, 0.57%)</title><rect x="1095.1" y="213" width="6.7" height="15.0" fill="rgb(241,70,9)" rx="2" ry="2" />
+<text  x="1098.06" y="223.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="50.7" y="293" width="6.8" height="15.0" fill="rgb(210,75,49)" rx="2" ry="2" />
+<text  x="53.69" y="303.5" ></text>
+</g>
+<g >
+<title>std::_Destroy&lt;PageId&gt; (6 samples, 3.45%)</title><rect x="742.4" y="149" width="40.7" height="15.0" fill="rgb(206,153,13)" rx="2" ry="2" />
+<text  x="745.41" y="159.5" >std..</text>
+</g>
+<g >
+<title>Network::~Network (1 samples, 0.57%)</title><rect x="1088.3" y="373" width="6.8" height="15.0" fill="rgb(232,194,13)" rx="2" ry="2" />
+<text  x="1091.28" y="383.5" ></text>
+</g>
+<g >
+<title>_int_free (3 samples, 1.72%)</title><rect x="762.8" y="37" width="20.3" height="15.0" fill="rgb(216,206,31)" rx="2" ry="2" />
+<text  x="765.76" y="47.5" ></text>
+</g>
+<g >
+<title>std::_Destroy_aux&lt;false&gt;::__destroy&lt;Page*&gt; (1 samples, 0.57%)</title><rect x="1088.3" y="309" width="6.8" height="15.0" fill="rgb(214,192,13)" rx="2" ry="2" />
+<text  x="1091.28" y="319.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (5 samples, 2.87%)</title><rect x="16.8" y="261" width="33.9" height="15.0" fill="rgb(215,36,34)" rx="2" ry="2" />
+<text  x="19.78" y="271.5" >st..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (3 samples, 1.72%)</title><rect x="708.5" y="181" width="20.4" height="15.0" fill="rgb(236,206,54)" rx="2" ry="2" />
+<text  x="711.51" y="191.5" ></text>
+</g>
+<g >
+<title>operator (4 samples, 2.30%)</title><rect x="1142.5" y="213" width="27.2" height="15.0" fill="rgb(228,155,35)" rx="2" ry="2" />
+<text  x="1145.53" y="223.5" >o..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (3 samples, 1.72%)</title><rect x="708.5" y="149" width="20.4" height="15.0" fill="rgb(236,34,37)" rx="2" ry="2" />
+<text  x="711.51" y="159.5" ></text>
+</g>
+<g >
+<title>clone (108 samples, 62.07%)</title><rect x="10.0" y="405" width="732.4" height="15.0" fill="rgb(244,10,1)" rx="2" ry="2" />
+<text  x="13.00" y="415.5" >clone</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (6 samples, 3.45%)</title><rect x="742.4" y="117" width="40.7" height="15.0" fill="rgb(235,3,29)" rx="2" ry="2" />
+<text  x="745.41" y="127.5" >std..</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="50.7" y="229" width="6.8" height="15.0" fill="rgb(224,196,17)" rx="2" ry="2" />
+<text  x="53.69" y="239.5" ></text>
+</g>
+<g >
+<title>NetworkGenerator::generatePageFromNumWithGeneratedId (6 samples, 3.45%)</title><rect x="1101.8" y="357" width="40.7" height="15.0" fill="rgb(205,153,32)" rx="2" ry="2" />
+<text  x="1104.84" y="367.5" >Net..</text>
+</g>
+<g >
+<title>std::char_traits&lt;char&gt;::copy (1 samples, 0.57%)</title><rect x="1169.7" y="165" width="6.7" height="15.0" fill="rgb(209,175,21)" rx="2" ry="2" />
+<text  x="1172.66" y="175.5" ></text>
+</g>
+<g >
+<title>__GI___libc_malloc (3 samples, 1.72%)</title><rect x="274.5" y="245" width="20.3" height="15.0" fill="rgb(247,57,38)" rx="2" ry="2" />
+<text  x="277.48" y="255.5" ></text>
+</g>
+<g >
+<title>std::allocator_traits&lt;std::allocator&lt;PageId&gt; (1 samples, 0.57%)</title><rect x="1088.3" y="213" width="6.8" height="15.0" fill="rgb(209,97,14)" rx="2" ry="2" />
+<text  x="1091.28" y="223.5" ></text>
+</g>
+<g >
+<title>__memmove_avx_unaligned_erms (1 samples, 0.57%)</title><rect x="1169.7" y="149" width="6.7" height="15.0" fill="rgb(217,9,20)" rx="2" ry="2" />
+<text  x="1172.66" y="159.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1169.7" y="197" width="6.7" height="15.0" fill="rgb(238,218,44)" rx="2" ry="2" />
+<text  x="1172.66" y="207.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (13 samples, 7.47%)</title><rect x="301.6" y="229" width="88.2" height="15.0" fill="rgb(206,191,40)" rx="2" ry="2" />
+<text  x="304.61" y="239.5" >std::__cxx..</text>
+</g>
+<g >
+<title>std::_Destroy&lt;Page*&gt; (1 samples, 0.57%)</title><rect x="1088.3" y="325" width="6.8" height="15.0" fill="rgb(205,165,49)" rx="2" ry="2" />
+<text  x="1091.28" y="335.5" ></text>
+</g>
+<g >
+<title>_int_malloc (1 samples, 0.57%)</title><rect x="1095.1" y="85" width="6.7" height="15.0" fill="rgb(235,94,15)" rx="2" ry="2" />
+<text  x="1098.06" y="95.5" ></text>
+</g>
+<g >
+<title>std::_Hashtable&lt;PageId, (29 samples, 16.67%)</title><rect x="430.5" y="293" width="196.6" height="15.0" fill="rgb(249,67,27)" rx="2" ry="2" />
+<text  x="433.46" y="303.5" >std::_Hashtable&lt;PageId,</text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="1183.2" y="213" width="6.8" height="15.0" fill="rgb(221,206,22)" rx="2" ry="2" />
+<text  x="1186.22" y="223.5" ></text>
+</g>
+<g >
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.57%)</title><rect x="50.7" y="309" width="6.8" height="15.0" fill="rgb(224,2,21)" rx="2" ry="2" />
+<text  x="53.69" y="319.5" ></text>
+</g>
+<g >
+<title>std::_Destroy&lt;Page*, (1 samples, 0.57%)</title><rect x="1088.3" y="341" width="6.8" height="15.0" fill="rgb(228,205,19)" rx="2" ry="2" />
+<text  x="1091.28" y="351.5" ></text>
+</g>
+<g >
+<title>Page::Page (1 samples, 0.57%)</title><rect x="1095.1" y="293" width="6.7" height="15.0" fill="rgb(211,83,30)" rx="2" ry="2" />
+<text  x="1098.06" y="303.5" ></text>
+</g>
+</g>
+</svg>
