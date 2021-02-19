@@ -1,6 +1,6 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" width="1200" height="454" onload="init(evt)" viewBox="0 0 1200 454" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg version="1.1" width="1200" height="470" onload="init(evt)" viewBox="0 0 1200 470" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
 <!-- NOTES:  -->
 <defs>
@@ -364,1801 +364,1313 @@
 	}
 ]]>
 </script>
-<rect x="0.0" y="0" width="1200.0" height="454.0" fill="url(#background)"  />
+<rect x="0.0" y="0" width="1200.0" height="470.0" fill="url(#background)"  />
 <text id="title" x="600.00" y="24" >Flame Graph</text>
-<text id="details" x="10.00" y="437" > </text>
+<text id="details" x="10.00" y="453" > </text>
 <text id="unzoom" x="10.00" y="24" class="hide">Reset Zoom</text>
 <text id="search" x="1090.00" y="24" >Search</text>
 <text id="ignorecase" x="1174.00" y="24" >ic</text>
-<text id="matched" x="1090.00" y="437" > </text>
+<text id="matched" x="1090.00" y="453" > </text>
 <g id="frames">
 <g >
-<title>std::_Hashtable&lt;PageId, (3 samples, 0.49%)</title><rect x="23.5" y="229" width="5.8" height="15.0" fill="rgb(227,149,52)" rx="2" ry="2" />
-<text  x="26.52" y="239.5" ></text>
+<title>__GI___libc_malloc (1 samples, 0.12%)</title><rect x="51.1" y="165" width="1.5" height="15.0" fill="rgb(205,141,12)" rx="2" ry="2" />
+<text  x="54.15" y="175.5" ></text>
 </g>
 <g >
-<title>_int_malloc (1 samples, 0.16%)</title><rect x="815.3" y="213" width="2.0" height="15.0" fill="rgb(235,227,2)" rx="2" ry="2" />
-<text  x="818.34" y="223.5" ></text>
+<title>main (224 samples, 27.90%)</title><rect x="860.8" y="405" width="329.2" height="15.0" fill="rgb(251,143,50)" rx="2" ry="2" />
+<text  x="863.83" y="415.5" >main</text>
 </g>
 <g >
-<title>std::__detail::_Map_base&lt;PageId, (15 samples, 2.45%)</title><rect x="525.6" y="293" width="29.0" height="15.0" fill="rgb(230,10,49)" rx="2" ry="2" />
-<text  x="528.65" y="303.5" >st..</text>
+<title>std::vector&lt;Page, (1 samples, 0.12%)</title><rect x="1185.6" y="325" width="1.5" height="15.0" fill="rgb(241,100,48)" rx="2" ry="2" />
+<text  x="1188.59" y="335.5" ></text>
 </g>
 <g >
-<title>operator (1 samples, 0.16%)</title><rect x="31.2" y="197" width="2.0" height="15.0" fill="rgb(253,155,19)" rx="2" ry="2" />
-<text  x="34.24" y="207.5" ></text>
+<title>MultiThreadedPageRankComputer::computeForNetwork(Network (579 samples, 72.10%)</title><rect x="10.0" y="277" width="850.8" height="15.0" fill="rgb(234,29,2)" rx="2" ry="2" />
+<text  x="13.00" y="287.5" >MultiThreadedPageRankComputer::computeForNetwork(Network</text>
 </g>
 <g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.16%)</title><rect x="1186.1" y="277" width="2.0" height="15.0" fill="rgb(251,152,12)" rx="2" ry="2" />
-<text  x="1189.14" y="287.5" ></text>
+<title>__GI___libc_malloc (2 samples, 0.25%)</title><rect x="36.5" y="133" width="2.9" height="15.0" fill="rgb(233,131,10)" rx="2" ry="2" />
+<text  x="39.45" y="143.5" ></text>
 </g>
 <g >
-<title>PageId::~PageId (1 samples, 0.16%)</title><rect x="1118.5" y="341" width="2.0" height="15.0" fill="rgb(247,107,8)" rx="2" ry="2" />
-<text  x="1121.54" y="351.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.12%)</title><rect x="1187.1" y="309" width="1.4" height="15.0" fill="rgb(232,61,23)" rx="2" ry="2" />
+<text  x="1190.06" y="319.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="52.5" y="293" width="1.9" height="15.0" fill="rgb(243,118,17)" rx="2" ry="2" />
-<text  x="55.49" y="303.5" ></text>
+<title>std::_Hash_bytes(void (8 samples, 1.00%)</title><rect x="825.6" y="149" width="11.7" height="15.0" fill="rgb(225,106,20)" rx="2" ry="2" />
+<text  x="828.57" y="159.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1147.5" y="165" width="1.9" height="15.0" fill="rgb(209,32,22)" rx="2" ry="2" />
-<text  x="1150.51" y="175.5" ></text>
+<title>Page::Page (1 samples, 0.12%)</title><rect x="855.0" y="181" width="1.4" height="15.0" fill="rgb(245,140,48)" rx="2" ry="2" />
+<text  x="857.96" y="191.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;char&gt; (5 samples, 0.82%)</title><rect x="516.0" y="117" width="9.6" height="15.0" fill="rgb(217,118,53)" rx="2" ry="2" />
-<text  x="518.99" y="127.5" ></text>
+<title>PageIdHash::operator() (4 samples, 0.50%)</title><rect x="593.4" y="197" width="5.9" height="15.0" fill="rgb(223,78,0)" rx="2" ry="2" />
+<text  x="596.39" y="207.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="1151.4" y="181" width="3.8" height="15.0" fill="rgb(224,42,13)" rx="2" ry="2" />
-<text  x="1154.37" y="191.5" ></text>
+<title>std::vector&lt;PageId, (1 samples, 0.12%)</title><rect x="1184.1" y="261" width="1.5" height="15.0" fill="rgb(248,99,25)" rx="2" ry="2" />
+<text  x="1187.12" y="271.5" ></text>
 </g>
 <g >
-<title>std::_Vector_base&lt;PageId, (1 samples, 0.16%)</title><rect x="844.3" y="293" width="1.9" height="15.0" fill="rgb(228,109,7)" rx="2" ry="2" />
-<text  x="847.30" y="303.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.12%)</title><rect x="48.2" y="133" width="1.5" height="15.0" fill="rgb(214,213,45)" rx="2" ry="2" />
+<text  x="51.21" y="143.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.16%)</title><rect x="31.2" y="229" width="2.0" height="15.0" fill="rgb(251,90,47)" rx="2" ry="2" />
-<text  x="34.24" y="239.5" ></text>
+<title>sysmalloc (1 samples, 0.12%)</title><rect x="453.8" y="53" width="1.5" height="15.0" fill="rgb(221,210,29)" rx="2" ry="2" />
+<text  x="456.79" y="63.5" ></text>
 </g>
 <g >
-<title>SimpleIdGenerator::generateId (1 samples, 0.16%)</title><rect x="1108.9" y="325" width="1.9" height="15.0" fill="rgb(251,57,51)" rx="2" ry="2" />
-<text  x="1111.89" y="335.5" ></text>
+<title>malloc@plt (1 samples, 0.12%)</title><rect x="490.5" y="53" width="1.5" height="15.0" fill="rgb(232,168,8)" rx="2" ry="2" />
+<text  x="493.52" y="63.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (1 samples, 0.16%)</title><rect x="1184.2" y="261" width="1.9" height="15.0" fill="rgb(240,137,53)" rx="2" ry="2" />
-<text  x="1187.21" y="271.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (2 samples, 0.25%)</title><rect x="809.4" y="181" width="2.9" height="15.0" fill="rgb(242,167,2)" rx="2" ry="2" />
+<text  x="812.40" y="191.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1120.5" y="277" width="1.9" height="15.0" fill="rgb(249,78,23)" rx="2" ry="2" />
-<text  x="1123.47" y="287.5" ></text>
+<title>Page::Page (3 samples, 0.37%)</title><rect x="1181.2" y="293" width="4.4" height="15.0" fill="rgb(211,175,47)" rx="2" ry="2" />
+<text  x="1184.18" y="303.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (7 samples, 1.15%)</title><rect x="500.5" y="117" width="13.6" height="15.0" fill="rgb(239,161,39)" rx="2" ry="2" />
-<text  x="503.54" y="127.5" ></text>
+<title>std::condition_variable::wait&lt;MultiThreadedPageRankComputer::WorkerData::wait()::{lambda()#1}&gt;(std::unique_lock&lt;std::mutex&gt;&amp;, (246 samples, 30.64%)</title><rect x="52.6" y="229" width="361.5" height="15.0" fill="rgb(240,44,1)" rx="2" ry="2" />
+<text  x="55.62" y="239.5" >std::condition_variable::wait&lt;MultiThreadedPageRa..</text>
 </g>
 <g >
-<title>std::_Destroy_aux&lt;false&gt;::__destroy&lt;Page*&gt; (1 samples, 0.16%)</title><rect x="1103.1" y="293" width="1.9" height="15.0" fill="rgb(224,19,12)" rx="2" ry="2" />
-<text  x="1106.09" y="303.5" ></text>
+<title>grow_heap (1 samples, 0.12%)</title><rect x="37.9" y="85" width="1.5" height="15.0" fill="rgb(254,189,35)" rx="2" ry="2" />
+<text  x="40.92" y="95.5" ></text>
 </g>
 <g >
-<title>operator (2 samples, 0.33%)</title><rect x="40.9" y="229" width="3.9" height="15.0" fill="rgb(219,52,53)" rx="2" ry="2" />
-<text  x="43.90" y="239.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;Page&gt; (3 samples, 0.37%)</title><rect x="1181.2" y="325" width="4.4" height="15.0" fill="rgb(223,129,48)" rx="2" ry="2" />
+<text  x="1184.18" y="335.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (22 samples, 3.60%)</title><rect x="483.2" y="213" width="42.4" height="15.0" fill="rgb(247,39,51)" rx="2" ry="2" />
-<text  x="486.16" y="223.5" >__gn..</text>
+<title>PageId::operator== (12 samples, 1.49%)</title><rect x="784.4" y="133" width="17.7" height="15.0" fill="rgb(217,183,25)" rx="2" ry="2" />
+<text  x="787.42" y="143.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (6 samples, 0.98%)</title><rect x="821.1" y="277" width="11.6" height="15.0" fill="rgb(242,43,42)" rx="2" ry="2" />
-<text  x="824.13" y="287.5" ></text>
+<title>std::vector&lt;PageIdAndRank, (1 samples, 0.12%)</title><rect x="499.3" y="229" width="1.5" height="15.0" fill="rgb(237,85,17)" rx="2" ry="2" />
+<text  x="502.34" y="239.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (3 samples, 0.49%)</title><rect x="1149.4" y="245" width="5.8" height="15.0" fill="rgb(230,148,47)" rx="2" ry="2" />
-<text  x="1152.44" y="255.5" ></text>
+<title>std::__uninitialized_copy_a&lt;__gnu_cxx::__normal_iterator&lt;PageIdAndRank (1 samples, 0.12%)</title><rect x="860.8" y="325" width="1.5" height="15.0" fill="rgb(240,143,37)" rx="2" ry="2" />
+<text  x="863.83" y="335.5" ></text>
 </g>
 <g >
-<title>PageId::PageId (1 samples, 0.16%)</title><rect x="1120.5" y="325" width="1.9" height="15.0" fill="rgb(225,199,21)" rx="2" ry="2" />
-<text  x="1123.47" y="335.5" ></text>
+<title>std::vector&lt;Page, (10 samples, 1.25%)</title><rect x="843.2" y="229" width="14.7" height="15.0" fill="rgb(213,196,18)" rx="2" ry="2" />
+<text  x="846.20" y="239.5" ></text>
 </g>
 <g >
-<title>__memmove_avx_unaligned_erms (1 samples, 0.16%)</title><rect x="1147.5" y="69" width="1.9" height="15.0" fill="rgb(243,60,40)" rx="2" ry="2" />
-<text  x="1150.51" y="79.5" ></text>
+<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (5 samples, 0.62%)</title><rect x="450.8" y="149" width="7.4" height="15.0" fill="rgb(222,35,52)" rx="2" ry="2" />
+<text  x="453.85" y="159.5" ></text>
 </g>
 <g >
-<title>std::hash&lt;std::__cxx11::basic_string&lt;char, (4 samples, 0.65%)</title><rect x="807.6" y="261" width="7.7" height="15.0" fill="rgb(206,90,54)" rx="2" ry="2" />
-<text  x="810.61" y="271.5" ></text>
+<title>std::unordered_map&lt;PageId, (10 samples, 1.25%)</title><rect x="862.3" y="341" width="14.7" height="15.0" fill="rgb(236,63,40)" rx="2" ry="2" />
+<text  x="865.30" y="351.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (4 samples, 0.65%)</title><rect x="807.6" y="293" width="7.7" height="15.0" fill="rgb(211,79,18)" rx="2" ry="2" />
-<text  x="810.61" y="303.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.12%)</title><rect x="855.0" y="149" width="1.4" height="15.0" fill="rgb(216,219,25)" rx="2" ry="2" />
+<text  x="857.96" y="159.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="832.7" y="181" width="1.9" height="15.0" fill="rgb(210,98,49)" rx="2" ry="2" />
-<text  x="835.72" y="191.5" ></text>
+<title>std::__detail::_Hash_node_value_base&lt;std::pair&lt;PageId (4 samples, 0.50%)</title><rect x="445.0" y="149" width="5.8" height="15.0" fill="rgb(253,172,44)" rx="2" ry="2" />
+<text  x="447.97" y="159.5" ></text>
 </g>
 <g >
-<title>PageIdHash::operator() (7 samples, 1.15%)</title><rect x="705.3" y="277" width="13.5" height="15.0" fill="rgb(228,14,16)" rx="2" ry="2" />
-<text  x="708.25" y="287.5" ></text>
+<title>std::allocator&lt;PageId&gt;::allocator (1 samples, 0.12%)</title><rect x="1185.6" y="165" width="1.5" height="15.0" fill="rgb(250,195,38)" rx="2" ry="2" />
+<text  x="1188.59" y="175.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (2 samples, 0.33%)</title><rect x="840.4" y="245" width="3.9" height="15.0" fill="rgb(230,57,33)" rx="2" ry="2" />
-<text  x="843.44" y="255.5" ></text>
+<title>malloc_consolidate (7 samples, 0.87%)</title><rect x="862.3" y="213" width="10.3" height="15.0" fill="rgb(212,71,14)" rx="2" ry="2" />
+<text  x="865.30" y="223.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;char&gt;::deallocate (1 samples, 0.16%)</title><rect x="1153.3" y="133" width="1.9" height="15.0" fill="rgb(254,106,6)" rx="2" ry="2" />
-<text  x="1156.31" y="143.5" ></text>
+<title>std::_Destroy&lt;Page*&gt; (1 samples, 0.12%)</title><rect x="843.2" y="197" width="1.5" height="15.0" fill="rgb(214,76,16)" rx="2" ry="2" />
+<text  x="846.20" y="207.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1120.5" y="261" width="1.9" height="15.0" fill="rgb(221,9,33)" rx="2" ry="2" />
-<text  x="1123.47" y="271.5" ></text>
+<title>std::_Vector_base&lt;PageId, (1 samples, 0.12%)</title><rect x="1179.7" y="245" width="1.5" height="15.0" fill="rgb(214,216,51)" rx="2" ry="2" />
+<text  x="1182.71" y="255.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Map_base&lt;PageId, (50 samples, 8.18%)</title><rect x="720.7" y="309" width="96.6" height="15.0" fill="rgb(254,201,20)" rx="2" ry="2" />
-<text  x="723.70" y="319.5" >std::__deta..</text>
+<title>operator (1 samples, 0.12%)</title><rect x="456.7" y="53" width="1.5" height="15.0" fill="rgb(225,147,11)" rx="2" ry="2" />
+<text  x="459.72" y="63.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Mod_range_hashing::operator() (1 samples, 0.16%)</title><rect x="1184.2" y="229" width="1.9" height="15.0" fill="rgb(249,117,39)" rx="2" ry="2" />
-<text  x="1187.21" y="239.5" ></text>
+<title>__lll_lock_wait (35 samples, 4.36%)</title><rect x="521.4" y="181" width="51.4" height="15.0" fill="rgb(207,122,41)" rx="2" ry="2" />
+<text  x="524.38" y="191.5" >__lll..</text>
 </g>
 <g >
-<title>__GI___libc_malloc (1 samples, 0.16%)</title><rect x="31.2" y="181" width="2.0" height="15.0" fill="rgb(211,154,4)" rx="2" ry="2" />
-<text  x="34.24" y="191.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (25 samples, 3.11%)</title><rect x="459.7" y="85" width="36.7" height="15.0" fill="rgb(230,34,33)" rx="2" ry="2" />
+<text  x="462.66" y="95.5" >std..</text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="479.3" y="117" width="3.9" height="15.0" fill="rgb(249,48,12)" rx="2" ry="2" />
-<text  x="482.30" y="127.5" ></text>
+<title>std::vector&lt;PageId, (1 samples, 0.12%)</title><rect x="843.2" y="133" width="1.5" height="15.0" fill="rgb(240,39,29)" rx="2" ry="2" />
+<text  x="846.20" y="143.5" ></text>
 </g>
 <g >
-<title>__memcmp_avx2_movbe (2 samples, 0.33%)</title><rect x="672.4" y="165" width="3.9" height="15.0" fill="rgb(226,118,32)" rx="2" ry="2" />
-<text  x="675.42" y="175.5" ></text>
+<title>std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="29.1" y="165" width="1.5" height="15.0" fill="rgb(251,78,51)" rx="2" ry="2" />
+<text  x="32.10" y="175.5" ></text>
 </g>
 <g >
-<title>Network::~Network (1 samples, 0.16%)</title><rect x="1103.1" y="357" width="1.9" height="15.0" fill="rgb(207,145,11)" rx="2" ry="2" />
-<text  x="1106.09" y="367.5" ></text>
+<title>std::__detail::_Hashtable_base&lt;PageId, (3 samples, 0.37%)</title><rect x="803.5" y="165" width="4.4" height="15.0" fill="rgb(234,13,7)" rx="2" ry="2" />
+<text  x="806.52" y="175.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (6 samples, 0.98%)</title><rect x="514.1" y="133" width="11.5" height="15.0" fill="rgb(248,158,6)" rx="2" ry="2" />
-<text  x="517.06" y="143.5" ></text>
+<title>std::vector&lt;PageIdAndRank, (1 samples, 0.12%)</title><rect x="499.3" y="213" width="1.5" height="15.0" fill="rgb(230,7,20)" rx="2" ry="2" />
+<text  x="502.34" y="223.5" ></text>
 </g>
 <g >
-<title>__GI___libc_malloc (2 samples, 0.33%)</title><rect x="817.3" y="229" width="3.8" height="15.0" fill="rgb(205,185,27)" rx="2" ry="2" />
-<text  x="820.27" y="239.5" ></text>
+<title>_int_free (2 samples, 0.25%)</title><rect x="518.4" y="229" width="3.0" height="15.0" fill="rgb(231,139,17)" rx="2" ry="2" />
+<text  x="521.44" y="239.5" ></text>
 </g>
 <g >
-<title>__memmove_avx_unaligned_erms (3 samples, 0.49%)</title><rect x="1112.7" y="197" width="5.8" height="15.0" fill="rgb(225,7,7)" rx="2" ry="2" />
-<text  x="1115.75" y="207.5" ></text>
+<title>std::_Destroy_aux&lt;false&gt;::__destroy&lt;Page*&gt; (1 samples, 0.12%)</title><rect x="1179.7" y="309" width="1.5" height="15.0" fill="rgb(233,100,46)" rx="2" ry="2" />
+<text  x="1182.71" y="319.5" ></text>
 </g>
 <g >
-<title>std::condition_variable::wait&lt;MultiThreadedPageRankComputer::WorkerData::wait()::{lambda()#1}&gt;(std::unique_lock&lt;std::mutex&gt;&amp;, (207 samples, 33.88%)</title><rect x="58.3" y="309" width="399.8" height="15.0" fill="rgb(215,95,54)" rx="2" ry="2" />
-<text  x="61.28" y="319.5" >std::condition_variable::wait&lt;MultiThreadedPageRankCom..</text>
+<title>std::_Destroy&lt;Page*, (1 samples, 0.12%)</title><rect x="1179.7" y="341" width="1.5" height="15.0" fill="rgb(249,219,19)" rx="2" ry="2" />
+<text  x="1182.71" y="351.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (4 samples, 0.65%)</title><rect x="13.9" y="277" width="7.7" height="15.0" fill="rgb(205,115,51)" rx="2" ry="2" />
-<text  x="16.86" y="287.5" ></text>
+<title>all (803 samples, 100%)</title><rect x="10.0" y="421" width="1180.0" height="15.0" fill="rgb(208,76,4)" rx="2" ry="2" />
+<text  x="13.00" y="431.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="815.3" y="277" width="2.0" height="15.0" fill="rgb(210,190,21)" rx="2" ry="2" />
-<text  x="818.34" y="287.5" ></text>
+<title>std::_Hash_impl::hash (2 samples, 0.25%)</title><rect x="596.3" y="165" width="3.0" height="15.0" fill="rgb(238,211,47)" rx="2" ry="2" />
+<text  x="599.33" y="175.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (5 samples, 0.82%)</title><rect x="473.5" y="229" width="9.7" height="15.0" fill="rgb(248,6,54)" rx="2" ry="2" />
-<text  x="476.50" y="239.5" ></text>
+<title>__GI___libc_free (1 samples, 0.12%)</title><rect x="496.4" y="85" width="1.5" height="15.0" fill="rgb(213,145,49)" rx="2" ry="2" />
+<text  x="499.40" y="95.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (6 samples, 0.98%)</title><rect x="40.9" y="277" width="11.6" height="15.0" fill="rgb(243,43,3)" rx="2" ry="2" />
-<text  x="43.90" y="287.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (6 samples, 0.75%)</title><rect x="508.2" y="229" width="8.8" height="15.0" fill="rgb(251,59,29)" rx="2" ry="2" />
+<text  x="511.16" y="239.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (16 samples, 2.62%)</title><rect x="483.2" y="165" width="30.9" height="15.0" fill="rgb(218,102,24)" rx="2" ry="2" />
-<text  x="486.16" y="175.5" >st..</text>
+<title>std::_Destroy&lt;Page*, (1 samples, 0.12%)</title><rect x="843.2" y="213" width="1.5" height="15.0" fill="rgb(223,73,37)" rx="2" ry="2" />
+<text  x="846.20" y="223.5" ></text>
 </g>
 <g >
-<title>malloc_consolidate (1 samples, 0.16%)</title><rect x="844.3" y="229" width="1.9" height="15.0" fill="rgb(211,43,24)" rx="2" ry="2" />
-<text  x="847.30" y="239.5" ></text>
+<title>std::mutex::lock (35 samples, 4.36%)</title><rect x="521.4" y="229" width="51.4" height="15.0" fill="rgb(227,37,48)" rx="2" ry="2" />
+<text  x="524.38" y="239.5" >std::..</text>
 </g>
 <g >
-<title>NetworkWithoutManyEdgesGenerator::generateNetworkOfSize (2 samples, 0.33%)</title><rect x="1105.0" y="357" width="3.9" height="15.0" fill="rgb(234,156,3)" rx="2" ry="2" />
-<text  x="1108.02" y="367.5" ></text>
+<title>std::__detail::_Hashtable_ebo_helper&lt;1, (1 samples, 0.12%)</title><rect x="838.8" y="181" width="1.5" height="15.0" fill="rgb(237,220,5)" rx="2" ry="2" />
+<text  x="841.79" y="191.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;char&gt; (1 samples, 0.16%)</title><rect x="1188.1" y="181" width="1.9" height="15.0" fill="rgb(222,172,54)" rx="2" ry="2" />
-<text  x="1191.07" y="191.5" ></text>
+<title>std::__detail::_Hashtable_ebo_helper&lt;2, (1 samples, 0.12%)</title><rect x="591.9" y="165" width="1.5" height="15.0" fill="rgb(209,51,34)" rx="2" ry="2" />
+<text  x="594.92" y="175.5" ></text>
 </g>
 <g >
-<title>PageId::~PageId (2 samples, 0.33%)</title><rect x="1151.4" y="213" width="3.8" height="15.0" fill="rgb(229,170,11)" rx="2" ry="2" />
-<text  x="1154.37" y="223.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.12%)</title><rect x="48.2" y="149" width="1.5" height="15.0" fill="rgb(240,27,29)" rx="2" ry="2" />
+<text  x="51.21" y="159.5" ></text>
 </g>
 <g >
-<title>SingleThreadedPageRankComputer::computeForNetwork (42 samples, 6.87%)</title><rect x="1108.9" y="357" width="81.1" height="15.0" fill="rgb(223,139,47)" rx="2" ry="2" />
-<text  x="1111.89" y="367.5" >SingleThr..</text>
+<title>std::_Destroy_aux&lt;false&gt;::__destroy&lt;PageId*&gt; (1 samples, 0.12%)</title><rect x="843.2" y="85" width="1.5" height="15.0" fill="rgb(206,101,25)" rx="2" ry="2" />
+<text  x="846.20" y="95.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (2 samples, 0.33%)</title><rect x="761.3" y="245" width="3.8" height="15.0" fill="rgb(252,163,6)" rx="2" ry="2" />
-<text  x="764.26" y="255.5" ></text>
+<title>PageId::PageId (1 samples, 0.12%)</title><rect x="499.3" y="149" width="1.5" height="15.0" fill="rgb(213,14,19)" rx="2" ry="2" />
+<text  x="502.34" y="159.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (3 samples, 0.49%)</title><rect x="554.6" y="261" width="5.8" height="15.0" fill="rgb(212,129,47)" rx="2" ry="2" />
-<text  x="557.62" y="271.5" ></text>
+<title>_int_free (7 samples, 0.87%)</title><rect x="862.3" y="229" width="10.3" height="15.0" fill="rgb(235,52,38)" rx="2" ry="2" />
+<text  x="865.30" y="239.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="558.5" y="213" width="1.9" height="15.0" fill="rgb(244,21,40)" rx="2" ry="2" />
-<text  x="561.48" y="223.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.12%)</title><rect x="860.8" y="229" width="1.5" height="15.0" fill="rgb(230,76,17)" rx="2" ry="2" />
+<text  x="863.83" y="239.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (3 samples, 0.49%)</title><rect x="560.4" y="309" width="5.8" height="15.0" fill="rgb(227,108,44)" rx="2" ry="2" />
-<text  x="563.41" y="319.5" ></text>
+<title>PageId::~PageId (2 samples, 0.25%)</title><rect x="496.4" y="101" width="2.9" height="15.0" fill="rgb(236,11,17)" rx="2" ry="2" />
+<text  x="499.40" y="111.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="564.3" y="277" width="1.9" height="15.0" fill="rgb(234,85,27)" rx="2" ry="2" />
-<text  x="567.27" y="287.5" ></text>
+<title>__GI___libc_malloc (1 samples, 0.12%)</title><rect x="453.8" y="85" width="1.5" height="15.0" fill="rgb(216,0,25)" rx="2" ry="2" />
+<text  x="456.79" y="95.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="564.3" y="213" width="1.9" height="15.0" fill="rgb(254,130,6)" rx="2" ry="2" />
-<text  x="567.27" y="223.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;Page&gt;::construct&lt;Page, (1 samples, 0.12%)</title><rect x="841.7" y="213" width="1.5" height="15.0" fill="rgb(240,96,1)" rx="2" ry="2" />
+<text  x="844.73" y="223.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (39 samples, 6.38%)</title><rect x="629.9" y="293" width="75.4" height="15.0" fill="rgb(233,99,6)" rx="2" ry="2" />
-<text  x="632.93" y="303.5" >std::_Ha..</text>
+<title>Page::Page (1 samples, 0.12%)</title><rect x="1187.1" y="341" width="1.4" height="15.0" fill="rgb(214,182,50)" rx="2" ry="2" />
+<text  x="1190.06" y="351.5" ></text>
 </g>
 <g >
-<title>std::hash&lt;std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="550.8" y="245" width="3.8" height="15.0" fill="rgb(222,104,54)" rx="2" ry="2" />
-<text  x="553.75" y="255.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (28 samples, 3.49%)</title><rect x="458.2" y="149" width="41.1" height="15.0" fill="rgb(220,189,36)" rx="2" ry="2" />
+<text  x="461.19" y="159.5" >std..</text>
 </g>
 <g >
-<title>std::vector&lt;PageIdAndRank, (1 samples, 0.16%)</title><rect x="1188.1" y="341" width="1.9" height="15.0" fill="rgb(234,156,6)" rx="2" ry="2" />
-<text  x="1191.07" y="351.5" ></text>
+<title>__memmove_avx_unaligned_erms (8 samples, 1.00%)</title><rect x="477.3" y="69" width="11.8" height="15.0" fill="rgb(223,69,26)" rx="2" ry="2" />
+<text  x="480.30" y="79.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1128.2" y="277" width="1.9" height="15.0" fill="rgb(232,170,25)" rx="2" ry="2" />
-<text  x="1131.20" y="287.5" ></text>
+<title>std::distance&lt;char*&gt; (1 samples, 0.12%)</title><rect x="494.9" y="69" width="1.5" height="15.0" fill="rgb(231,81,3)" rx="2" ry="2" />
+<text  x="497.93" y="79.5" ></text>
 </g>
 <g >
-<title>_int_free (6 samples, 0.98%)</title><rect x="821.1" y="213" width="11.6" height="15.0" fill="rgb(234,30,48)" rx="2" ry="2" />
-<text  x="824.13" y="223.5" ></text>
+<title>MultiThreadedPageRankComputer::WorkerData::wait (306 samples, 38.11%)</title><rect x="51.1" y="245" width="449.7" height="15.0" fill="rgb(213,48,28)" rx="2" ry="2" />
+<text  x="54.15" y="255.5" >MultiThreadedPageRankComputer::WorkerData::wait</text>
 </g>
 <g >
-<title>PageId::~PageId (1 samples, 0.16%)</title><rect x="840.4" y="213" width="2.0" height="15.0" fill="rgb(251,84,2)" rx="2" ry="2" />
-<text  x="843.44" y="223.5" ></text>
+<title>std::operator!=&lt;Page*&gt; (1 samples, 0.12%)</title><rect x="853.5" y="149" width="1.5" height="15.0" fill="rgb(237,224,52)" rx="2" ry="2" />
+<text  x="856.49" y="159.5" ></text>
 </g>
 <g >
-<title>std::_Hash_bytes(void (2 samples, 0.33%)</title><rect x="550.8" y="213" width="3.8" height="15.0" fill="rgb(219,9,49)" rx="2" ry="2" />
-<text  x="553.75" y="223.5" ></text>
+<title>std::_Hash_bytes(void (2 samples, 0.25%)</title><rect x="596.3" y="149" width="3.0" height="15.0" fill="rgb(214,161,10)" rx="2" ry="2" />
+<text  x="599.33" y="159.5" ></text>
 </g>
 <g >
-<title>std::__detail::_ReuseOrAllocNode&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (27 samples, 4.42%)</title><rect x="473.5" y="245" width="52.1" height="15.0" fill="rgb(205,64,30)" rx="2" ry="2" />
-<text  x="476.50" y="255.5" >std::..</text>
+<title>std::allocator_traits&lt;std::allocator&lt;Page&gt; (6 samples, 0.75%)</title><rect x="844.7" y="197" width="8.8" height="15.0" fill="rgb(209,19,48)" rx="2" ry="2" />
+<text  x="847.67" y="207.5" ></text>
 </g>
 <g >
-<title>_IO_vsnprintf (1 samples, 0.16%)</title><rect x="1105.0" y="293" width="2.0" height="15.0" fill="rgb(230,51,27)" rx="2" ry="2" />
-<text  x="1108.02" y="303.5" ></text>
+<title>Network::addPage (4 samples, 0.50%)</title><rect x="1181.2" y="357" width="5.9" height="15.0" fill="rgb(250,128,44)" rx="2" ry="2" />
+<text  x="1184.18" y="367.5" ></text>
 </g>
 <g >
-<title>std::hash&lt;std::__cxx11::basic_string&lt;char, (7 samples, 1.15%)</title><rect x="705.3" y="261" width="13.5" height="15.0" fill="rgb(228,103,15)" rx="2" ry="2" />
-<text  x="708.25" y="271.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.12%)</title><rect x="1181.2" y="261" width="1.5" height="15.0" fill="rgb(234,133,21)" rx="2" ry="2" />
+<text  x="1184.18" y="271.5" ></text>
 </g>
 <g >
-<title>__GI___libc_malloc (1 samples, 0.16%)</title><rect x="1135.9" y="213" width="2.0" height="15.0" fill="rgb(217,28,5)" rx="2" ry="2" />
-<text  x="1138.92" y="223.5" ></text>
+<title>__gthread_mutex_unlock (1 samples, 0.12%)</title><rect x="572.8" y="213" width="1.5" height="15.0" fill="rgb(229,188,27)" rx="2" ry="2" />
+<text  x="575.81" y="223.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (15 samples, 2.45%)</title><rect x="1130.1" y="325" width="29.0" height="15.0" fill="rgb(227,174,29)" rx="2" ry="2" />
-<text  x="1133.13" y="335.5" >st..</text>
+<title>__gnu_cxx::new_allocator&lt;PageId&gt;::deallocate (1 samples, 0.12%)</title><rect x="1179.7" y="197" width="1.5" height="15.0" fill="rgb(212,41,5)" rx="2" ry="2" />
+<text  x="1182.71" y="207.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (22 samples, 3.60%)</title><rect x="483.2" y="229" width="42.4" height="15.0" fill="rgb(221,190,26)" rx="2" ry="2" />
-<text  x="486.16" y="239.5" >std:..</text>
+<title>std::_Hash_impl::hash (8 samples, 1.00%)</title><rect x="825.6" y="165" width="11.7" height="15.0" fill="rgb(252,180,14)" rx="2" ry="2" />
+<text  x="828.57" y="175.5" ></text>
 </g>
 <g >
-<title>grow_heap (1 samples, 0.16%)</title><rect x="556.5" y="165" width="2.0" height="15.0" fill="rgb(217,177,42)" rx="2" ry="2" />
-<text  x="559.55" y="175.5" ></text>
+<title>std::unordered_map&lt;PageId, (56 samples, 6.97%)</title><rect x="417.0" y="229" width="82.3" height="15.0" fill="rgb(224,35,34)" rx="2" ry="2" />
+<text  x="420.05" y="239.5" >std::unor..</text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="832.7" y="277" width="1.9" height="15.0" fill="rgb(225,192,44)" rx="2" ry="2" />
-<text  x="835.72" y="287.5" ></text>
+<title>futex_wait_cancelable (246 samples, 30.64%)</title><rect x="52.6" y="165" width="361.5" height="15.0" fill="rgb(208,7,31)" rx="2" ry="2" />
+<text  x="55.62" y="175.5" >futex_wait_cancelable</text>
 </g>
 <g >
-<title>std::vector&lt;PageId, (1 samples, 0.16%)</title><rect x="1107.0" y="325" width="1.9" height="15.0" fill="rgb(242,229,19)" rx="2" ry="2" />
-<text  x="1109.96" y="335.5" ></text>
+<title>std::operator==&lt;Page*&gt; (1 samples, 0.12%)</title><rect x="853.5" y="133" width="1.5" height="15.0" fill="rgb(216,37,51)" rx="2" ry="2" />
+<text  x="856.49" y="143.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Map_base&lt;PageId, (5 samples, 0.82%)</title><rect x="13.9" y="293" width="9.6" height="15.0" fill="rgb(231,1,14)" rx="2" ry="2" />
-<text  x="16.86" y="303.5" ></text>
+<title>PageIdHash::operator() (10 samples, 1.25%)</title><rect x="822.6" y="197" width="14.7" height="15.0" fill="rgb(240,115,27)" rx="2" ry="2" />
+<text  x="825.63" y="207.5" ></text>
 </g>
 <g >
-<title>_int_free (1 samples, 0.16%)</title><rect x="1149.4" y="229" width="2.0" height="15.0" fill="rgb(253,6,46)" rx="2" ry="2" />
-<text  x="1152.44" y="239.5" ></text>
+<title>std::_Hashtable&lt;PageId, (10 samples, 1.25%)</title><rect x="862.3" y="325" width="14.7" height="15.0" fill="rgb(234,136,34)" rx="2" ry="2" />
+<text  x="865.30" y="335.5" ></text>
 </g>
 <g >
-<title>malloc_consolidate (1 samples, 0.16%)</title><rect x="1103.1" y="149" width="1.9" height="15.0" fill="rgb(245,86,40)" rx="2" ry="2" />
-<text  x="1106.09" y="159.5" ></text>
+<title>std::_Hashtable&lt;PageId, (11 samples, 1.37%)</title><rect x="577.2" y="213" width="16.2" height="15.0" fill="rgb(250,196,39)" rx="2" ry="2" />
+<text  x="580.22" y="223.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (49 samples, 8.02%)</title><rect x="626.1" y="309" width="94.6" height="15.0" fill="rgb(240,61,35)" rx="2" ry="2" />
-<text  x="629.07" y="319.5" >std::_Hasht..</text>
+<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node_base*&gt;::deallocate (7 samples, 0.87%)</title><rect x="862.3" y="245" width="10.3" height="15.0" fill="rgb(243,188,8)" rx="2" ry="2" />
+<text  x="865.30" y="255.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (15 samples, 2.45%)</title><rect x="676.3" y="277" width="29.0" height="15.0" fill="rgb(248,100,45)" rx="2" ry="2" />
-<text  x="679.28" y="287.5" >st..</text>
+<title>std::__detail::_Hash_node_value_base&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="840.3" y="213" width="1.4" height="15.0" fill="rgb(251,74,46)" rx="2" ry="2" />
+<text  x="843.26" y="223.5" ></text>
 </g>
 <g >
-<title>PageId::operator== (21 samples, 3.44%)</title><rect x="635.7" y="213" width="40.6" height="15.0" fill="rgb(245,105,18)" rx="2" ry="2" />
-<text  x="638.73" y="223.5" >Pag..</text>
+<title>std::_Hashtable&lt;PageId, (6 samples, 0.75%)</title><rect x="39.4" y="165" width="8.8" height="15.0" fill="rgb(219,228,28)" rx="2" ry="2" />
+<text  x="42.39" y="175.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (2 samples, 0.33%)</title><rect x="1184.2" y="309" width="3.9" height="15.0" fill="rgb(217,125,18)" rx="2" ry="2" />
-<text  x="1187.21" y="319.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.12%)</title><rect x="882.9" y="261" width="1.4" height="15.0" fill="rgb(208,92,9)" rx="2" ry="2" />
+<text  x="885.88" y="271.5" ></text>
 </g>
 <g >
-<title>PageId::~PageId (1 samples, 0.16%)</title><rect x="832.7" y="197" width="1.9" height="15.0" fill="rgb(220,115,49)" rx="2" ry="2" />
-<text  x="835.72" y="207.5" ></text>
+<title>std::__detail::_Mod_range_hashing::operator() (6 samples, 0.75%)</title><rect x="812.3" y="181" width="8.9" height="15.0" fill="rgb(231,24,34)" rx="2" ry="2" />
+<text  x="815.34" y="191.5" ></text>
 </g>
 <g >
-<title>Page::addLink (1 samples, 0.16%)</title><rect x="1107.0" y="341" width="1.9" height="15.0" fill="rgb(210,116,27)" rx="2" ry="2" />
-<text  x="1109.96" y="351.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node_base*&gt; (7 samples, 0.87%)</title><rect x="862.3" y="261" width="10.3" height="15.0" fill="rgb(247,216,41)" rx="2" ry="2" />
+<text  x="865.30" y="271.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (4 samples, 0.65%)</title><rect x="1110.8" y="325" width="7.7" height="15.0" fill="rgb(252,150,16)" rx="2" ry="2" />
-<text  x="1113.82" y="335.5" ></text>
+<title>std::_Hashtable&lt;PageId, (5 samples, 0.62%)</title><rect x="40.9" y="149" width="7.3" height="15.0" fill="rgb(232,5,47)" rx="2" ry="2" />
+<text  x="43.86" y="159.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1107.0" y="181" width="1.9" height="15.0" fill="rgb(251,199,4)" rx="2" ry="2" />
-<text  x="1109.96" y="191.5" ></text>
+<title>std::operator==&lt;char&gt; (12 samples, 1.49%)</title><rect x="784.4" y="117" width="17.7" height="15.0" fill="rgb(233,194,11)" rx="2" ry="2" />
+<text  x="787.42" y="127.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (3 samples, 0.49%)</title><rect x="13.9" y="261" width="5.8" height="15.0" fill="rgb(245,110,8)" rx="2" ry="2" />
-<text  x="16.86" y="271.5" ></text>
+<title>__gnu_cxx::__aligned_buffer&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="450.8" y="101" width="1.5" height="15.0" fill="rgb(241,58,17)" rx="2" ry="2" />
+<text  x="453.85" y="111.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::__to_xstring&lt;std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1105.0" y="309" width="2.0" height="15.0" fill="rgb(254,128,51)" rx="2" ry="2" />
-<text  x="1108.02" y="319.5" ></text>
+<title>std::_Hash_bytes(void (1 samples, 0.12%)</title><rect x="49.7" y="117" width="1.4" height="15.0" fill="rgb(221,216,52)" rx="2" ry="2" />
+<text  x="52.68" y="127.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (3 samples, 0.49%)</title><rect x="554.6" y="293" width="5.8" height="15.0" fill="rgb(220,225,47)" rx="2" ry="2" />
-<text  x="557.62" y="303.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (3 samples, 0.37%)</title><rect x="437.6" y="165" width="4.4" height="15.0" fill="rgb(250,109,7)" rx="2" ry="2" />
+<text  x="440.62" y="175.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (2 samples, 0.33%)</title><rect x="550.8" y="277" width="3.8" height="15.0" fill="rgb(211,63,41)" rx="2" ry="2" />
-<text  x="553.75" y="287.5" ></text>
+<title>std::_Hashtable&lt;PageId, (56 samples, 6.97%)</title><rect x="417.0" y="197" width="82.3" height="15.0" fill="rgb(245,4,29)" rx="2" ry="2" />
+<text  x="420.05" y="207.5" >std::_Has..</text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node_base*&gt;::deallocate (3 samples, 0.49%)</title><rect x="834.6" y="229" width="5.8" height="15.0" fill="rgb(241,80,16)" rx="2" ry="2" />
-<text  x="837.65" y="239.5" ></text>
+<title>__GI___libc_malloc (1 samples, 0.12%)</title><rect x="456.7" y="37" width="1.5" height="15.0" fill="rgb(251,130,54)" rx="2" ry="2" />
+<text  x="459.72" y="47.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Equal_helper&lt;PageId, (1 samples, 0.16%)</title><rect x="29.3" y="213" width="1.9" height="15.0" fill="rgb(252,208,21)" rx="2" ry="2" />
-<text  x="32.31" y="223.5" ></text>
+<title>std::lock_guard&lt;std::mutex&gt;::~lock_guard (1 samples, 0.12%)</title><rect x="572.8" y="245" width="1.5" height="15.0" fill="rgb(217,90,9)" rx="2" ry="2" />
+<text  x="575.81" y="255.5" ></text>
 </g>
 <g >
-<title>__GI__IO_default_xsputn (1 samples, 0.16%)</title><rect x="1105.0" y="261" width="2.0" height="15.0" fill="rgb(210,156,2)" rx="2" ry="2" />
-<text  x="1108.02" y="271.5" ></text>
+<title>std::operator+&lt;char, (2 samples, 0.25%)</title><rect x="503.7" y="213" width="3.0" height="15.0" fill="rgb(247,203,17)" rx="2" ry="2" />
+<text  x="506.75" y="223.5" ></text>
 </g>
 <g >
-<title>std::thread::join() (133 samples, 21.77%)</title><rect x="846.2" y="341" width="256.9" height="15.0" fill="rgb(224,131,53)" rx="2" ry="2" />
-<text  x="849.24" y="351.5" >std::thread::join()</text>
+<title>PageIdAndRank::PageIdAndRank (1 samples, 0.12%)</title><rect x="860.8" y="261" width="1.5" height="15.0" fill="rgb(254,170,45)" rx="2" ry="2" />
+<text  x="863.83" y="271.5" ></text>
 </g>
 <g >
-<title>__gthread_mutex_lock (30 samples, 4.91%)</title><rect x="566.2" y="293" width="57.9" height="15.0" fill="rgb(229,155,39)" rx="2" ry="2" />
-<text  x="569.20" y="303.5" >__gthr..</text>
+<title>std::__pair_get&lt;0ul&gt;::__get&lt;PageId (1 samples, 0.12%)</title><rect x="783.0" y="117" width="1.4" height="15.0" fill="rgb(210,164,48)" rx="2" ry="2" />
+<text  x="785.95" y="127.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="54.4" y="261" width="3.9" height="15.0" fill="rgb(236,160,27)" rx="2" ry="2" />
-<text  x="57.42" y="271.5" ></text>
+<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.12%)</title><rect x="882.9" y="293" width="1.4" height="15.0" fill="rgb(214,163,22)" rx="2" ry="2" />
+<text  x="885.88" y="303.5" ></text>
 </g>
 <g >
-<title>PageIdAndRank::~PageIdAndRank (1 samples, 0.16%)</title><rect x="1188.1" y="261" width="1.9" height="15.0" fill="rgb(234,33,4)" rx="2" ry="2" />
-<text  x="1191.07" y="271.5" ></text>
+<title>std::_Hashtable&lt;PageId, (14 samples, 1.74%)</title><rect x="12.9" y="181" width="20.6" height="15.0" fill="rgb(208,141,13)" rx="2" ry="2" />
+<text  x="15.94" y="191.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;PageId&gt;::deallocate (1 samples, 0.16%)</title><rect x="1103.1" y="181" width="1.9" height="15.0" fill="rgb(223,184,32)" rx="2" ry="2" />
-<text  x="1106.09" y="191.5" ></text>
+<title>_int_malloc (1 samples, 0.12%)</title><rect x="506.7" y="165" width="1.5" height="15.0" fill="rgb(235,88,8)" rx="2" ry="2" />
+<text  x="509.69" y="175.5" ></text>
 </g>
 <g >
-<title>operator (2 samples, 0.33%)</title><rect x="479.3" y="85" width="3.9" height="15.0" fill="rgb(226,7,32)" rx="2" ry="2" />
-<text  x="482.30" y="95.5" ></text>
+<title>__pthread_cond_wait (246 samples, 30.64%)</title><rect x="52.6" y="197" width="361.5" height="15.0" fill="rgb(247,155,45)" rx="2" ry="2" />
+<text  x="55.62" y="207.5" >__pthread_cond_wait</text>
 </g>
 <g >
-<title>std::__detail::_Equal_helper&lt;PageId, (21 samples, 3.44%)</title><rect x="635.7" y="245" width="40.6" height="15.0" fill="rgb(249,94,26)" rx="2" ry="2" />
-<text  x="638.73" y="255.5" >std..</text>
+<title>start_thread (579 samples, 72.10%)</title><rect x="10.0" y="389" width="850.8" height="15.0" fill="rgb(253,202,13)" rx="2" ry="2" />
+<text  x="13.00" y="399.5" >start_thread</text>
 </g>
 <g >
-<title>std::pair&lt;PageId (4 samples, 0.65%)</title><rect x="1122.4" y="341" width="7.7" height="15.0" fill="rgb(251,156,52)" rx="2" ry="2" />
-<text  x="1125.41" y="351.5" ></text>
+<title>PageId::PageId (1 samples, 0.12%)</title><rect x="860.8" y="245" width="1.5" height="15.0" fill="rgb(252,142,19)" rx="2" ry="2" />
+<text  x="863.83" y="255.5" ></text>
 </g>
 <g >
-<title>std::mutex::unlock (1 samples, 0.16%)</title><rect x="624.1" y="309" width="2.0" height="15.0" fill="rgb(208,168,23)" rx="2" ry="2" />
-<text  x="627.14" y="319.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;PageId&gt; (1 samples, 0.12%)</title><rect x="1179.7" y="213" width="1.5" height="15.0" fill="rgb(232,44,28)" rx="2" ry="2" />
+<text  x="1182.71" y="223.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (6 samples, 0.98%)</title><rect x="514.1" y="165" width="11.5" height="15.0" fill="rgb(235,25,21)" rx="2" ry="2" />
-<text  x="517.06" y="175.5" ></text>
+<title>std::vector&lt;PageId, (1 samples, 0.12%)</title><rect x="1185.6" y="213" width="1.5" height="15.0" fill="rgb(228,214,17)" rx="2" ry="2" />
+<text  x="1188.59" y="223.5" ></text>
 </g>
 <g >
-<title>std::equal_to&lt;PageId&gt;::operator() (2 samples, 0.33%)</title><rect x="1163.0" y="245" width="3.8" height="15.0" fill="rgb(213,45,28)" rx="2" ry="2" />
-<text  x="1165.96" y="255.5" ></text>
+<title>std::condition_variable::wait(std::unique_lock&lt;std::mutex&gt;&amp;) (246 samples, 30.64%)</title><rect x="52.6" y="213" width="361.5" height="15.0" fill="rgb(230,148,36)" rx="2" ry="2" />
+<text  x="55.62" y="223.5" >std::condition_variable::wait(std::unique_lock&lt;st..</text>
 </g>
 <g >
-<title>operator (1 samples, 0.16%)</title><rect x="523.7" y="85" width="1.9" height="15.0" fill="rgb(233,122,7)" rx="2" ry="2" />
-<text  x="526.72" y="95.5" ></text>
+<title>std::_Hashtable&lt;PageId, (4 samples, 0.50%)</title><rect x="877.0" y="293" width="5.9" height="15.0" fill="rgb(237,106,34)" rx="2" ry="2" />
+<text  x="880.00" y="303.5" ></text>
 </g>
 <g >
-<title>clone (420 samples, 68.74%)</title><rect x="10.0" y="389" width="811.1" height="15.0" fill="rgb(223,224,29)" rx="2" ry="2" />
-<text  x="13.00" y="399.5" >clone</text>
+<title>std::__detail::_Hashtable_ebo_helper&lt;0, (2 samples, 0.25%)</title><rect x="805.0" y="149" width="2.9" height="15.0" fill="rgb(246,91,28)" rx="2" ry="2" />
+<text  x="807.99" y="159.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Mod_range_hashing::operator() (1 samples, 0.16%)</title><rect x="27.4" y="197" width="1.9" height="15.0" fill="rgb(214,3,47)" rx="2" ry="2" />
-<text  x="30.38" y="207.5" ></text>
+<title>std::vector&lt;PageId, (2 samples, 0.25%)</title><rect x="1182.7" y="277" width="2.9" height="15.0" fill="rgb(215,157,5)" rx="2" ry="2" />
+<text  x="1185.65" y="287.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="54.4" y="245" width="3.9" height="15.0" fill="rgb(249,91,44)" rx="2" ry="2" />
-<text  x="57.42" y="255.5" ></text>
+<title>__GI___libc_malloc (1 samples, 0.12%)</title><rect x="503.7" y="165" width="1.5" height="15.0" fill="rgb(220,97,53)" rx="2" ry="2" />
+<text  x="506.75" y="175.5" ></text>
 </g>
 <g >
-<title>Page::getId (3 samples, 0.49%)</title><rect x="554.6" y="325" width="5.8" height="15.0" fill="rgb(227,116,53)" rx="2" ry="2" />
-<text  x="557.62" y="335.5" ></text>
+<title>SimpleIdGenerator::generateId (2 samples, 0.25%)</title><rect x="503.7" y="229" width="3.0" height="15.0" fill="rgb(212,206,0)" rx="2" ry="2" />
+<text  x="506.75" y="239.5" ></text>
 </g>
 <g >
-<title>start_thread (420 samples, 68.74%)</title><rect x="10.0" y="373" width="811.1" height="15.0" fill="rgb(248,115,43)" rx="2" ry="2" />
-<text  x="13.00" y="383.5" >start_thread</text>
+<title>Page::~Page (1 samples, 0.12%)</title><rect x="1179.7" y="277" width="1.5" height="15.0" fill="rgb(217,20,54)" rx="2" ry="2" />
+<text  x="1182.71" y="287.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (45 samples, 7.36%)</title><rect x="720.7" y="293" width="86.9" height="15.0" fill="rgb(233,97,35)" rx="2" ry="2" />
-<text  x="723.70" y="303.5" >std::_Hash..</text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (2 samples, 0.25%)</title><rect x="590.4" y="181" width="3.0" height="15.0" fill="rgb(223,99,10)" rx="2" ry="2" />
+<text  x="593.45" y="191.5" ></text>
 </g>
 <g >
-<title>__memmove_avx_unaligned_erms (1 samples, 0.16%)</title><rect x="1128.2" y="181" width="1.9" height="15.0" fill="rgb(227,145,38)" rx="2" ry="2" />
-<text  x="1131.20" y="191.5" ></text>
+<title>std::_Hashtable&lt;PageId, (6 samples, 0.75%)</title><rect x="39.4" y="181" width="8.8" height="15.0" fill="rgb(243,146,54)" rx="2" ry="2" />
+<text  x="42.39" y="191.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="840.4" y="165" width="2.0" height="15.0" fill="rgb(221,216,15)" rx="2" ry="2" />
-<text  x="843.44" y="175.5" ></text>
+<title>__pthread_mutex_unlock_usercnt (1 samples, 0.12%)</title><rect x="572.8" y="197" width="1.5" height="15.0" fill="rgb(207,124,54)" rx="2" ry="2" />
+<text  x="575.81" y="207.5" ></text>
 </g>
 <g >
-<title>std::operator==&lt;char&gt; (3 samples, 0.49%)</title><rect x="782.5" y="197" width="5.8" height="15.0" fill="rgb(217,84,18)" rx="2" ry="2" />
-<text  x="785.50" y="207.5" ></text>
+<title>std::vector&lt;Page, (1 samples, 0.12%)</title><rect x="856.4" y="197" width="1.5" height="15.0" fill="rgb(248,38,44)" rx="2" ry="2" />
+<text  x="859.43" y="207.5" ></text>
 </g>
 <g >
-<title>__memmove_avx_unaligned_erms (1 samples, 0.16%)</title><rect x="558.5" y="165" width="1.9" height="15.0" fill="rgb(234,146,44)" rx="2" ry="2" />
-<text  x="561.48" y="175.5" ></text>
+<title>std::__distance&lt;char*&gt; (1 samples, 0.12%)</title><rect x="494.9" y="53" width="1.5" height="15.0" fill="rgb(219,227,31)" rx="2" ry="2" />
+<text  x="497.93" y="63.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="54.4" y="277" width="3.9" height="15.0" fill="rgb(250,16,33)" rx="2" ry="2" />
-<text  x="57.42" y="287.5" ></text>
+<title>std::__detail::_Hashtable_base&lt;PageId, (2 samples, 0.25%)</title><rect x="600.7" y="213" width="3.0" height="15.0" fill="rgb(234,110,15)" rx="2" ry="2" />
+<text  x="603.73" y="223.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (2 samples, 0.33%)</title><rect x="1155.2" y="309" width="3.9" height="15.0" fill="rgb(231,36,0)" rx="2" ry="2" />
-<text  x="1158.24" y="319.5" ></text>
+<title>tcache_put (1 samples, 0.12%)</title><rect x="519.9" y="213" width="1.5" height="15.0" fill="rgb(236,165,26)" rx="2" ry="2" />
+<text  x="522.91" y="223.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (7 samples, 1.15%)</title><rect x="821.1" y="309" width="13.5" height="15.0" fill="rgb(236,72,29)" rx="2" ry="2" />
-<text  x="824.13" y="319.5" ></text>
+<title>std::__detail::_Insert&lt;PageId, (8 samples, 1.00%)</title><rect x="39.4" y="213" width="11.7" height="15.0" fill="rgb(249,80,28)" rx="2" ry="2" />
+<text  x="42.39" y="223.5" ></text>
 </g>
 <g >
-<title>std::vector&lt;Page, (2 samples, 0.33%)</title><rect x="817.3" y="309" width="3.8" height="15.0" fill="rgb(209,2,20)" rx="2" ry="2" />
-<text  x="820.27" y="319.5" ></text>
+<title>std::_Hashtable&lt;PageId, (19 samples, 2.37%)</title><rect x="575.8" y="229" width="27.9" height="15.0" fill="rgb(252,51,13)" rx="2" ry="2" />
+<text  x="578.75" y="239.5" >s..</text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_base&lt;PageId, (1 samples, 0.16%)</title><rect x="718.8" y="293" width="1.9" height="15.0" fill="rgb(228,79,33)" rx="2" ry="2" />
-<text  x="721.77" y="303.5" ></text>
+<title>pageRankComputationWithNumNodes (224 samples, 27.90%)</title><rect x="860.8" y="389" width="329.2" height="15.0" fill="rgb(225,4,39)" rx="2" ry="2" />
+<text  x="863.83" y="399.5" >pageRankComputationWithNumNodes</text>
 </g>
 <g >
-<title>std::__detail::_Mod_range_hashing::operator() (1 samples, 0.16%)</title><rect x="19.7" y="245" width="1.9" height="15.0" fill="rgb(231,172,9)" rx="2" ry="2" />
-<text  x="22.66" y="255.5" ></text>
+<title>std::__detail::_Hash_node&lt;std::pair&lt;PageId (2 samples, 0.25%)</title><rect x="872.6" y="277" width="2.9" height="15.0" fill="rgb(226,155,3)" rx="2" ry="2" />
+<text  x="875.59" y="287.5" ></text>
 </g>
 <g >
-<title>Page::getId (2 samples, 0.33%)</title><rect x="10.0" y="309" width="3.9" height="15.0" fill="rgb(208,33,42)" rx="2" ry="2" />
-<text  x="13.00" y="319.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (2 samples, 0.25%)</title><rect x="36.5" y="165" width="2.9" height="15.0" fill="rgb(238,124,0)" rx="2" ry="2" />
+<text  x="39.45" y="175.5" ></text>
 </g>
 <g >
-<title>_int_malloc (1 samples, 0.16%)</title><rect x="1120.5" y="213" width="1.9" height="15.0" fill="rgb(248,89,24)" rx="2" ry="2" />
-<text  x="1123.47" y="223.5" ></text>
+<title>malloc_consolidate (1 samples, 0.12%)</title><rect x="1179.7" y="165" width="1.5" height="15.0" fill="rgb(232,228,43)" rx="2" ry="2" />
+<text  x="1182.71" y="175.5" ></text>
 </g>
 <g >
-<title>std::char_traits&lt;char&gt;::compare (3 samples, 0.49%)</title><rect x="670.5" y="181" width="5.8" height="15.0" fill="rgb(228,174,48)" rx="2" ry="2" />
-<text  x="673.49" y="191.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (4 samples, 0.50%)</title><rect x="593.4" y="213" width="5.9" height="15.0" fill="rgb(235,119,4)" rx="2" ry="2" />
+<text  x="596.39" y="223.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1107.0" y="197" width="1.9" height="15.0" fill="rgb(251,159,41)" rx="2" ry="2" />
-<text  x="1109.96" y="207.5" ></text>
+<title>std::__detail::_Map_base&lt;PageId, (18 samples, 2.24%)</title><rect x="12.9" y="213" width="26.5" height="15.0" fill="rgb(229,10,51)" rx="2" ry="2" />
+<text  x="15.94" y="223.5" >s..</text>
 </g>
 <g >
-<title>pageRankComputationWithNumNodes (191 samples, 31.26%)</title><rect x="821.1" y="373" width="368.9" height="15.0" fill="rgb(221,78,22)" rx="2" ry="2" />
-<text  x="824.13" y="383.5" >pageRankComputationWithNumNodes</text>
+<title>std::_Vector_base&lt;PageId, (1 samples, 0.12%)</title><rect x="1179.7" y="229" width="1.5" height="15.0" fill="rgb(208,77,24)" rx="2" ry="2" />
+<text  x="1182.71" y="239.5" ></text>
 </g>
 <g >
-<title>std::vector&lt;PageId, (1 samples, 0.16%)</title><rect x="844.3" y="325" width="1.9" height="15.0" fill="rgb(213,180,42)" rx="2" ry="2" />
-<text  x="847.30" y="335.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (13 samples, 1.62%)</title><rect x="821.2" y="213" width="19.1" height="15.0" fill="rgb(214,107,52)" rx="2" ry="2" />
+<text  x="824.16" y="223.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;char&gt; (1 samples, 0.16%)</title><rect x="52.5" y="245" width="1.9" height="15.0" fill="rgb(231,7,37)" rx="2" ry="2" />
-<text  x="55.49" y="255.5" ></text>
+<title>__gnu_cxx::__aligned_buffer&lt;std::pair&lt;PageId (4 samples, 0.50%)</title><rect x="445.0" y="133" width="5.8" height="15.0" fill="rgb(235,171,41)" rx="2" ry="2" />
+<text  x="447.97" y="143.5" ></text>
 </g>
 <g >
-<title>_int_malloc (1 samples, 0.16%)</title><rect x="56.4" y="181" width="1.9" height="15.0" fill="rgb(246,209,30)" rx="2" ry="2" />
-<text  x="59.35" y="191.5" ></text>
+<title>PageId::PageId (1 samples, 0.12%)</title><rect x="506.7" y="229" width="1.5" height="15.0" fill="rgb(232,229,34)" rx="2" ry="2" />
+<text  x="509.69" y="239.5" ></text>
 </g>
 <g >
-<title>Page::~Page (1 samples, 0.16%)</title><rect x="1103.1" y="261" width="1.9" height="15.0" fill="rgb(252,228,43)" rx="2" ry="2" />
-<text  x="1106.09" y="271.5" ></text>
+<title>sysmalloc (1 samples, 0.12%)</title><rect x="37.9" y="101" width="1.5" height="15.0" fill="rgb(254,51,51)" rx="2" ry="2" />
+<text  x="40.92" y="111.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (6 samples, 0.98%)</title><rect x="40.9" y="261" width="11.6" height="15.0" fill="rgb(243,226,42)" rx="2" ry="2" />
-<text  x="43.90" y="271.5" ></text>
+<title>std::uninitialized_copy&lt;std::move_iterator&lt;Page*&gt;, (1 samples, 0.12%)</title><rect x="853.5" y="181" width="1.5" height="15.0" fill="rgb(206,72,42)" rx="2" ry="2" />
+<text  x="856.49" y="191.5" ></text>
 </g>
 <g >
-<title>__GI___pthread_timedjoin_ex (133 samples, 21.77%)</title><rect x="846.2" y="325" width="256.9" height="15.0" fill="rgb(217,130,39)" rx="2" ry="2" />
-<text  x="849.24" y="335.5" >__GI___pthread_timedjoin_ex</text>
+<title>std::vector&lt;Page, (1 samples, 0.12%)</title><rect x="856.4" y="213" width="1.5" height="15.0" fill="rgb(212,114,20)" rx="2" ry="2" />
+<text  x="859.43" y="223.5" ></text>
 </g>
 <g >
-<title>std::_Vector_base&lt;Page, (2 samples, 0.33%)</title><rect x="817.3" y="293" width="3.8" height="15.0" fill="rgb(249,78,30)" rx="2" ry="2" />
-<text  x="820.27" y="303.5" ></text>
+<title>_int_malloc (1 samples, 0.12%)</title><rect x="37.9" y="117" width="1.5" height="15.0" fill="rgb(253,36,52)" rx="2" ry="2" />
+<text  x="40.92" y="127.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1188.1" y="229" width="1.9" height="15.0" fill="rgb(216,175,15)" rx="2" ry="2" />
-<text  x="1191.07" y="239.5" ></text>
+<title>Page::~Page (1 samples, 0.12%)</title><rect x="843.2" y="149" width="1.5" height="15.0" fill="rgb(237,113,11)" rx="2" ry="2" />
+<text  x="846.20" y="159.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_base&lt;PageId, (1 samples, 0.16%)</title><rect x="535.3" y="245" width="1.9" height="15.0" fill="rgb(205,176,9)" rx="2" ry="2" />
-<text  x="538.30" y="255.5" ></text>
+<title>operator (1 samples, 0.12%)</title><rect x="453.8" y="101" width="1.5" height="15.0" fill="rgb(226,89,29)" rx="2" ry="2" />
+<text  x="456.79" y="111.5" ></text>
 </g>
 <g >
-<title>std::_Hash_bytes(void (3 samples, 0.49%)</title><rect x="809.5" y="229" width="5.8" height="15.0" fill="rgb(248,122,11)" rx="2" ry="2" />
-<text  x="812.54" y="239.5" ></text>
+<title>_int_free (1 samples, 0.12%)</title><rect x="875.5" y="229" width="1.5" height="15.0" fill="rgb(239,39,42)" rx="2" ry="2" />
+<text  x="878.53" y="239.5" ></text>
 </g>
 <g >
-<title>std::_Destroy&lt;Page*, (1 samples, 0.16%)</title><rect x="1103.1" y="325" width="1.9" height="15.0" fill="rgb(227,133,51)" rx="2" ry="2" />
-<text  x="1106.09" y="335.5" ></text>
+<title>PageIdHash::operator() (1 samples, 0.12%)</title><rect x="49.7" y="165" width="1.4" height="15.0" fill="rgb(209,7,52)" rx="2" ry="2" />
+<text  x="52.68" y="175.5" ></text>
 </g>
 <g >
-<title>tcache_put (1 samples, 0.16%)</title><rect x="52.5" y="197" width="1.9" height="15.0" fill="rgb(245,123,34)" rx="2" ry="2" />
-<text  x="55.49" y="207.5" ></text>
+<title>std::__detail::_Map_base&lt;PageId, (162 samples, 20.17%)</title><rect x="603.7" y="229" width="238.0" height="15.0" fill="rgb(243,198,19)" rx="2" ry="2" />
+<text  x="606.67" y="239.5" >std::__detail::_Map_base&lt;PageId,</text>
 </g>
 <g >
-<title>__memmove_avx_unaligned_erms (6 samples, 0.98%)</title><rect x="502.5" y="37" width="11.6" height="15.0" fill="rgb(234,190,45)" rx="2" ry="2" />
-<text  x="505.47" y="47.5" ></text>
+<title>PageId::PageId (2 samples, 0.25%)</title><rect x="414.1" y="213" width="2.9" height="15.0" fill="rgb(223,192,27)" rx="2" ry="2" />
+<text  x="417.11" y="223.5" ></text>
 </g>
 <g >
-<title>std::equal_to&lt;PageId&gt;::operator() (3 samples, 0.49%)</title><rect x="782.5" y="229" width="5.8" height="15.0" fill="rgb(218,213,8)" rx="2" ry="2" />
-<text  x="785.50" y="239.5" ></text>
+<title>?? (579 samples, 72.10%)</title><rect x="10.0" y="373" width="850.8" height="15.0" fill="rgb(213,160,24)" rx="2" ry="2" />
+<text  x="13.00" y="383.5" >??</text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;char&gt;::deallocate (1 samples, 0.16%)</title><rect x="832.7" y="117" width="1.9" height="15.0" fill="rgb(212,97,34)" rx="2" ry="2" />
-<text  x="835.72" y="127.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;Page&gt;::allocate (6 samples, 0.75%)</title><rect x="844.7" y="181" width="8.8" height="15.0" fill="rgb(237,73,48)" rx="2" ry="2" />
+<text  x="847.67" y="191.5" ></text>
 </g>
 <g >
-<title>Page::generateId (1 samples, 0.16%)</title><rect x="1108.9" y="341" width="1.9" height="15.0" fill="rgb(239,219,51)" rx="2" ry="2" />
-<text  x="1111.89" y="351.5" ></text>
+<title>_int_malloc (1 samples, 0.12%)</title><rect x="503.7" y="149" width="1.5" height="15.0" fill="rgb(220,115,26)" rx="2" ry="2" />
+<text  x="506.75" y="159.5" ></text>
 </g>
 <g >
-<title>PageId::PageId (3 samples, 0.49%)</title><rect x="560.4" y="325" width="5.8" height="15.0" fill="rgb(227,151,51)" rx="2" ry="2" />
-<text  x="563.41" y="335.5" ></text>
+<title>std:: (1 samples, 0.12%)</title><rect x="1188.5" y="341" width="1.5" height="15.0" fill="rgb(209,169,27)" rx="2" ry="2" />
+<text  x="1191.53" y="351.5" ></text>
 </g>
 <g >
-<title>_int_malloc (1 samples, 0.16%)</title><rect x="1135.9" y="197" width="2.0" height="15.0" fill="rgb(249,108,54)" rx="2" ry="2" />
-<text  x="1138.92" y="207.5" ></text>
+<title>std::__invoke&lt;MultiThreadedPageRankComputer::computeForNetwork(Network (579 samples, 72.10%)</title><rect x="10.0" y="309" width="850.8" height="15.0" fill="rgb(242,67,27)" rx="2" ry="2" />
+<text  x="13.00" y="319.5" >std::__invoke&lt;MultiThreadedPageRankComputer::computeForNetwork(Network</text>
 </g>
 <g >
-<title>__GI___libc_malloc (1 samples, 0.16%)</title><rect x="1108.9" y="213" width="1.9" height="15.0" fill="rgb(226,52,35)" rx="2" ry="2" />
-<text  x="1111.89" y="223.5" ></text>
+<title>std::_Hashtable&lt;PageId, (56 samples, 6.97%)</title><rect x="417.0" y="213" width="82.3" height="15.0" fill="rgb(224,184,8)" rx="2" ry="2" />
+<text  x="420.05" y="223.5" >std::_Has..</text>
 </g>
 <g >
-<title>__GI___libc_free (2 samples, 0.33%)</title><rect x="516.0" y="85" width="3.9" height="15.0" fill="rgb(210,139,52)" rx="2" ry="2" />
-<text  x="518.99" y="95.5" ></text>
+<title>std::thread::_Invoker&lt;std::tuple&lt;MultiThreadedPageRankComputer::computeForNetwork(Network (579 samples, 72.10%)</title><rect x="10.0" y="325" width="850.8" height="15.0" fill="rgb(242,109,10)" rx="2" ry="2" />
+<text  x="13.00" y="335.5" >std::thread::_Invoker&lt;std::tuple&lt;MultiThreadedPageRankComputer::computeForNetwork(Network</text>
 </g>
 <g >
-<title>std::__detail::_Insert&lt;PageId, (5 samples, 0.82%)</title><rect x="23.5" y="293" width="9.7" height="15.0" fill="rgb(220,12,13)" rx="2" ry="2" />
-<text  x="26.52" y="303.5" ></text>
+<title>std::char_traits&lt;char&gt;::compare (5 samples, 0.62%)</title><rect x="794.7" y="101" width="7.4" height="15.0" fill="rgb(224,203,18)" rx="2" ry="2" />
+<text  x="797.71" y="111.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (7 samples, 1.15%)</title><rect x="500.5" y="149" width="13.6" height="15.0" fill="rgb(206,117,54)" rx="2" ry="2" />
-<text  x="503.54" y="159.5" ></text>
+<title>operator (6 samples, 0.75%)</title><rect x="844.7" y="165" width="8.8" height="15.0" fill="rgb(236,97,35)" rx="2" ry="2" />
+<text  x="847.67" y="175.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="1151.4" y="165" width="3.8" height="15.0" fill="rgb(242,171,29)" rx="2" ry="2" />
-<text  x="1154.37" y="175.5" ></text>
+<title>NetworkGenerator::generatePageFromNum (2 samples, 0.25%)</title><rect x="1187.1" y="357" width="2.9" height="15.0" fill="rgb(243,88,38)" rx="2" ry="2" />
+<text  x="1190.06" y="367.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1108.9" y="261" width="1.9" height="15.0" fill="rgb(230,202,26)" rx="2" ry="2" />
-<text  x="1111.89" y="271.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (3 samples, 0.37%)</title><rect x="453.8" y="117" width="4.4" height="15.0" fill="rgb(220,17,31)" rx="2" ry="2" />
+<text  x="456.79" y="127.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (7 samples, 1.15%)</title><rect x="1135.9" y="245" width="13.5" height="15.0" fill="rgb(228,41,29)" rx="2" ry="2" />
-<text  x="1138.92" y="255.5" ></text>
+<title>PageId::~PageId (3 samples, 0.37%)</title><rect x="517.0" y="245" width="4.4" height="15.0" fill="rgb(205,105,51)" rx="2" ry="2" />
+<text  x="519.97" y="255.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (6 samples, 0.98%)</title><rect x="502.5" y="85" width="11.6" height="15.0" fill="rgb(228,23,35)" rx="2" ry="2" />
-<text  x="505.47" y="95.5" ></text>
+<title>std::__detail::_Equal_helper&lt;PageId, (2 samples, 0.25%)</title><rect x="30.6" y="149" width="2.9" height="15.0" fill="rgb(205,138,0)" rx="2" ry="2" />
+<text  x="33.57" y="159.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Equal_helper&lt;PageId, (12 samples, 1.96%)</title><rect x="765.1" y="245" width="23.2" height="15.0" fill="rgb(243,140,23)" rx="2" ry="2" />
-<text  x="768.12" y="255.5" >s..</text>
+<title>std::vector&lt;Page, (11 samples, 1.37%)</title><rect x="841.7" y="245" width="16.2" height="15.0" fill="rgb(225,70,32)" rx="2" ry="2" />
+<text  x="844.73" y="255.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (3 samples, 0.49%)</title><rect x="1112.7" y="229" width="5.8" height="15.0" fill="rgb(218,45,46)" rx="2" ry="2" />
-<text  x="1115.75" y="239.5" ></text>
+<title>std::vector&lt;Page, (1 samples, 0.12%)</title><rect x="1179.7" y="357" width="1.5" height="15.0" fill="rgb(233,21,20)" rx="2" ry="2" />
+<text  x="1182.71" y="367.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (4 samples, 0.65%)</title><rect x="1122.4" y="309" width="7.7" height="15.0" fill="rgb(212,59,48)" rx="2" ry="2" />
-<text  x="1125.41" y="319.5" ></text>
+<title>Page::getId (1 samples, 0.12%)</title><rect x="506.7" y="245" width="1.5" height="15.0" fill="rgb(236,126,1)" rx="2" ry="2" />
+<text  x="509.69" y="255.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Mod_range_hashing::operator() (15 samples, 2.45%)</title><rect x="676.3" y="261" width="29.0" height="15.0" fill="rgb(235,39,50)" rx="2" ry="2" />
-<text  x="679.28" y="271.5" >st..</text>
+<title>std::__uninitialized_move_if_noexcept_a&lt;Page*, (1 samples, 0.12%)</title><rect x="1185.6" y="309" width="1.5" height="15.0" fill="rgb(250,59,40)" rx="2" ry="2" />
+<text  x="1188.59" y="319.5" ></text>
 </g>
 <g >
-<title>_int_free (1 samples, 0.16%)</title><rect x="1118.5" y="245" width="2.0" height="15.0" fill="rgb(222,186,43)" rx="2" ry="2" />
-<text  x="1121.54" y="255.5" ></text>
+<title>_int_free (1 samples, 0.12%)</title><rect x="1179.7" y="181" width="1.5" height="15.0" fill="rgb(242,175,41)" rx="2" ry="2" />
+<text  x="1182.71" y="191.5" ></text>
 </g>
 <g >
-<title>std::unordered_map&lt;PageId, (28 samples, 4.58%)</title><rect x="1130.1" y="341" width="54.1" height="15.0" fill="rgb(250,133,33)" rx="2" ry="2" />
-<text  x="1133.13" y="351.5" >std::..</text>
+<title>std::vector&lt;PageId, (1 samples, 0.12%)</title><rect x="1179.7" y="261" width="1.5" height="15.0" fill="rgb(210,83,14)" rx="2" ry="2" />
+<text  x="1182.71" y="271.5" ></text>
 </g>
 <g >
-<title>std::unordered_map&lt;PageId, (5 samples, 0.82%)</title><rect x="13.9" y="309" width="9.6" height="15.0" fill="rgb(221,97,53)" rx="2" ry="2" />
-<text  x="16.86" y="319.5" ></text>
+<title>std::_Destroy&lt;Page&gt; (1 samples, 0.12%)</title><rect x="1179.7" y="293" width="1.5" height="15.0" fill="rgb(237,213,35)" rx="2" ry="2" />
+<text  x="1182.71" y="303.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="558.5" y="197" width="1.9" height="15.0" fill="rgb(249,165,33)" rx="2" ry="2" />
-<text  x="561.48" y="207.5" ></text>
+<title>std::_Hashtable&lt;PageId, (43 samples, 5.35%)</title><rect x="436.2" y="181" width="63.1" height="15.0" fill="rgb(207,13,23)" rx="2" ry="2" />
+<text  x="439.15" y="191.5" >std::_..</text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1147.5" y="133" width="1.9" height="15.0" fill="rgb(252,4,44)" rx="2" ry="2" />
-<text  x="1150.51" y="143.5" ></text>
+<title>_int_free (4 samples, 0.50%)</title><rect x="877.0" y="229" width="5.9" height="15.0" fill="rgb(231,162,27)" rx="2" ry="2" />
+<text  x="880.00" y="239.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (6 samples, 0.98%)</title><rect x="821.1" y="261" width="11.6" height="15.0" fill="rgb(225,163,18)" rx="2" ry="2" />
-<text  x="824.13" y="271.5" ></text>
+<title>sysmalloc (1 samples, 0.12%)</title><rect x="506.7" y="149" width="1.5" height="15.0" fill="rgb(230,36,21)" rx="2" ry="2" />
+<text  x="509.69" y="159.5" ></text>
 </g>
 <g >
-<title>__memcmp_avx2_movbe (2 samples, 0.33%)</title><rect x="784.4" y="165" width="3.9" height="15.0" fill="rgb(220,54,49)" rx="2" ry="2" />
-<text  x="787.44" y="175.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.12%)</title><rect x="747.7" y="149" width="1.5" height="15.0" fill="rgb(235,119,48)" rx="2" ry="2" />
+<text  x="750.68" y="159.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="52.5" y="277" width="1.9" height="15.0" fill="rgb(206,21,38)" rx="2" ry="2" />
-<text  x="55.49" y="287.5" ></text>
+<title>std::__detail::_Select1st::operator()&lt;std::pair&lt;PageId (2 samples, 0.25%)</title><rect x="781.5" y="149" width="2.9" height="15.0" fill="rgb(237,1,5)" rx="2" ry="2" />
+<text  x="784.48" y="159.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (7 samples, 1.15%)</title><rect x="1135.9" y="277" width="13.5" height="15.0" fill="rgb(215,77,41)" rx="2" ry="2" />
-<text  x="1138.92" y="287.5" ></text>
+<title>operator (2 samples, 0.25%)</title><rect x="489.1" y="69" width="2.9" height="15.0" fill="rgb(237,36,12)" rx="2" ry="2" />
+<text  x="492.05" y="79.5" ></text>
 </g>
 <g >
-<title>PageIdAndRank::PageIdAndRank (1 samples, 0.16%)</title><rect x="1120.5" y="341" width="1.9" height="15.0" fill="rgb(216,113,37)" rx="2" ry="2" />
-<text  x="1123.47" y="351.5" ></text>
+<title>MultiThreadedPageRankComputer::WorkerData::initRestSequential (26 samples, 3.24%)</title><rect x="12.9" y="245" width="38.2" height="15.0" fill="rgb(228,164,41)" rx="2" ry="2" />
+<text  x="15.94" y="255.5" >Mul..</text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1107.0" y="245" width="1.9" height="15.0" fill="rgb(230,160,42)" rx="2" ry="2" />
-<text  x="1109.96" y="255.5" ></text>
+<title>Page::Page (1 samples, 0.12%)</title><rect x="841.7" y="197" width="1.5" height="15.0" fill="rgb(251,32,9)" rx="2" ry="2" />
+<text  x="844.73" y="207.5" ></text>
 </g>
 <g >
-<title>NetworkGenerator::generatePageFromNum (1 samples, 0.16%)</title><rect x="1105.0" y="341" width="2.0" height="15.0" fill="rgb(234,17,15)" rx="2" ry="2" />
-<text  x="1108.02" y="351.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;Page&gt; (1 samples, 0.12%)</title><rect x="841.7" y="229" width="1.5" height="15.0" fill="rgb(237,127,12)" rx="2" ry="2" />
+<text  x="844.73" y="239.5" ></text>
 </g>
 <g >
-<title>PageIdHash::operator() (2 samples, 0.33%)</title><rect x="550.8" y="261" width="3.8" height="15.0" fill="rgb(243,207,25)" rx="2" ry="2" />
-<text  x="553.75" y="271.5" ></text>
+<title>std::__detail::_ReuseOrAllocNode&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (39 samples, 4.86%)</title><rect x="442.0" y="165" width="57.3" height="15.0" fill="rgb(222,109,13)" rx="2" ry="2" />
+<text  x="445.03" y="175.5" >std::_..</text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="815.3" y="261" width="2.0" height="15.0" fill="rgb(214,165,10)" rx="2" ry="2" />
-<text  x="818.34" y="271.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.25%)</title><rect x="455.3" y="69" width="2.9" height="15.0" fill="rgb(248,227,9)" rx="2" ry="2" />
+<text  x="458.26" y="79.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="832.7" y="165" width="1.9" height="15.0" fill="rgb(248,146,17)" rx="2" ry="2" />
-<text  x="835.72" y="175.5" ></text>
+<title>std::_Destroy&lt;PageId*&gt; (1 samples, 0.12%)</title><rect x="843.2" y="101" width="1.5" height="15.0" fill="rgb(240,90,31)" rx="2" ry="2" />
+<text  x="846.20" y="111.5" ></text>
 </g>
 <g >
-<title>PageId::PageId (2 samples, 0.33%)</title><rect x="10.0" y="293" width="3.9" height="15.0" fill="rgb(221,200,24)" rx="2" ry="2" />
-<text  x="13.00" y="303.5" ></text>
+<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (4 samples, 0.50%)</title><rect x="877.0" y="277" width="5.9" height="15.0" fill="rgb(210,13,10)" rx="2" ry="2" />
+<text  x="880.00" y="287.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (1 samples, 0.16%)</title><rect x="1184.2" y="277" width="1.9" height="15.0" fill="rgb(248,131,43)" rx="2" ry="2" />
-<text  x="1187.21" y="287.5" ></text>
+<title>__lll_unlock_wake (1 samples, 0.12%)</title><rect x="572.8" y="181" width="1.5" height="15.0" fill="rgb(212,141,17)" rx="2" ry="2" />
+<text  x="575.81" y="191.5" ></text>
 </g>
 <g >
-<title>std::char_traits&lt;char&gt;::copy (1 samples, 0.16%)</title><rect x="1147.5" y="85" width="1.9" height="15.0" fill="rgb(216,1,17)" rx="2" ry="2" />
-<text  x="1150.51" y="95.5" ></text>
+<title>std::_Hashtable&lt;PageId, (16 samples, 1.99%)</title><rect x="12.9" y="197" width="23.6" height="15.0" fill="rgb(233,29,46)" rx="2" ry="2" />
+<text  x="15.94" y="207.5" >s..</text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="21.6" y="261" width="1.9" height="15.0" fill="rgb(222,143,21)" rx="2" ry="2" />
-<text  x="24.59" y="271.5" ></text>
+<title>std::_Hashtable&lt;PageId, (5 samples, 0.62%)</title><rect x="21.8" y="165" width="7.3" height="15.0" fill="rgb(251,156,52)" rx="2" ry="2" />
+<text  x="24.76" y="175.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;char&gt; (1 samples, 0.16%)</title><rect x="832.7" y="133" width="1.9" height="15.0" fill="rgb(205,158,28)" rx="2" ry="2" />
-<text  x="835.72" y="143.5" ></text>
+<title>std::thread::_State_impl&lt;std::thread::_Invoker&lt;std::tuple&lt;MultiThreadedPageRankComputer::computeForNetwork(Network (579 samples, 72.10%)</title><rect x="10.0" y="357" width="850.8" height="15.0" fill="rgb(244,176,9)" rx="2" ry="2" />
+<text  x="13.00" y="367.5" >std::thread::_State_impl&lt;std::thread::_Invoker&lt;std::tuple&lt;MultiThreadedPageRankComputer::computeForNetwork(Network</text>
 </g>
 <g >
-<title>malloc_consolidate (3 samples, 0.49%)</title><rect x="834.6" y="197" width="5.8" height="15.0" fill="rgb(221,36,43)" rx="2" ry="2" />
-<text  x="837.65" y="207.5" ></text>
+<title>__gthread_mutex_lock (35 samples, 4.36%)</title><rect x="521.4" y="213" width="51.4" height="15.0" fill="rgb(205,153,2)" rx="2" ry="2" />
+<text  x="524.38" y="223.5" >__gth..</text>
 </g>
 <g >
-<title>PageId::PageId (1 samples, 0.16%)</title><rect x="1107.0" y="277" width="1.9" height="15.0" fill="rgb(238,4,18)" rx="2" ry="2" />
-<text  x="1109.96" y="287.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (4 samples, 0.50%)</title><rect x="587.5" y="197" width="5.9" height="15.0" fill="rgb(249,226,17)" rx="2" ry="2" />
+<text  x="590.51" y="207.5" ></text>
 </g>
 <g >
-<title>std::char_traits&lt;char&gt;::copy (1 samples, 0.16%)</title><rect x="558.5" y="181" width="1.9" height="15.0" fill="rgb(241,113,15)" rx="2" ry="2" />
-<text  x="561.48" y="191.5" ></text>
+<title>PageId::PageId (1 samples, 0.12%)</title><rect x="1181.2" y="277" width="1.5" height="15.0" fill="rgb(233,62,21)" rx="2" ry="2" />
+<text  x="1184.18" y="287.5" ></text>
 </g>
 <g >
-<title>std::_Vector_base&lt;PageId, (1 samples, 0.16%)</title><rect x="844.3" y="309" width="1.9" height="15.0" fill="rgb(252,36,25)" rx="2" ry="2" />
-<text  x="847.30" y="319.5" ></text>
+<title>operator (1 samples, 0.12%)</title><rect x="860.8" y="213" width="1.5" height="15.0" fill="rgb(216,196,20)" rx="2" ry="2" />
+<text  x="863.83" y="223.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (4 samples, 0.65%)</title><rect x="44.8" y="197" width="7.7" height="15.0" fill="rgb(252,25,35)" rx="2" ry="2" />
-<text  x="47.76" y="207.5" ></text>
+<title>std::_Hashtable&lt;PageId, (11 samples, 1.37%)</title><rect x="735.9" y="181" width="16.2" height="15.0" fill="rgb(241,136,8)" rx="2" ry="2" />
+<text  x="738.93" y="191.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Mod_range_hashing::operator() (9 samples, 1.47%)</title><rect x="1166.8" y="277" width="17.4" height="15.0" fill="rgb(245,97,31)" rx="2" ry="2" />
-<text  x="1169.82" y="287.5" ></text>
+<title>Network::~Network (1 samples, 0.12%)</title><rect x="1179.7" y="373" width="1.5" height="15.0" fill="rgb(249,150,2)" rx="2" ry="2" />
+<text  x="1182.71" y="383.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1128.2" y="213" width="1.9" height="15.0" fill="rgb(246,17,2)" rx="2" ry="2" />
-<text  x="1131.20" y="223.5" ></text>
+<title>std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="27.6" y="149" width="1.5" height="15.0" fill="rgb(234,228,22)" rx="2" ry="2" />
+<text  x="30.63" y="159.5" ></text>
 </g>
 <g >
-<title>std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="458.1" y="309" width="1.9" height="15.0" fill="rgb(229,110,5)" rx="2" ry="2" />
-<text  x="461.05" y="319.5" ></text>
+<title>std::_Hashtable&lt;PageId, (127 samples, 15.82%)</title><rect x="621.3" y="197" width="186.6" height="15.0" fill="rgb(240,194,2)" rx="2" ry="2" />
+<text  x="624.31" y="207.5" >std::_Hashtable&lt;PageId,</text>
 </g>
 <g >
-<title>PageId::~PageId (6 samples, 0.98%)</title><rect x="514.1" y="181" width="11.5" height="15.0" fill="rgb(252,99,46)" rx="2" ry="2" />
-<text  x="517.06" y="191.5" ></text>
+<title>std::uninitialized_copy&lt;__gnu_cxx::__normal_iterator&lt;PageIdAndRank (1 samples, 0.12%)</title><rect x="860.8" y="309" width="1.5" height="15.0" fill="rgb(249,154,47)" rx="2" ry="2" />
+<text  x="863.83" y="319.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node_base*&gt;::deallocate (6 samples, 0.98%)</title><rect x="821.1" y="229" width="11.6" height="15.0" fill="rgb(248,80,23)" rx="2" ry="2" />
-<text  x="824.13" y="239.5" ></text>
+<title>__GI___libc_malloc (6 samples, 0.75%)</title><rect x="844.7" y="149" width="8.8" height="15.0" fill="rgb(246,1,46)" rx="2" ry="2" />
+<text  x="847.67" y="159.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (6 samples, 0.98%)</title><rect x="40.9" y="245" width="11.6" height="15.0" fill="rgb(236,156,5)" rx="2" ry="2" />
-<text  x="43.90" y="255.5" ></text>
+<title>std::__detail::_Hashtable_base&lt;PageId, (1 samples, 0.12%)</title><rect x="602.2" y="197" width="1.5" height="15.0" fill="rgb(210,191,40)" rx="2" ry="2" />
+<text  x="605.20" y="207.5" ></text>
 </g>
 <g >
-<title>_int_free (1 samples, 0.16%)</title><rect x="844.3" y="245" width="1.9" height="15.0" fill="rgb(248,150,41)" rx="2" ry="2" />
-<text  x="847.30" y="255.5" ></text>
+<title>std::_Hashtable&lt;PageId, (142 samples, 17.68%)</title><rect x="612.5" y="213" width="208.7" height="15.0" fill="rgb(249,33,42)" rx="2" ry="2" />
+<text  x="615.49" y="223.5" >std::_Hashtable&lt;PageId,</text>
 </g>
 <g >
-<title>__memcmp_avx2_movbe (2 samples, 0.33%)</title><rect x="1163.0" y="181" width="3.8" height="15.0" fill="rgb(241,48,40)" rx="2" ry="2" />
-<text  x="1165.96" y="191.5" ></text>
+<title>__GI___libc_malloc (1 samples, 0.12%)</title><rect x="506.7" y="181" width="1.5" height="15.0" fill="rgb(233,229,2)" rx="2" ry="2" />
+<text  x="509.69" y="191.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (34 samples, 5.56%)</title><rect x="460.0" y="293" width="65.6" height="15.0" fill="rgb(225,26,45)" rx="2" ry="2" />
-<text  x="462.98" y="303.5" >std::_H..</text>
+<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="875.5" y="261" width="1.5" height="15.0" fill="rgb(230,108,50)" rx="2" ry="2" />
+<text  x="878.53" y="271.5" ></text>
 </g>
 <g >
-<title>std::operator==&lt;char&gt; (2 samples, 0.33%)</title><rect x="1163.0" y="213" width="3.8" height="15.0" fill="rgb(251,105,52)" rx="2" ry="2" />
-<text  x="1165.96" y="223.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;PageIdAndRank&gt; (1 samples, 0.12%)</title><rect x="499.3" y="197" width="1.5" height="15.0" fill="rgb(213,129,37)" rx="2" ry="2" />
+<text  x="502.34" y="207.5" ></text>
 </g>
 <g >
-<title>std::char_traits&lt;char&gt;::copy (1 samples, 0.16%)</title><rect x="1107.0" y="149" width="1.9" height="15.0" fill="rgb(212,11,3)" rx="2" ry="2" />
-<text  x="1109.96" y="159.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (9 samples, 1.12%)</title><rect x="807.9" y="197" width="13.3" height="15.0" fill="rgb(211,54,31)" rx="2" ry="2" />
+<text  x="810.93" y="207.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (3 samples, 0.49%)</title><rect x="554.6" y="245" width="5.8" height="15.0" fill="rgb(244,201,24)" rx="2" ry="2" />
-<text  x="557.62" y="255.5" ></text>
+<title>std::__uninitialized_copy&lt;false&gt;::__uninit_copy&lt;__gnu_cxx::__normal_iterator&lt;PageIdAndRank (1 samples, 0.12%)</title><rect x="860.8" y="293" width="1.5" height="15.0" fill="rgb(240,228,39)" rx="2" ry="2" />
+<text  x="863.83" y="303.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node_base*&gt; (3 samples, 0.49%)</title><rect x="834.6" y="245" width="5.8" height="15.0" fill="rgb(209,136,53)" rx="2" ry="2" />
-<text  x="837.65" y="255.5" ></text>
+<title>std::unordered_set&lt;PageId, (8 samples, 1.00%)</title><rect x="39.4" y="229" width="11.7" height="15.0" fill="rgb(224,178,1)" rx="2" ry="2" />
+<text  x="42.39" y="239.5" ></text>
 </g>
 <g >
-<title>tcache_get (1 samples, 0.16%)</title><rect x="42.8" y="197" width="2.0" height="15.0" fill="rgb(234,32,27)" rx="2" ry="2" />
-<text  x="45.83" y="207.5" ></text>
+<title>std::pair&lt;PageId (2 samples, 0.25%)</title><rect x="414.1" y="229" width="2.9" height="15.0" fill="rgb(226,160,12)" rx="2" ry="2" />
+<text  x="417.11" y="239.5" ></text>
 </g>
 <g >
-<title>PageId::PageId (3 samples, 0.49%)</title><rect x="554.6" y="309" width="5.8" height="15.0" fill="rgb(208,74,47)" rx="2" ry="2" />
-<text  x="557.62" y="319.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (28 samples, 3.49%)</title><rect x="458.2" y="133" width="41.1" height="15.0" fill="rgb(207,9,48)" rx="2" ry="2" />
+<text  x="461.19" y="143.5" >__g..</text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1147.5" y="149" width="1.9" height="15.0" fill="rgb(229,212,16)" rx="2" ry="2" />
-<text  x="1150.51" y="159.5" ></text>
+<title>__gnu_cxx::__aligned_buffer&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="450.8" y="117" width="1.5" height="15.0" fill="rgb(223,126,21)" rx="2" ry="2" />
+<text  x="453.85" y="127.5" ></text>
 </g>
 <g >
-<title>std::_Vector_base&lt;PageId, (1 samples, 0.16%)</title><rect x="1103.1" y="213" width="1.9" height="15.0" fill="rgb(210,83,37)" rx="2" ry="2" />
-<text  x="1106.09" y="223.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node_base*&gt;::deallocate (4 samples, 0.50%)</title><rect x="877.0" y="245" width="5.9" height="15.0" fill="rgb(232,33,0)" rx="2" ry="2" />
+<text  x="880.00" y="255.5" ></text>
 </g>
 <g >
-<title>PageId::PageId (10 samples, 1.64%)</title><rect x="33.2" y="309" width="19.3" height="15.0" fill="rgb(241,119,19)" rx="2" ry="2" />
-<text  x="36.18" y="319.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="875.5" y="245" width="1.5" height="15.0" fill="rgb(214,12,1)" rx="2" ry="2" />
+<text  x="878.53" y="255.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (7 samples, 1.15%)</title><rect x="705.3" y="293" width="13.5" height="15.0" fill="rgb(240,195,34)" rx="2" ry="2" />
-<text  x="708.25" y="303.5" ></text>
+<title>std::_Hashtable&lt;PageId, (8 samples, 1.00%)</title><rect x="39.4" y="197" width="11.7" height="15.0" fill="rgb(253,204,18)" rx="2" ry="2" />
+<text  x="42.39" y="207.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="832.7" y="229" width="1.9" height="15.0" fill="rgb(223,54,42)" rx="2" ry="2" />
-<text  x="835.72" y="239.5" ></text>
+<title>std::mutex::unlock (1 samples, 0.12%)</title><rect x="572.8" y="229" width="1.5" height="15.0" fill="rgb(245,183,2)" rx="2" ry="2" />
+<text  x="575.81" y="239.5" ></text>
 </g>
 <g >
-<title>_int_malloc (2 samples, 0.33%)</title><rect x="473.5" y="149" width="3.9" height="15.0" fill="rgb(212,217,0)" rx="2" ry="2" />
-<text  x="476.50" y="159.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;PageId&gt; (1 samples, 0.12%)</title><rect x="859.4" y="213" width="1.4" height="15.0" fill="rgb(228,159,21)" rx="2" ry="2" />
+<text  x="862.36" y="223.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (3 samples, 0.49%)</title><rect x="1112.7" y="293" width="5.8" height="15.0" fill="rgb(213,145,48)" rx="2" ry="2" />
-<text  x="1115.75" y="303.5" ></text>
+<title>PageId::PageId (1 samples, 0.12%)</title><rect x="51.1" y="213" width="1.5" height="15.0" fill="rgb(209,173,23)" rx="2" ry="2" />
+<text  x="54.15" y="223.5" ></text>
 </g>
 <g >
-<title>malloc_consolidate (2 samples, 0.33%)</title><rect x="817.3" y="197" width="3.8" height="15.0" fill="rgb(210,123,30)" rx="2" ry="2" />
-<text  x="820.27" y="207.5" ></text>
+<title>operator (2 samples, 0.25%)</title><rect x="36.5" y="149" width="2.9" height="15.0" fill="rgb(232,93,39)" rx="2" ry="2" />
+<text  x="39.45" y="159.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.16%)</title><rect x="31.2" y="213" width="2.0" height="15.0" fill="rgb(225,196,41)" rx="2" ry="2" />
-<text  x="34.24" y="223.5" ></text>
+<title>__memcmp_avx2_movbe (5 samples, 0.62%)</title><rect x="794.7" y="85" width="7.4" height="15.0" fill="rgb(224,61,50)" rx="2" ry="2" />
+<text  x="797.71" y="95.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1147.5" y="181" width="1.9" height="15.0" fill="rgb(237,195,31)" rx="2" ry="2" />
-<text  x="1150.51" y="191.5" ></text>
+<title>MultiThreadedPageRankComputer::WorkerData::work (579 samples, 72.10%)</title><rect x="10.0" y="261" width="850.8" height="15.0" fill="rgb(249,6,53)" rx="2" ry="2" />
+<text  x="13.00" y="271.5" >MultiThreadedPageRankComputer::WorkerData::work</text>
 </g>
 <g >
-<title>std::unordered_map&lt;PageId, (99 samples, 16.20%)</title><rect x="626.1" y="325" width="191.2" height="15.0" fill="rgb(231,79,7)" rx="2" ry="2" />
-<text  x="629.07" y="335.5" >std::unordered_map&lt;PageId,</text>
+<title>std::__uninitialized_copy&lt;false&gt;::__uninit_copy&lt;std::move_iterator&lt;Page*&gt;, (1 samples, 0.12%)</title><rect x="1185.6" y="261" width="1.5" height="15.0" fill="rgb(235,41,48)" rx="2" ry="2" />
+<text  x="1188.59" y="271.5" ></text>
 </g>
 <g >
-<title>std::mutex::lock (30 samples, 4.91%)</title><rect x="566.2" y="309" width="57.9" height="15.0" fill="rgb(252,205,4)" rx="2" ry="2" />
-<text  x="569.20" y="319.5" >std::m..</text>
+<title>std::uninitialized_copy&lt;std::move_iterator&lt;Page*&gt;, (1 samples, 0.12%)</title><rect x="1185.6" y="277" width="1.5" height="15.0" fill="rgb(216,120,24)" rx="2" ry="2" />
+<text  x="1188.59" y="287.5" ></text>
 </g>
 <g >
-<title>MultiThreadedPageRankComputer::WorkerData::initContainersSequential (12 samples, 1.96%)</title><rect x="10.0" y="325" width="23.2" height="15.0" fill="rgb(229,105,22)" rx="2" ry="2" />
-<text  x="13.00" y="335.5" >M..</text>
+<title>std::_Destroy&lt;PageId*, (1 samples, 0.12%)</title><rect x="843.2" y="117" width="1.5" height="15.0" fill="rgb(230,118,8)" rx="2" ry="2" />
+<text  x="846.20" y="127.5" ></text>
 </g>
 <g >
-<title>std::_Hash_bytes(void (2 samples, 0.33%)</title><rect x="1155.2" y="245" width="3.9" height="15.0" fill="rgb(216,181,46)" rx="2" ry="2" />
-<text  x="1158.24" y="255.5" ></text>
+<title>std::__uninitialized_copy_a&lt;std::move_iterator&lt;Page*&gt;, (1 samples, 0.12%)</title><rect x="853.5" y="197" width="1.5" height="15.0" fill="rgb(205,206,8)" rx="2" ry="2" />
+<text  x="856.49" y="207.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="815.3" y="293" width="2.0" height="15.0" fill="rgb(246,8,0)" rx="2" ry="2" />
-<text  x="818.34" y="303.5" ></text>
+<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (7 samples, 0.87%)</title><rect x="862.3" y="277" width="10.3" height="15.0" fill="rgb(253,133,25)" rx="2" ry="2" />
+<text  x="865.30" y="287.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_base&lt;PageId, (21 samples, 3.44%)</title><rect x="635.7" y="261" width="40.6" height="15.0" fill="rgb(254,66,20)" rx="2" ry="2" />
-<text  x="638.73" y="271.5" >std..</text>
+<title>std::__uninitialized_move_if_noexcept_a&lt;Page*, (1 samples, 0.12%)</title><rect x="853.5" y="213" width="1.5" height="15.0" fill="rgb(232,210,9)" rx="2" ry="2" />
+<text  x="856.49" y="223.5" ></text>
 </g>
 <g >
-<title>std::unordered_map&lt;PageId, (49 samples, 8.02%)</title><rect x="460.0" y="309" width="94.6" height="15.0" fill="rgb(248,212,3)" rx="2" ry="2" />
-<text  x="462.98" y="319.5" >std::unorde..</text>
+<title>operator (1 samples, 0.12%)</title><rect x="503.7" y="181" width="1.5" height="15.0" fill="rgb(222,115,33)" rx="2" ry="2" />
+<text  x="506.75" y="191.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Equal_helper&lt;PageId, (2 samples, 0.33%)</title><rect x="1163.0" y="261" width="3.8" height="15.0" fill="rgb(217,121,22)" rx="2" ry="2" />
-<text  x="1165.96" y="271.5" ></text>
+<title>std::__detail::_Hash_node_value_base&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="780.0" y="133" width="1.5" height="15.0" fill="rgb(219,134,6)" rx="2" ry="2" />
+<text  x="783.01" y="143.5" ></text>
 </g>
 <g >
-<title>__pthread_cond_wait (207 samples, 33.88%)</title><rect x="58.3" y="277" width="399.8" height="15.0" fill="rgb(215,134,49)" rx="2" ry="2" />
-<text  x="61.28" y="287.5" >__pthread_cond_wait</text>
+<title>malloc_consolidate (4 samples, 0.50%)</title><rect x="877.0" y="213" width="5.9" height="15.0" fill="rgb(213,61,17)" rx="2" ry="2" />
+<text  x="880.00" y="223.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1108.9" y="293" width="1.9" height="15.0" fill="rgb(207,218,45)" rx="2" ry="2" />
-<text  x="1111.89" y="303.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;Page&gt;::construct&lt;Page, (3 samples, 0.37%)</title><rect x="1181.2" y="309" width="4.4" height="15.0" fill="rgb(221,199,27)" rx="2" ry="2" />
+<text  x="1184.18" y="319.5" ></text>
 </g>
 <g >
-<title>std::vector&lt;PageId, (1 samples, 0.16%)</title><rect x="1103.1" y="245" width="1.9" height="15.0" fill="rgb(250,104,20)" rx="2" ry="2" />
-<text  x="1106.09" y="255.5" ></text>
+<title>std::unordered_map&lt;PageId, (182 samples, 22.67%)</title><rect x="574.3" y="245" width="267.4" height="15.0" fill="rgb(231,21,50)" rx="2" ry="2" />
+<text  x="577.28" y="255.5" >std::unordered_map&lt;PageId,</text>
 </g>
 <g >
-<title>std::char_traits&lt;char&gt;::copy (4 samples, 0.65%)</title><rect x="44.8" y="181" width="7.7" height="15.0" fill="rgb(226,144,1)" rx="2" ry="2" />
-<text  x="47.76" y="191.5" ></text>
+<title>Network::getSize (2 samples, 0.25%)</title><rect x="500.8" y="245" width="2.9" height="15.0" fill="rgb(215,199,21)" rx="2" ry="2" />
+<text  x="503.81" y="255.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1120.5" y="309" width="1.9" height="15.0" fill="rgb(244,219,42)" rx="2" ry="2" />
-<text  x="1123.47" y="319.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (4 samples, 0.50%)</title><rect x="788.8" y="101" width="5.9" height="15.0" fill="rgb(206,154,8)" rx="2" ry="2" />
+<text  x="791.83" y="111.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (3 samples, 0.49%)</title><rect x="1149.4" y="293" width="5.8" height="15.0" fill="rgb(248,180,39)" rx="2" ry="2" />
-<text  x="1152.44" y="303.5" ></text>
+<title>std::__detail::_Hash_node_value_base&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="450.8" y="133" width="1.5" height="15.0" fill="rgb(234,210,26)" rx="2" ry="2" />
+<text  x="453.85" y="143.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (10 samples, 1.64%)</title><rect x="788.3" y="277" width="19.3" height="15.0" fill="rgb(222,24,27)" rx="2" ry="2" />
-<text  x="791.30" y="287.5" ></text>
+<title>std::_Hash_impl::hash (1 samples, 0.12%)</title><rect x="49.7" y="133" width="1.4" height="15.0" fill="rgb(230,82,30)" rx="2" ry="2" />
+<text  x="52.68" y="143.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.16%)</title><rect x="1184.2" y="245" width="1.9" height="15.0" fill="rgb(240,222,46)" rx="2" ry="2" />
-<text  x="1187.21" y="255.5" ></text>
+<title>clone (579 samples, 72.10%)</title><rect x="10.0" y="405" width="850.8" height="15.0" fill="rgb(224,143,10)" rx="2" ry="2" />
+<text  x="13.00" y="415.5" >clone</text>
 </g>
 <g >
-<title>operator (2 samples, 0.33%)</title><rect x="473.5" y="181" width="3.9" height="15.0" fill="rgb(229,29,45)" rx="2" ry="2" />
-<text  x="476.50" y="191.5" ></text>
+<title>std::distance&lt;char*&gt; (1 samples, 0.12%)</title><rect x="505.2" y="181" width="1.5" height="15.0" fill="rgb(238,190,23)" rx="2" ry="2" />
+<text  x="508.22" y="191.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1120.5" y="293" width="1.9" height="15.0" fill="rgb(234,13,5)" rx="2" ry="2" />
-<text  x="1123.47" y="303.5" ></text>
+<title>PageId::PageId (1 samples, 0.12%)</title><rect x="855.0" y="165" width="1.4" height="15.0" fill="rgb(224,169,8)" rx="2" ry="2" />
+<text  x="857.96" y="175.5" ></text>
 </g>
 <g >
-<title>std::equal_to&lt;PageId&gt;::operator() (21 samples, 3.44%)</title><rect x="635.7" y="229" width="40.6" height="15.0" fill="rgb(239,76,9)" rx="2" ry="2" />
-<text  x="638.73" y="239.5" >std..</text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (2 samples, 0.25%)</title><rect x="33.5" y="181" width="3.0" height="15.0" fill="rgb(247,43,16)" rx="2" ry="2" />
+<text  x="36.51" y="191.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="564.3" y="229" width="1.9" height="15.0" fill="rgb(209,164,14)" rx="2" ry="2" />
-<text  x="567.27" y="239.5" ></text>
+<title>__GI___libc_malloc (1 samples, 0.12%)</title><rect x="48.2" y="101" width="1.5" height="15.0" fill="rgb(241,53,39)" rx="2" ry="2" />
+<text  x="51.21" y="111.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1128.2" y="293" width="1.9" height="15.0" fill="rgb(224,75,50)" rx="2" ry="2" />
-<text  x="1131.20" y="303.5" ></text>
+<title>std::__invoke_impl&lt;void, (579 samples, 72.10%)</title><rect x="10.0" y="293" width="850.8" height="15.0" fill="rgb(217,34,40)" rx="2" ry="2" />
+<text  x="13.00" y="303.5" >std::__invoke_impl&lt;void,</text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="10.0" y="245" width="3.9" height="15.0" fill="rgb(228,185,51)" rx="2" ry="2" />
-<text  x="13.00" y="255.5" ></text>
+<title>mprotect (1 samples, 0.12%)</title><rect x="37.9" y="69" width="1.5" height="15.0" fill="rgb(225,134,5)" rx="2" ry="2" />
+<text  x="40.92" y="79.5" ></text>
 </g>
 <g >
-<title>std::lock_guard&lt;std::mutex&gt;::~lock_guard (1 samples, 0.16%)</title><rect x="624.1" y="325" width="2.0" height="15.0" fill="rgb(215,223,48)" rx="2" ry="2" />
-<text  x="627.14" y="335.5" ></text>
+<title>PageId::PageId (2 samples, 0.25%)</title><rect x="455.3" y="85" width="2.9" height="15.0" fill="rgb(253,116,42)" rx="2" ry="2" />
+<text  x="458.26" y="95.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1188.1" y="197" width="1.9" height="15.0" fill="rgb(215,211,23)" rx="2" ry="2" />
-<text  x="1191.07" y="207.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node_base*&gt; (4 samples, 0.50%)</title><rect x="877.0" y="261" width="5.9" height="15.0" fill="rgb(239,69,29)" rx="2" ry="2" />
+<text  x="880.00" y="271.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1151.4" y="149" width="1.9" height="15.0" fill="rgb(241,131,47)" rx="2" ry="2" />
-<text  x="1154.37" y="159.5" ></text>
+<title>std::__detail::_Hash_node_value_base&lt;std::pair&lt;PageId (2 samples, 0.25%)</title><rect x="778.5" y="149" width="3.0" height="15.0" fill="rgb(234,80,45)" rx="2" ry="2" />
+<text  x="781.54" y="159.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (7 samples, 1.15%)</title><rect x="821.1" y="293" width="13.5" height="15.0" fill="rgb(238,208,28)" rx="2" ry="2" />
-<text  x="824.13" y="303.5" ></text>
+<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (2 samples, 0.25%)</title><rect x="36.5" y="197" width="2.9" height="15.0" fill="rgb(225,97,28)" rx="2" ry="2" />
+<text  x="39.45" y="207.5" ></text>
 </g>
 <g >
-<title>operator (1 samples, 0.16%)</title><rect x="1120.5" y="245" width="1.9" height="15.0" fill="rgb(222,210,19)" rx="2" ry="2" />
-<text  x="1123.47" y="255.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.12%)</title><rect x="51.1" y="197" width="1.5" height="15.0" fill="rgb(236,47,26)" rx="2" ry="2" />
+<text  x="54.15" y="207.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (3 samples, 0.49%)</title><rect x="1112.7" y="277" width="5.8" height="15.0" fill="rgb(215,111,54)" rx="2" ry="2" />
-<text  x="1115.75" y="287.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (2 samples, 0.25%)</title><rect x="837.3" y="197" width="3.0" height="15.0" fill="rgb(247,193,7)" rx="2" ry="2" />
+<text  x="840.32" y="207.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_base&lt;PageId, (2 samples, 0.33%)</title><rect x="1163.0" y="277" width="3.8" height="15.0" fill="rgb(207,36,23)" rx="2" ry="2" />
-<text  x="1165.96" y="287.5" ></text>
+<title>std::_Destroy&lt;Page&gt; (1 samples, 0.12%)</title><rect x="843.2" y="165" width="1.5" height="15.0" fill="rgb(227,18,33)" rx="2" ry="2" />
+<text  x="846.20" y="175.5" ></text>
 </g>
 <g >
-<title>__memmove_avx_unaligned_erms (4 samples, 0.65%)</title><rect x="44.8" y="165" width="7.7" height="15.0" fill="rgb(218,145,31)" rx="2" ry="2" />
-<text  x="47.76" y="175.5" ></text>
+<title>std::_Destroy_aux&lt;false&gt;::__destroy&lt;Page*&gt; (1 samples, 0.12%)</title><rect x="843.2" y="181" width="1.5" height="15.0" fill="rgb(233,36,25)" rx="2" ry="2" />
+<text  x="846.20" y="191.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="10.0" y="229" width="3.9" height="15.0" fill="rgb(225,114,35)" rx="2" ry="2" />
-<text  x="13.00" y="239.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (10 samples, 1.25%)</title><rect x="737.4" y="165" width="14.7" height="15.0" fill="rgb(231,166,9)" rx="2" ry="2" />
+<text  x="740.40" y="175.5" ></text>
 </g>
 <g >
-<title>_int_free (1 samples, 0.16%)</title><rect x="1103.1" y="165" width="1.9" height="15.0" fill="rgb(211,42,0)" rx="2" ry="2" />
-<text  x="1106.09" y="175.5" ></text>
+<title>std::vector&lt;PageIdAndRank, (1 samples, 0.12%)</title><rect x="860.8" y="341" width="1.5" height="15.0" fill="rgb(217,210,53)" rx="2" ry="2" />
+<text  x="863.83" y="351.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;char&gt; (1 samples, 0.16%)</title><rect x="1153.3" y="149" width="1.9" height="15.0" fill="rgb(225,136,38)" rx="2" ry="2" />
-<text  x="1156.31" y="159.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (2 samples, 0.25%)</title><rect x="24.7" y="149" width="2.9" height="15.0" fill="rgb(246,125,4)" rx="2" ry="2" />
+<text  x="27.69" y="159.5" ></text>
 </g>
 <g >
-<title>std::_Vector_base&lt;PageId, (1 samples, 0.16%)</title><rect x="1103.1" y="229" width="1.9" height="15.0" fill="rgb(233,220,0)" rx="2" ry="2" />
-<text  x="1106.09" y="239.5" ></text>
+<title>operator (1 samples, 0.12%)</title><rect x="506.7" y="197" width="1.5" height="15.0" fill="rgb(221,93,48)" rx="2" ry="2" />
+<text  x="509.69" y="207.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1188.1" y="213" width="1.9" height="15.0" fill="rgb(208,71,33)" rx="2" ry="2" />
-<text  x="1191.07" y="223.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (2 samples, 0.25%)</title><rect x="36.5" y="181" width="2.9" height="15.0" fill="rgb(242,188,24)" rx="2" ry="2" />
+<text  x="39.45" y="191.5" ></text>
 </g>
 <g >
-<title>__lll_lock_wait (30 samples, 4.91%)</title><rect x="566.2" y="261" width="57.9" height="15.0" fill="rgb(205,20,8)" rx="2" ry="2" />
-<text  x="569.20" y="271.5" >__lll_..</text>
+<title>__GI___pthread_mutex_lock (35 samples, 4.36%)</title><rect x="521.4" y="197" width="51.4" height="15.0" fill="rgb(251,120,24)" rx="2" ry="2" />
+<text  x="524.38" y="207.5" >__GI_..</text>
 </g>
 <g >
-<title>PageId::operator== (3 samples, 0.49%)</title><rect x="782.5" y="213" width="5.8" height="15.0" fill="rgb(206,3,50)" rx="2" ry="2" />
-<text  x="785.50" y="223.5" ></text>
+<title>__GI___pthread_timedjoin_ex (201 samples, 25.03%)</title><rect x="884.3" y="341" width="295.4" height="15.0" fill="rgb(243,31,36)" rx="2" ry="2" />
+<text  x="887.35" y="351.5" >__GI___pthread_timedjoin_ex</text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (5 samples, 0.82%)</title><rect x="23.5" y="277" width="9.7" height="15.0" fill="rgb(239,220,30)" rx="2" ry="2" />
-<text  x="26.52" y="287.5" ></text>
+<title>Page::generateId (2 samples, 0.25%)</title><rect x="503.7" y="245" width="3.0" height="15.0" fill="rgb(212,151,46)" rx="2" ry="2" />
+<text  x="506.75" y="255.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="840.4" y="149" width="2.0" height="15.0" fill="rgb(242,192,22)" rx="2" ry="2" />
-<text  x="843.44" y="159.5" ></text>
+<title>Page::Page (1 samples, 0.12%)</title><rect x="1185.6" y="229" width="1.5" height="15.0" fill="rgb(233,201,48)" rx="2" ry="2" />
+<text  x="1188.59" y="239.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;PageId&gt; (1 samples, 0.16%)</title><rect x="1103.1" y="197" width="1.9" height="15.0" fill="rgb(225,119,49)" rx="2" ry="2" />
-<text  x="1106.09" y="207.5" ></text>
+<title>std::_Hashtable&lt;PageId, (5 samples, 0.62%)</title><rect x="877.0" y="325" width="7.3" height="15.0" fill="rgb(217,52,50)" rx="2" ry="2" />
+<text  x="880.00" y="335.5" ></text>
 </g>
 <g >
-<title>__GI___libc_malloc (2 samples, 0.33%)</title><rect x="54.4" y="197" width="3.9" height="15.0" fill="rgb(205,49,25)" rx="2" ry="2" />
-<text  x="57.42" y="207.5" ></text>
+<title>operator (1 samples, 0.12%)</title><rect x="51.1" y="181" width="1.5" height="15.0" fill="rgb(219,226,47)" rx="2" ry="2" />
+<text  x="54.15" y="191.5" ></text>
 </g>
 <g >
-<title>_int_free (2 samples, 0.33%)</title><rect x="519.9" y="85" width="3.8" height="15.0" fill="rgb(231,71,42)" rx="2" ry="2" />
-<text  x="522.85" y="95.5" ></text>
+<title>_int_malloc (1 samples, 0.12%)</title><rect x="453.8" y="69" width="1.5" height="15.0" fill="rgb(235,50,40)" rx="2" ry="2" />
+<text  x="456.79" y="79.5" ></text>
 </g>
 <g >
-<title>std::pair&lt;PageId (2 samples, 0.33%)</title><rect x="1151.4" y="229" width="3.8" height="15.0" fill="rgb(229,224,33)" rx="2" ry="2" />
-<text  x="1154.37" y="239.5" ></text>
+<title>operator (1 samples, 0.12%)</title><rect x="48.2" y="117" width="1.5" height="15.0" fill="rgb(231,127,28)" rx="2" ry="2" />
+<text  x="51.21" y="127.5" ></text>
 </g>
 <g >
-<title>PageId::PageId (1 samples, 0.16%)</title><rect x="458.1" y="293" width="1.9" height="15.0" fill="rgb(213,200,35)" rx="2" ry="2" />
-<text  x="461.05" y="303.5" ></text>
+<title>MultiThreadedPageRankComputer::WorkerData::getResult (1 samples, 0.12%)</title><rect x="860.8" y="357" width="1.5" height="15.0" fill="rgb(217,43,1)" rx="2" ry="2" />
+<text  x="863.83" y="367.5" ></text>
 </g>
 <g >
-<title>PageId::PageId (16 samples, 2.62%)</title><rect x="483.2" y="181" width="30.9" height="15.0" fill="rgb(206,55,6)" rx="2" ry="2" />
-<text  x="486.16" y="191.5" >Pa..</text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (2 samples, 0.25%)</title><rect x="43.8" y="133" width="2.9" height="15.0" fill="rgb(252,83,12)" rx="2" ry="2" />
+<text  x="46.80" y="143.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="10.0" y="277" width="3.9" height="15.0" fill="rgb(224,20,34)" rx="2" ry="2" />
-<text  x="13.00" y="287.5" ></text>
+<title>std::vector&lt;PageId, (2 samples, 0.25%)</title><rect x="857.9" y="229" width="2.9" height="15.0" fill="rgb(218,82,17)" rx="2" ry="2" />
+<text  x="860.90" y="239.5" ></text>
 </g>
 <g >
-<title>std::unordered_map&lt;PageId, (7 samples, 1.15%)</title><rect x="821.1" y="325" width="13.5" height="15.0" fill="rgb(228,92,38)" rx="2" ry="2" />
-<text  x="824.13" y="335.5" ></text>
+<title>std::lock_guard&lt;std::mutex&gt;::lock_guard (35 samples, 4.36%)</title><rect x="521.4" y="245" width="51.4" height="15.0" fill="rgb(238,176,47)" rx="2" ry="2" />
+<text  x="524.38" y="255.5" >std::..</text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (4 samples, 0.65%)</title><rect x="44.8" y="229" width="7.7" height="15.0" fill="rgb(253,113,53)" rx="2" ry="2" />
-<text  x="47.76" y="239.5" ></text>
+<title>std::__detail::_Hashtable_ebo_helper&lt;2, (2 samples, 0.25%)</title><rect x="809.4" y="165" width="2.9" height="15.0" fill="rgb(220,53,1)" rx="2" ry="2" />
+<text  x="812.40" y="175.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_base&lt;PageId, (12 samples, 1.96%)</title><rect x="765.1" y="261" width="23.2" height="15.0" fill="rgb(219,88,2)" rx="2" ry="2" />
-<text  x="768.12" y="271.5" >s..</text>
+<title>std::__uninitialized_copy_a&lt;std::move_iterator&lt;Page*&gt;, (1 samples, 0.12%)</title><rect x="1185.6" y="293" width="1.5" height="15.0" fill="rgb(224,118,38)" rx="2" ry="2" />
+<text  x="1188.59" y="303.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_base&lt;PageId, (1 samples, 0.16%)</title><rect x="29.3" y="229" width="1.9" height="15.0" fill="rgb(206,27,40)" rx="2" ry="2" />
-<text  x="32.31" y="239.5" ></text>
+<title>std::thread::_Invoker&lt;std::tuple&lt;MultiThreadedPageRankComputer::computeForNetwork(Network (579 samples, 72.10%)</title><rect x="10.0" y="341" width="850.8" height="15.0" fill="rgb(208,108,43)" rx="2" ry="2" />
+<text  x="13.00" y="351.5" >std::thread::_Invoker&lt;std::tuple&lt;MultiThreadedPageRankComputer::computeForNetwork(Network</text>
 </g>
 <g >
-<title>PageId::operator== (2 samples, 0.33%)</title><rect x="1163.0" y="229" width="3.8" height="15.0" fill="rgb(209,187,47)" rx="2" ry="2" />
-<text  x="1165.96" y="239.5" ></text>
+<title>__gnu_cxx::__to_xstring&lt;std::__cxx11::basic_string&lt;char, (1 samples, 0.12%)</title><rect x="1188.5" y="325" width="1.5" height="15.0" fill="rgb(227,188,31)" rx="2" ry="2" />
+<text  x="1191.53" y="335.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;char&gt;::deallocate (1 samples, 0.16%)</title><rect x="1118.5" y="261" width="2.0" height="15.0" fill="rgb(225,148,5)" rx="2" ry="2" />
-<text  x="1121.54" y="271.5" ></text>
+<title>std::_Vector_base&lt;PageId, (1 samples, 0.12%)</title><rect x="1185.6" y="197" width="1.5" height="15.0" fill="rgb(238,68,17)" rx="2" ry="2" />
+<text  x="1188.59" y="207.5" ></text>
 </g>
 <g >
-<title>operator (1 samples, 0.16%)</title><rect x="815.3" y="245" width="2.0" height="15.0" fill="rgb(231,207,35)" rx="2" ry="2" />
-<text  x="818.34" y="255.5" ></text>
+<title>malloc_consolidate (5 samples, 0.62%)</title><rect x="846.1" y="117" width="7.4" height="15.0" fill="rgb(224,61,37)" rx="2" ry="2" />
+<text  x="849.14" y="127.5" ></text>
 </g>
 <g >
-<title>PageIdAndRank::PageIdAndRank (2 samples, 0.33%)</title><rect x="54.4" y="309" width="3.9" height="15.0" fill="rgb(227,151,49)" rx="2" ry="2" />
-<text  x="57.42" y="319.5" ></text>
+<title>std::hash&lt;std::__cxx11::basic_string&lt;char, (3 samples, 0.37%)</title><rect x="594.9" y="181" width="4.4" height="15.0" fill="rgb(253,69,2)" rx="2" ry="2" />
+<text  x="597.86" y="191.5" ></text>
 </g>
 <g >
-<title>std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="832.7" y="213" width="1.9" height="15.0" fill="rgb(222,26,54)" rx="2" ry="2" />
-<text  x="835.72" y="223.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;PageIdAndRank&gt;::construct&lt;PageIdAndRank, (1 samples, 0.12%)</title><rect x="499.3" y="181" width="1.5" height="15.0" fill="rgb(228,137,28)" rx="2" ry="2" />
+<text  x="502.34" y="191.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="562.3" y="293" width="3.9" height="15.0" fill="rgb(219,185,12)" rx="2" ry="2" />
-<text  x="565.34" y="303.5" ></text>
+<title>std::vector&lt;PageId, (2 samples, 0.25%)</title><rect x="857.9" y="245" width="2.9" height="15.0" fill="rgb(222,213,36)" rx="2" ry="2" />
+<text  x="860.90" y="255.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (35 samples, 5.73%)</title><rect x="720.7" y="277" width="67.6" height="15.0" fill="rgb(254,198,1)" rx="2" ry="2" />
-<text  x="723.70" y="287.5" >std::_H..</text>
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.12%)</title><rect x="515.5" y="213" width="1.5" height="15.0" fill="rgb(229,121,10)" rx="2" ry="2" />
+<text  x="518.50" y="223.5" ></text>
 </g>
 <g >
-<title>std::_Hash_impl::hash (7 samples, 1.15%)</title><rect x="705.3" y="245" width="13.5" height="15.0" fill="rgb(236,221,15)" rx="2" ry="2" />
-<text  x="708.25" y="255.5" ></text>
+<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (3 samples, 0.37%)</title><rect x="872.6" y="293" width="4.4" height="15.0" fill="rgb(235,47,46)" rx="2" ry="2" />
+<text  x="875.59" y="303.5" ></text>
 </g>
 <g >
-<title>std::pair&lt;PageId (22 samples, 3.60%)</title><rect x="483.2" y="197" width="42.4" height="15.0" fill="rgb(211,168,54)" rx="2" ry="2" />
-<text  x="486.16" y="207.5" >std:..</text>
+<title>std::__detail::_Hash_node_value_base&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="840.3" y="197" width="1.4" height="15.0" fill="rgb(252,0,3)" rx="2" ry="2" />
+<text  x="843.26" y="207.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (3 samples, 0.49%)</title><rect x="1149.4" y="261" width="5.8" height="15.0" fill="rgb(233,12,42)" rx="2" ry="2" />
-<text  x="1152.44" y="271.5" ></text>
+<title>PageIdAndRank::PageIdAndRank (1 samples, 0.12%)</title><rect x="51.1" y="229" width="1.5" height="15.0" fill="rgb(212,207,50)" rx="2" ry="2" />
+<text  x="54.15" y="239.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="1151.4" y="197" width="3.8" height="15.0" fill="rgb(247,97,13)" rx="2" ry="2" />
-<text  x="1154.37" y="207.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;Page&gt;::construct&lt;Page, (1 samples, 0.12%)</title><rect x="855.0" y="197" width="1.4" height="15.0" fill="rgb(210,9,10)" rx="2" ry="2" />
+<text  x="857.96" y="207.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="832.7" y="261" width="1.9" height="15.0" fill="rgb(242,112,35)" rx="2" ry="2" />
-<text  x="835.72" y="271.5" ></text>
+<title>std::__detail::_Hash_node&lt;PageId, (1 samples, 0.12%)</title><rect x="46.7" y="133" width="1.5" height="15.0" fill="rgb(240,112,26)" rx="2" ry="2" />
+<text  x="49.74" y="143.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="21.6" y="277" width="1.9" height="15.0" fill="rgb(253,121,28)" rx="2" ry="2" />
-<text  x="24.59" y="287.5" ></text>
+<title>std::hash&lt;std::__cxx11::basic_string&lt;char, (1 samples, 0.12%)</title><rect x="49.7" y="149" width="1.4" height="15.0" fill="rgb(249,191,35)" rx="2" ry="2" />
+<text  x="52.68" y="159.5" ></text>
 </g>
 <g >
-<title>main (191 samples, 31.26%)</title><rect x="821.1" y="389" width="368.9" height="15.0" fill="rgb(213,186,50)" rx="2" ry="2" />
-<text  x="824.13" y="399.5" >main</text>
+<title>std::allocator_traits&lt;std::allocator&lt;Page&gt; (1 samples, 0.12%)</title><rect x="855.0" y="213" width="1.4" height="15.0" fill="rgb(208,163,31)" rx="2" ry="2" />
+<text  x="857.96" y="223.5" ></text>
 </g>
 <g >
-<title>std::operator==&lt;char&gt; (21 samples, 3.44%)</title><rect x="635.7" y="197" width="40.6" height="15.0" fill="rgb(211,124,17)" rx="2" ry="2" />
-<text  x="638.73" y="207.5" >std..</text>
+<title>std::hash&lt;std::__cxx11::basic_string&lt;char, (8 samples, 1.00%)</title><rect x="825.6" y="181" width="11.7" height="15.0" fill="rgb(228,24,14)" rx="2" ry="2" />
+<text  x="828.57" y="191.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.16%)</title><rect x="31.2" y="245" width="2.0" height="15.0" fill="rgb(234,157,20)" rx="2" ry="2" />
-<text  x="34.24" y="255.5" ></text>
+<title>std::unordered_set&lt;PageId, (5 samples, 0.62%)</title><rect x="877.0" y="341" width="7.3" height="15.0" fill="rgb(217,73,28)" rx="2" ry="2" />
+<text  x="880.00" y="351.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1107.0" y="213" width="1.9" height="15.0" fill="rgb(244,84,51)" rx="2" ry="2" />
-<text  x="1109.96" y="223.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.25%)</title><rect x="503.7" y="197" width="3.0" height="15.0" fill="rgb(249,34,27)" rx="2" ry="2" />
+<text  x="506.75" y="207.5" ></text>
 </g>
 <g >
-<title>std::_Hash_impl::hash (2 samples, 0.33%)</title><rect x="550.8" y="229" width="3.8" height="15.0" fill="rgb(239,115,33)" rx="2" ry="2" />
-<text  x="553.75" y="239.5" ></text>
+<title>std::_Construct&lt;Page, (1 samples, 0.12%)</title><rect x="1185.6" y="245" width="1.5" height="15.0" fill="rgb(205,165,19)" rx="2" ry="2" />
+<text  x="1188.59" y="255.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (6 samples, 0.98%)</title><rect x="502.5" y="101" width="11.6" height="15.0" fill="rgb(227,195,10)" rx="2" ry="2" />
-<text  x="505.47" y="111.5" ></text>
+<title>__memmove_avx_unaligned_erms (2 samples, 0.25%)</title><rect x="512.6" y="213" width="2.9" height="15.0" fill="rgb(226,221,2)" rx="2" ry="2" />
+<text  x="515.57" y="223.5" ></text>
 </g>
 <g >
-<title>__pthread_mutex_unlock_usercnt (1 samples, 0.16%)</title><rect x="624.1" y="277" width="2.0" height="15.0" fill="rgb(250,149,41)" rx="2" ry="2" />
-<text  x="627.14" y="287.5" ></text>
+<title>std::thread::join() (201 samples, 25.03%)</title><rect x="884.3" y="357" width="295.4" height="15.0" fill="rgb(252,158,39)" rx="2" ry="2" />
+<text  x="887.35" y="367.5" >std::thread::join()</text>
 </g>
 <g >
-<title>__GI___pthread_mutex_lock (30 samples, 4.91%)</title><rect x="566.2" y="277" width="57.9" height="15.0" fill="rgb(239,30,39)" rx="2" ry="2" />
-<text  x="569.20" y="287.5" >__GI__..</text>
+<title>MultiThreadedPageRankComputer::computeForNetwork (217 samples, 27.02%)</title><rect x="860.8" y="373" width="318.9" height="15.0" fill="rgb(243,170,15)" rx="2" ry="2" />
+<text  x="863.83" y="383.5" >MultiThreadedPageRankComputer::computeForNe..</text>
 </g>
 <g >
-<title>__memmove_avx_unaligned_erms (1 samples, 0.16%)</title><rect x="564.3" y="181" width="1.9" height="15.0" fill="rgb(242,78,14)" rx="2" ry="2" />
-<text  x="567.27" y="191.5" ></text>
+<title>std::pair&lt;PageId (27 samples, 3.36%)</title><rect x="459.7" y="117" width="39.6" height="15.0" fill="rgb(223,155,29)" rx="2" ry="2" />
+<text  x="462.66" y="127.5" >std..</text>
 </g>
 <g >
-<title>operator (1 samples, 0.16%)</title><rect x="1108.9" y="229" width="1.9" height="15.0" fill="rgb(247,119,26)" rx="2" ry="2" />
-<text  x="1111.89" y="239.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.12%)</title><rect x="802.1" y="165" width="1.4" height="15.0" fill="rgb(216,116,43)" rx="2" ry="2" />
+<text  x="805.05" y="175.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="840.4" y="181" width="2.0" height="15.0" fill="rgb(223,80,25)" rx="2" ry="2" />
-<text  x="843.44" y="191.5" ></text>
+<title>PageId::PageId (6 samples, 0.75%)</title><rect x="508.2" y="245" width="8.8" height="15.0" fill="rgb(228,132,18)" rx="2" ry="2" />
+<text  x="511.16" y="255.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (10 samples, 1.64%)</title><rect x="33.2" y="293" width="19.3" height="15.0" fill="rgb(211,189,32)" rx="2" ry="2" />
-<text  x="36.18" y="303.5" ></text>
+<title>std::_Vector_base&lt;PageId, (1 samples, 0.12%)</title><rect x="1185.6" y="181" width="1.5" height="15.0" fill="rgb(225,46,0)" rx="2" ry="2" />
+<text  x="1188.59" y="191.5" ></text>
 </g>
 <g >
-<title>std::_Hash_bytes(void (6 samples, 0.98%)</title><rect x="707.2" y="229" width="11.6" height="15.0" fill="rgb(206,44,49)" rx="2" ry="2" />
-<text  x="710.18" y="239.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.25%)</title><rect x="414.1" y="197" width="2.9" height="15.0" fill="rgb(226,201,6)" rx="2" ry="2" />
+<text  x="417.11" y="207.5" ></text>
 </g>
 <g >
-<title>PageId::~PageId (1 samples, 0.16%)</title><rect x="1188.1" y="245" width="1.9" height="15.0" fill="rgb(217,22,30)" rx="2" ry="2" />
-<text  x="1191.07" y="255.5" ></text>
+<title>std::_Destroy&lt;Page*&gt; (1 samples, 0.12%)</title><rect x="1179.7" y="325" width="1.5" height="15.0" fill="rgb(233,51,10)" rx="2" ry="2" />
+<text  x="1182.71" y="335.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (21 samples, 3.44%)</title><rect x="635.7" y="277" width="40.6" height="15.0" fill="rgb(241,112,11)" rx="2" ry="2" />
-<text  x="638.73" y="287.5" >std..</text>
+<title>_IO_vsnprintf (1 samples, 0.12%)</title><rect x="1188.5" y="309" width="1.5" height="15.0" fill="rgb(250,185,14)" rx="2" ry="2" />
+<text  x="1191.53" y="319.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (4 samples, 0.65%)</title><rect x="44.8" y="213" width="7.7" height="15.0" fill="rgb(246,76,22)" rx="2" ry="2" />
-<text  x="47.76" y="223.5" ></text>
+<title>PageId::PageId (1 samples, 0.12%)</title><rect x="1187.1" y="325" width="1.4" height="15.0" fill="rgb(218,25,3)" rx="2" ry="2" />
+<text  x="1190.06" y="335.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Mod_range_hashing::operator() (7 samples, 1.15%)</title><rect x="537.2" y="245" width="13.6" height="15.0" fill="rgb(228,58,10)" rx="2" ry="2" />
-<text  x="540.23" y="255.5" ></text>
+<title>std::vector&lt;Page, (4 samples, 0.50%)</title><rect x="1181.2" y="341" width="5.9" height="15.0" fill="rgb(205,13,37)" rx="2" ry="2" />
+<text  x="1184.18" y="351.5" ></text>
 </g>
 <g >
-<title>std::unordered_set&lt;PageId, (5 samples, 0.82%)</title><rect x="834.6" y="325" width="9.7" height="15.0" fill="rgb(227,42,9)" rx="2" ry="2" />
-<text  x="837.65" y="335.5" ></text>
+<title>std::vector&lt;Page, (2 samples, 0.25%)</title><rect x="500.8" y="229" width="2.9" height="15.0" fill="rgb(208,12,28)" rx="2" ry="2" />
+<text  x="503.81" y="239.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (5 samples, 0.82%)</title><rect x="755.5" y="261" width="9.6" height="15.0" fill="rgb(210,135,8)" rx="2" ry="2" />
-<text  x="758.47" y="271.5" ></text>
+<title>__gnu_cxx::__aligned_buffer&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="780.0" y="117" width="1.5" height="15.0" fill="rgb(221,106,47)" rx="2" ry="2" />
+<text  x="783.01" y="127.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (3 samples, 0.49%)</title><rect x="1149.4" y="277" width="5.8" height="15.0" fill="rgb(254,141,29)" rx="2" ry="2" />
-<text  x="1152.44" y="287.5" ></text>
+<title>std::__uninitialized_copy&lt;false&gt;::__uninit_copy&lt;std::move_iterator&lt;Page*&gt;, (1 samples, 0.12%)</title><rect x="853.5" y="165" width="1.5" height="15.0" fill="rgb(215,207,9)" rx="2" ry="2" />
+<text  x="856.49" y="175.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Mod_range_hashing::operator() (1 samples, 0.16%)</title><rect x="1186.1" y="261" width="2.0" height="15.0" fill="rgb(237,32,27)" rx="2" ry="2" />
-<text  x="1189.14" y="271.5" ></text>
+<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="875.5" y="277" width="1.5" height="15.0" fill="rgb(207,15,24)" rx="2" ry="2" />
+<text  x="878.53" y="287.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1128.2" y="229" width="1.9" height="15.0" fill="rgb(247,61,42)" rx="2" ry="2" />
-<text  x="1131.20" y="239.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.12%)</title><rect x="499.3" y="133" width="1.5" height="15.0" fill="rgb(253,86,0)" rx="2" ry="2" />
+<text  x="502.34" y="143.5" ></text>
 </g>
 <g >
-<title>sysmalloc (1 samples, 0.16%)</title><rect x="56.4" y="165" width="1.9" height="15.0" fill="rgb(223,75,24)" rx="2" ry="2" />
-<text  x="59.35" y="175.5" ></text>
+<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (4 samples, 0.50%)</title><rect x="452.3" y="133" width="5.9" height="15.0" fill="rgb(219,78,15)" rx="2" ry="2" />
+<text  x="455.32" y="143.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;Page&gt;::allocate (2 samples, 0.33%)</title><rect x="817.3" y="261" width="3.8" height="15.0" fill="rgb(234,61,44)" rx="2" ry="2" />
-<text  x="820.27" y="271.5" ></text>
+<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.12%)</title><rect x="49.7" y="181" width="1.4" height="15.0" fill="rgb(213,65,40)" rx="2" ry="2" />
+<text  x="52.68" y="191.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (27 samples, 4.42%)</title><rect x="473.5" y="261" width="52.1" height="15.0" fill="rgb(205,86,54)" rx="2" ry="2" />
-<text  x="476.50" y="271.5" >std::..</text>
+<title>tcache_put (1 samples, 0.12%)</title><rect x="497.9" y="69" width="1.4" height="15.0" fill="rgb(250,135,53)" rx="2" ry="2" />
+<text  x="500.87" y="79.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Equal_helper&lt;PageId, (1 samples, 0.16%)</title><rect x="535.3" y="229" width="1.9" height="15.0" fill="rgb(236,80,14)" rx="2" ry="2" />
-<text  x="538.30" y="239.5" ></text>
+<title>PageIdAndRank::PageIdAndRank (1 samples, 0.12%)</title><rect x="499.3" y="165" width="1.5" height="15.0" fill="rgb(231,153,29)" rx="2" ry="2" />
+<text  x="502.34" y="175.5" ></text>
 </g>
 <g >
-<title>std::vector&lt;Page, (2 samples, 0.33%)</title><rect x="817.3" y="325" width="3.8" height="15.0" fill="rgb(212,225,1)" rx="2" ry="2" />
-<text  x="820.27" y="335.5" ></text>
+<title>std::pair&lt;PageId (2 samples, 0.25%)</title><rect x="455.3" y="101" width="2.9" height="15.0" fill="rgb(237,146,40)" rx="2" ry="2" />
+<text  x="458.26" y="111.5" ></text>
 </g>
 <g >
-<title>__pthread_cond_wait_common (207 samples, 33.88%)</title><rect x="58.3" y="261" width="399.8" height="15.0" fill="rgb(213,95,21)" rx="2" ry="2" />
-<text  x="61.28" y="271.5" >__pthread_cond_wait_common</text>
+<title>std::__detail::_Hashtable_base&lt;PageId, (38 samples, 4.73%)</title><rect x="752.1" y="181" width="55.8" height="15.0" fill="rgb(232,10,20)" rx="2" ry="2" />
+<text  x="755.09" y="191.5" >std::..</text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="21.6" y="245" width="1.9" height="15.0" fill="rgb(223,4,53)" rx="2" ry="2" />
-<text  x="24.59" y="255.5" ></text>
+<title>__pthread_cond_wait_common (246 samples, 30.64%)</title><rect x="52.6" y="181" width="361.5" height="15.0" fill="rgb(231,21,45)" rx="2" ry="2" />
+<text  x="55.62" y="191.5" >__pthread_cond_wait_common</text>
 </g>
 <g >
-<title>_int_free (3 samples, 0.49%)</title><rect x="834.6" y="213" width="5.8" height="15.0" fill="rgb(240,58,51)" rx="2" ry="2" />
-<text  x="837.65" y="223.5" ></text>
+<title>NetworkWithoutManyEdgesGenerator::generateNetworkOfSize (6 samples, 0.75%)</title><rect x="1181.2" y="373" width="8.8" height="15.0" fill="rgb(242,122,38)" rx="2" ry="2" />
+<text  x="1184.18" y="383.5" ></text>
 </g>
 <g >
-<title>std::char_traits&lt;char&gt;::copy (3 samples, 0.49%)</title><rect x="1112.7" y="213" width="5.8" height="15.0" fill="rgb(242,152,10)" rx="2" ry="2" />
-<text  x="1115.75" y="223.5" ></text>
+<title>std::unordered_map&lt;PageId, (18 samples, 2.24%)</title><rect x="12.9" y="229" width="26.5" height="15.0" fill="rgb(246,210,42)" rx="2" ry="2" />
+<text  x="15.94" y="239.5" >s..</text>
 </g>
 <g >
-<title>__GI___libc_malloc (2 samples, 0.33%)</title><rect x="554.6" y="213" width="3.9" height="15.0" fill="rgb(223,226,34)" rx="2" ry="2" />
-<text  x="557.62" y="223.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.25%)</title><rect x="492.0" y="69" width="2.9" height="15.0" fill="rgb(230,22,11)" rx="2" ry="2" />
+<text  x="494.99" y="79.5" ></text>
 </g>
 <g >
-<title>MultiThreadedPageRankComputer::WorkerData::work (420 samples, 68.74%)</title><rect x="10.0" y="341" width="811.1" height="15.0" fill="rgb(246,148,44)" rx="2" ry="2" />
-<text  x="13.00" y="351.5" >MultiThreadedPageRankComputer::WorkerData::work</text>
+<title>std::_Hashtable&lt;PageId, (10 samples, 1.25%)</title><rect x="862.3" y="309" width="14.7" height="15.0" fill="rgb(230,134,18)" rx="2" ry="2" />
+<text  x="865.30" y="319.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Mod_range_hashing::operator() (2 samples, 0.33%)</title><rect x="761.3" y="229" width="3.8" height="15.0" fill="rgb(246,24,8)" rx="2" ry="2" />
-<text  x="764.26" y="239.5" ></text>
+<title>std::__detail::_AllocNode&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.12%)</title><rect x="48.2" y="181" width="1.5" height="15.0" fill="rgb(209,128,5)" rx="2" ry="2" />
+<text  x="51.21" y="191.5" ></text>
 </g>
 <g >
-<title>std::__detail::_AllocNode&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.16%)</title><rect x="31.2" y="261" width="2.0" height="15.0" fill="rgb(234,63,36)" rx="2" ry="2" />
-<text  x="34.24" y="271.5" ></text>
+<title>__GI___libc_malloc (1 samples, 0.12%)</title><rect x="489.1" y="53" width="1.4" height="15.0" fill="rgb(211,163,16)" rx="2" ry="2" />
+<text  x="492.05" y="63.5" ></text>
 </g>
 <g >
-<title>__GI___libc_malloc (2 samples, 0.33%)</title><rect x="479.3" y="69" width="3.9" height="15.0" fill="rgb(244,165,4)" rx="2" ry="2" />
-<text  x="482.30" y="79.5" ></text>
+<title>std::_Hashtable&lt;PageId, (7 samples, 0.87%)</title><rect x="862.3" y="293" width="10.3" height="15.0" fill="rgb(205,29,10)" rx="2" ry="2" />
+<text  x="865.30" y="303.5" ></text>
 </g>
 <g >
-<title>__gnu_cxx::new_allocator&lt;char&gt;::deallocate (1 samples, 0.16%)</title><rect x="52.5" y="229" width="1.9" height="15.0" fill="rgb(218,200,46)" rx="2" ry="2" />
-<text  x="55.49" y="239.5" ></text>
+<title>PageId::PageId (25 samples, 3.11%)</title><rect x="459.7" y="101" width="36.7" height="15.0" fill="rgb(209,165,49)" rx="2" ry="2" />
+<text  x="462.66" y="111.5" >Pag..</text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (6 samples, 0.98%)</title><rect x="502.5" y="69" width="11.6" height="15.0" fill="rgb(212,65,3)" rx="2" ry="2" />
-<text  x="505.47" y="79.5" ></text>
+<title>std::__detail::_Mod_range_hashing::operator() (2 samples, 0.25%)</title><rect x="749.2" y="149" width="2.9" height="15.0" fill="rgb(208,8,40)" rx="2" ry="2" />
+<text  x="752.15" y="159.5" ></text>
 </g>
 <g >
-<title>std::operator+&lt;char, (1 samples, 0.16%)</title><rect x="1108.9" y="309" width="1.9" height="15.0" fill="rgb(239,28,11)" rx="2" ry="2" />
-<text  x="1111.89" y="319.5" ></text>
+<title>_int_malloc (1 samples, 0.12%)</title><rect x="860.8" y="181" width="1.5" height="15.0" fill="rgb(217,2,14)" rx="2" ry="2" />
+<text  x="863.83" y="191.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (4 samples, 0.65%)</title><rect x="23.5" y="245" width="7.7" height="15.0" fill="rgb(216,113,48)" rx="2" ry="2" />
-<text  x="26.52" y="255.5" ></text>
+<title>_int_malloc (6 samples, 0.75%)</title><rect x="844.7" y="133" width="8.8" height="15.0" fill="rgb(230,34,7)" rx="2" ry="2" />
+<text  x="847.67" y="143.5" ></text>
 </g>
 <g >
-<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (7 samples, 1.15%)</title><rect x="1135.9" y="261" width="13.5" height="15.0" fill="rgb(214,166,19)" rx="2" ry="2" />
-<text  x="1138.92" y="271.5" ></text>
+<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.12%)</title><rect x="506.7" y="213" width="1.5" height="15.0" fill="rgb(252,220,16)" rx="2" ry="2" />
+<text  x="509.69" y="223.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (3 samples, 0.49%)</title><rect x="834.6" y="261" width="5.8" height="15.0" fill="rgb(242,140,41)" rx="2" ry="2" />
-<text  x="837.65" y="271.5" ></text>
+<title>std::__distance&lt;char*&gt; (1 samples, 0.12%)</title><rect x="505.2" y="165" width="1.5" height="15.0" fill="rgb(223,87,52)" rx="2" ry="2" />
+<text  x="508.22" y="175.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (1 samples, 0.16%)</title><rect x="1161.0" y="277" width="2.0" height="15.0" fill="rgb(214,47,7)" rx="2" ry="2" />
-<text  x="1164.03" y="287.5" ></text>
+<title>_int_free (1 samples, 0.12%)</title><rect x="497.9" y="85" width="1.4" height="15.0" fill="rgb(216,20,9)" rx="2" ry="2" />
+<text  x="500.87" y="95.5" ></text>
 </g>
 <g >
-<title>std::char_traits&lt;char&gt;::copy (1 samples, 0.16%)</title><rect x="1128.2" y="197" width="1.9" height="15.0" fill="rgb(249,36,0)" rx="2" ry="2" />
-<text  x="1131.20" y="207.5" ></text>
+<title>std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.12%)</title><rect x="599.3" y="213" width="1.4" height="15.0" fill="rgb(246,33,27)" rx="2" ry="2" />
+<text  x="602.27" y="223.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="52.5" y="261" width="1.9" height="15.0" fill="rgb(216,157,41)" rx="2" ry="2" />
-<text  x="55.49" y="271.5" ></text>
+<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.12%)</title><rect x="882.9" y="277" width="1.4" height="15.0" fill="rgb(231,219,48)" rx="2" ry="2" />
+<text  x="885.88" y="287.5" ></text>
 </g>
 <g >
-<title>free@plt (1 samples, 0.16%)</title><rect x="842.4" y="213" width="1.9" height="15.0" fill="rgb(244,180,40)" rx="2" ry="2" />
-<text  x="845.37" y="223.5" ></text>
+<title>std::__detail::_Mod_range_hashing::operator() (3 samples, 0.37%)</title><rect x="437.6" y="149" width="4.4" height="15.0" fill="rgb(234,208,40)" rx="2" ry="2" />
+<text  x="440.62" y="159.5" ></text>
 </g>
 <g >
-<title>std::__detail::_Insert&lt;PageId, (2 samples, 0.33%)</title><rect x="1184.2" y="325" width="3.9" height="15.0" fill="rgb(206,211,38)" rx="2" ry="2" />
-<text  x="1187.21" y="335.5" ></text>
+<title>std::__uninitialized_copy_a&lt;__gnu_cxx::__normal_iterator&lt;PageId (1 samples, 0.12%)</title><rect x="1182.7" y="261" width="1.4" height="15.0" fill="rgb(225,164,23)" rx="2" ry="2" />
+<text  x="1185.65" y="271.5" ></text>
 </g>
 <g >
-<title>operator (1 samples, 0.16%)</title><rect x="1135.9" y="229" width="2.0" height="15.0" fill="rgb(253,152,43)" rx="2" ry="2" />
-<text  x="1138.92" y="239.5" ></text>
+<title>MultiThreadedPageRankComputer::WorkerData::~WorkerData (15 samples, 1.87%)</title><rect x="862.3" y="357" width="22.0" height="15.0" fill="rgb(252,96,31)" rx="2" ry="2" />
+<text  x="865.30" y="367.5" >M..</text>
 </g>
 <g >
-<title>sysmalloc (2 samples, 0.33%)</title><rect x="473.5" y="133" width="3.9" height="15.0" fill="rgb(215,21,46)" rx="2" ry="2" />
-<text  x="476.50" y="143.5" ></text>
+<title>std::equal_to&lt;PageId&gt;::operator() (12 samples, 1.49%)</title><rect x="784.4" y="149" width="17.7" height="15.0" fill="rgb(211,59,19)" rx="2" ry="2" />
+<text  x="787.42" y="159.5" ></text>
 </g>
 <g >
-<title>std::_Destroy&lt;PageIdAndRank*, (1 samples, 0.16%)</title><rect x="1188.1" y="325" width="1.9" height="15.0" fill="rgb(243,64,12)" rx="2" ry="2" />
-<text  x="1191.07" y="335.5" ></text>
+<title>std::_Hashtable&lt;PageId, (5 samples, 0.62%)</title><rect x="877.0" y="309" width="7.3" height="15.0" fill="rgb(242,64,30)" rx="2" ry="2" />
+<text  x="880.00" y="319.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="458.1" y="277" width="1.9" height="15.0" fill="rgb(211,228,1)" rx="2" ry="2" />
-<text  x="461.05" y="287.5" ></text>
+<title>std::__detail::_Mod_range_hashing::operator() (2 samples, 0.25%)</title><rect x="33.5" y="165" width="3.0" height="15.0" fill="rgb(212,6,47)" rx="2" ry="2" />
+<text  x="36.51" y="175.5" ></text>
 </g>
 <g >
-<title>std::char_traits&lt;char&gt;::compare (2 samples, 0.33%)</title><rect x="1163.0" y="197" width="3.8" height="15.0" fill="rgb(220,201,38)" rx="2" ry="2" />
-<text  x="1165.96" y="207.5" ></text>
+<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.12%)</title><rect x="48.2" y="165" width="1.5" height="15.0" fill="rgb(222,213,17)" rx="2" ry="2" />
+<text  x="51.21" y="175.5" ></text>
 </g>
 <g >
-<title>_int_free (1 samples, 0.16%)</title><rect x="52.5" y="213" width="1.9" height="15.0" fill="rgb(248,229,10)" rx="2" ry="2" />
-<text  x="55.49" y="223.5" ></text>
+<title>std::__detail::_Hashtable_base&lt;PageId, (2 samples, 0.25%)</title><rect x="30.6" y="165" width="2.9" height="15.0" fill="rgb(222,183,1)" rx="2" ry="2" />
+<text  x="33.57" y="175.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1147.5" y="117" width="1.9" height="15.0" fill="rgb(219,30,41)" rx="2" ry="2" />
-<text  x="1150.51" y="127.5" ></text>
+<title>std::_Construct&lt;PageIdAndRank, (1 samples, 0.12%)</title><rect x="860.8" y="277" width="1.5" height="15.0" fill="rgb(238,169,10)" rx="2" ry="2" />
+<text  x="863.83" y="287.5" ></text>
 </g>
 <g >
-<title>PageIdHash::operator() (2 samples, 0.33%)</title><rect x="1155.2" y="293" width="3.9" height="15.0" fill="rgb(232,93,42)" rx="2" ry="2" />
-<text  x="1158.24" y="303.5" ></text>
+<title>std::_Vector_base&lt;Page, (6 samples, 0.75%)</title><rect x="844.7" y="213" width="8.8" height="15.0" fill="rgb(253,20,30)" rx="2" ry="2" />
+<text  x="847.67" y="223.5" ></text>
 </g>
 <g >
-<title>std::_Hashtable&lt;PageId, (7 samples, 1.15%)</title><rect x="1135.9" y="293" width="13.5" height="15.0" fill="rgb(253,6,10)" rx="2" ry="2" />
-<text  x="1138.92" y="303.5" ></text>
+<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;PageId, (1 samples, 0.12%)</title><rect x="882.9" y="245" width="1.4" height="15.0" fill="rgb(223,80,11)" rx="2" ry="2" />
+<text  x="885.88" y="255.5" ></text>
 </g>
 <g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="479.3" y="133" width="3.9" height="15.0" fill="rgb(239,74,36)" rx="2" ry="2" />
-<text  x="482.30" y="143.5" ></text>
+<title>__GI___libc_malloc (1 samples, 0.12%)</title><rect x="860.8" y="197" width="1.5" height="15.0" fill="rgb(237,78,38)" rx="2" ry="2" />
+<text  x="863.83" y="207.5" ></text>
 </g>
 <g >
-<title>PageId::PageId (2 samples, 0.33%)</title><rect x="479.3" y="165" width="3.9" height="15.0" fill="rgb(243,14,47)" rx="2" ry="2" />
-<text  x="482.30" y="175.5" ></text>
+<title>std::get&lt;0ul, (2 samples, 0.25%)</title><rect x="781.5" y="133" width="2.9" height="15.0" fill="rgb(254,126,17)" rx="2" ry="2" />
+<text  x="784.48" y="143.5" ></text>
 </g>
 <g >
-<title>__GI___libc_malloc (2 samples, 0.33%)</title><rect x="40.9" y="213" width="3.9" height="15.0" fill="rgb(241,37,27)" rx="2" ry="2" />
-<text  x="43.90" y="223.5" ></text>
-</g>
-<g >
-<title>MultiThreadedPageRankComputer::computeForNetwork (146 samples, 23.90%)</title><rect x="821.1" y="357" width="282.0" height="15.0" fill="rgb(229,30,53)" rx="2" ry="2" />
-<text  x="824.13" y="367.5" >MultiThreadedPageRankComputer::comput..</text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="564.3" y="245" width="1.9" height="15.0" fill="rgb(210,124,28)" rx="2" ry="2" />
-<text  x="567.27" y="255.5" ></text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (33 samples, 5.40%)</title><rect x="461.9" y="277" width="63.7" height="15.0" fill="rgb(241,83,36)" rx="2" ry="2" />
-<text  x="464.91" y="287.5" >std::_H..</text>
-</g>
-<g >
-<title>PageId::PageId (6 samples, 0.98%)</title><rect x="1137.9" y="213" width="11.5" height="15.0" fill="rgb(215,89,22)" rx="2" ry="2" />
-<text  x="1140.86" y="223.5" ></text>
-</g>
-<g >
-<title>_int_malloc (2 samples, 0.33%)</title><rect x="554.6" y="197" width="3.9" height="15.0" fill="rgb(229,95,20)" rx="2" ry="2" />
-<text  x="557.62" y="207.5" ></text>
-</g>
-<g >
-<title>_int_malloc (1 samples, 0.16%)</title><rect x="481.2" y="53" width="2.0" height="15.0" fill="rgb(236,166,48)" rx="2" ry="2" />
-<text  x="484.23" y="63.5" ></text>
-</g>
-<g >
-<title>std::_Destroy&lt;Page*&gt; (1 samples, 0.16%)</title><rect x="1103.1" y="309" width="1.9" height="15.0" fill="rgb(217,123,36)" rx="2" ry="2" />
-<text  x="1106.09" y="319.5" ></text>
-</g>
-<g >
-<title>malloc_consolidate (6 samples, 0.98%)</title><rect x="821.1" y="197" width="11.6" height="15.0" fill="rgb(242,33,1)" rx="2" ry="2" />
-<text  x="824.13" y="207.5" ></text>
-</g>
-<g >
-<title>std::_Hash_impl::hash (4 samples, 0.65%)</title><rect x="807.6" y="245" width="7.7" height="15.0" fill="rgb(234,63,43)" rx="2" ry="2" />
-<text  x="810.61" y="255.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (2 samples, 0.33%)</title><rect x="840.4" y="261" width="3.9" height="15.0" fill="rgb(246,3,38)" rx="2" ry="2" />
-<text  x="843.44" y="271.5" ></text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (4 samples, 0.65%)</title><rect x="23.5" y="261" width="7.7" height="15.0" fill="rgb(208,122,1)" rx="2" ry="2" />
-<text  x="26.52" y="271.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Hashtable_alloc&lt;std::allocator&lt;std::__detail::_Hash_node&lt;PageId, (2 samples, 0.33%)</title><rect x="840.4" y="277" width="3.9" height="15.0" fill="rgb(245,1,26)" rx="2" ry="2" />
-<text  x="843.44" y="287.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.16%)</title><rect x="17.7" y="229" width="2.0" height="15.0" fill="rgb(220,96,40)" rx="2" ry="2" />
-<text  x="20.73" y="239.5" ></text>
-</g>
-<g >
-<title>std::_Destroy&lt;PageIdAndRank*&gt; (1 samples, 0.16%)</title><rect x="1188.1" y="309" width="1.9" height="15.0" fill="rgb(214,51,33)" rx="2" ry="2" />
-<text  x="1191.07" y="319.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (7 samples, 1.15%)</title><rect x="500.5" y="133" width="13.6" height="15.0" fill="rgb(253,66,46)" rx="2" ry="2" />
-<text  x="503.54" y="143.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (6 samples, 0.98%)</title><rect x="1137.9" y="197" width="11.5" height="15.0" fill="rgb(233,206,51)" rx="2" ry="2" />
-<text  x="1140.86" y="207.5" ></text>
-</g>
-<g >
-<title>MultiThreadedPageRankComputer::WorkerData::~WorkerData (13 samples, 2.13%)</title><rect x="821.1" y="341" width="25.1" height="15.0" fill="rgb(206,23,32)" rx="2" ry="2" />
-<text  x="824.13" y="351.5" >M..</text>
-</g>
-<g >
-<title>mprotect (1 samples, 0.16%)</title><rect x="556.5" y="149" width="2.0" height="15.0" fill="rgb(222,216,50)" rx="2" ry="2" />
-<text  x="559.55" y="159.5" ></text>
-</g>
-<g >
-<title>_int_malloc (1 samples, 0.16%)</title><rect x="11.9" y="181" width="2.0" height="15.0" fill="rgb(214,204,49)" rx="2" ry="2" />
-<text  x="14.93" y="191.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.16%)</title><rect x="1161.0" y="261" width="2.0" height="15.0" fill="rgb(253,116,24)" rx="2" ry="2" />
-<text  x="1164.03" y="271.5" ></text>
-</g>
-<g >
-<title>?? (420 samples, 68.74%)</title><rect x="10.0" y="357" width="811.1" height="15.0" fill="rgb(206,188,17)" rx="2" ry="2" />
-<text  x="13.00" y="367.5" >??</text>
-</g>
-<g >
-<title>futex_wait_cancelable (207 samples, 33.88%)</title><rect x="58.3" y="245" width="399.8" height="15.0" fill="rgb(243,209,13)" rx="2" ry="2" />
-<text  x="61.28" y="255.5" >futex_wait_cancelable</text>
-</g>
-<g >
-<title>PageId::PageId (4 samples, 0.65%)</title><rect x="1110.8" y="341" width="7.7" height="15.0" fill="rgb(239,219,4)" rx="2" ry="2" />
-<text  x="1113.82" y="351.5" ></text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (5 samples, 0.82%)</title><rect x="834.6" y="309" width="9.7" height="15.0" fill="rgb(225,61,15)" rx="2" ry="2" />
-<text  x="837.65" y="319.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="564.3" y="261" width="1.9" height="15.0" fill="rgb(213,180,29)" rx="2" ry="2" />
-<text  x="567.27" y="271.5" ></text>
-</g>
-<g >
-<title>std::_Destroy_aux&lt;false&gt;::__destroy&lt;PageIdAndRank*&gt; (1 samples, 0.16%)</title><rect x="1188.1" y="293" width="1.9" height="15.0" fill="rgb(218,123,24)" rx="2" ry="2" />
-<text  x="1191.07" y="303.5" ></text>
-</g>
-<g >
-<title>__gnu_cxx::new_allocator&lt;char&gt;::deallocate (5 samples, 0.82%)</title><rect x="516.0" y="101" width="9.6" height="15.0" fill="rgb(252,46,12)" rx="2" ry="2" />
-<text  x="518.99" y="111.5" ></text>
-</g>
-<g >
-<title>std::_Hash_impl::hash (2 samples, 0.33%)</title><rect x="1155.2" y="261" width="3.9" height="15.0" fill="rgb(223,207,54)" rx="2" ry="2" />
-<text  x="1158.24" y="271.5" ></text>
-</g>
-<g >
-<title>__GI___libc_malloc (2 samples, 0.33%)</title><rect x="10.0" y="197" width="3.9" height="15.0" fill="rgb(214,105,41)" rx="2" ry="2" />
-<text  x="13.00" y="207.5" ></text>
-</g>
-<g >
-<title>__GI___libc_malloc (1 samples, 0.16%)</title><rect x="1120.5" y="229" width="1.9" height="15.0" fill="rgb(235,223,4)" rx="2" ry="2" />
-<text  x="1123.47" y="239.5" ></text>
-</g>
-<g >
-<title>std::pair&lt;PageId (3 samples, 0.49%)</title><rect x="477.4" y="181" width="5.8" height="15.0" fill="rgb(227,135,10)" rx="2" ry="2" />
-<text  x="480.36" y="191.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Equal_helper&lt;PageId, (1 samples, 0.16%)</title><rect x="718.8" y="277" width="1.9" height="15.0" fill="rgb(225,206,6)" rx="2" ry="2" />
-<text  x="721.77" y="287.5" ></text>
-</g>
-<g >
-<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (5 samples, 0.82%)</title><rect x="473.5" y="213" width="9.7" height="15.0" fill="rgb(245,138,29)" rx="2" ry="2" />
-<text  x="476.50" y="223.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1107.0" y="165" width="1.9" height="15.0" fill="rgb(235,64,34)" rx="2" ry="2" />
-<text  x="1109.96" y="175.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1128.2" y="261" width="1.9" height="15.0" fill="rgb(251,152,11)" rx="2" ry="2" />
-<text  x="1131.20" y="271.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="479.3" y="101" width="3.9" height="15.0" fill="rgb(236,92,12)" rx="2" ry="2" />
-<text  x="482.30" y="111.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (3 samples, 0.49%)</title><rect x="1112.7" y="261" width="5.8" height="15.0" fill="rgb(219,25,29)" rx="2" ry="2" />
-<text  x="1115.75" y="271.5" ></text>
-</g>
-<g >
-<title>__gnu_cxx::new_allocator&lt;char&gt;::deallocate (1 samples, 0.16%)</title><rect x="1188.1" y="165" width="1.9" height="15.0" fill="rgb(216,142,22)" rx="2" ry="2" />
-<text  x="1191.07" y="175.5" ></text>
-</g>
-<g >
-<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;PageId, (2 samples, 0.33%)</title><rect x="840.4" y="229" width="3.9" height="15.0" fill="rgb(227,159,41)" rx="2" ry="2" />
-<text  x="843.44" y="239.5" ></text>
-</g>
-<g >
-<title>__gnu_cxx::new_allocator&lt;PageId&gt;::deallocate (1 samples, 0.16%)</title><rect x="844.3" y="261" width="1.9" height="15.0" fill="rgb(236,108,53)" rx="2" ry="2" />
-<text  x="847.30" y="271.5" ></text>
-</g>
-<g >
-<title>__GI___libc_malloc (2 samples, 0.33%)</title><rect x="473.5" y="165" width="3.9" height="15.0" fill="rgb(207,28,13)" rx="2" ry="2" />
-<text  x="476.50" y="175.5" ></text>
-</g>
-<g >
-<title>std::allocator_traits&lt;std::allocator&lt;Page&gt; (2 samples, 0.33%)</title><rect x="817.3" y="277" width="3.8" height="15.0" fill="rgb(245,196,14)" rx="2" ry="2" />
-<text  x="820.27" y="287.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1147.5" y="101" width="1.9" height="15.0" fill="rgb(252,190,54)" rx="2" ry="2" />
-<text  x="1150.51" y="111.5" ></text>
-</g>
-<g >
-<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node_base*&gt; (6 samples, 0.98%)</title><rect x="821.1" y="245" width="11.6" height="15.0" fill="rgb(226,145,19)" rx="2" ry="2" />
-<text  x="824.13" y="255.5" ></text>
-</g>
-<g >
-<title>PageId::PageId (2 samples, 0.33%)</title><rect x="54.4" y="293" width="3.9" height="15.0" fill="rgb(228,169,7)" rx="2" ry="2" />
-<text  x="57.42" y="303.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Mod_range_hashing::operator() (1 samples, 0.16%)</title><rect x="17.7" y="213" width="2.0" height="15.0" fill="rgb(244,133,8)" rx="2" ry="2" />
-<text  x="20.73" y="223.5" ></text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (13 samples, 2.13%)</title><rect x="1159.1" y="309" width="25.1" height="15.0" fill="rgb(216,56,29)" rx="2" ry="2" />
-<text  x="1162.10" y="319.5" >s..</text>
-</g>
-<g >
-<title>std::unordered_set&lt;PageId, (5 samples, 0.82%)</title><rect x="23.5" y="309" width="9.7" height="15.0" fill="rgb(228,119,50)" rx="2" ry="2" />
-<text  x="26.52" y="319.5" ></text>
-</g>
-<g >
-<title>std::allocator_traits&lt;std::allocator&lt;char&gt; (1 samples, 0.16%)</title><rect x="1118.5" y="277" width="2.0" height="15.0" fill="rgb(251,152,42)" rx="2" ry="2" />
-<text  x="1121.54" y="287.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1108.9" y="245" width="1.9" height="15.0" fill="rgb(249,188,39)" rx="2" ry="2" />
-<text  x="1111.89" y="255.5" ></text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (6 samples, 0.98%)</title><rect x="525.6" y="261" width="11.6" height="15.0" fill="rgb(238,167,32)" rx="2" ry="2" />
-<text  x="528.65" y="271.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1118.5" y="309" width="2.0" height="15.0" fill="rgb(222,205,41)" rx="2" ry="2" />
-<text  x="1121.54" y="319.5" ></text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (2 samples, 0.33%)</title><rect x="1184.2" y="293" width="3.9" height="15.0" fill="rgb(230,138,41)" rx="2" ry="2" />
-<text  x="1187.21" y="303.5" ></text>
-</g>
-<g >
-<title>__memset_avx2_erms (1 samples, 0.16%)</title><rect x="460.0" y="277" width="1.9" height="15.0" fill="rgb(245,146,8)" rx="2" ry="2" />
-<text  x="462.98" y="287.5" ></text>
-</g>
-<g >
-<title>std::_Destroy&lt;PageIdAndRank&gt; (1 samples, 0.16%)</title><rect x="1188.1" y="277" width="1.9" height="15.0" fill="rgb(249,61,15)" rx="2" ry="2" />
-<text  x="1191.07" y="287.5" ></text>
-</g>
-<g >
-<title>_int_malloc (1 samples, 0.16%)</title><rect x="1108.9" y="197" width="1.9" height="15.0" fill="rgb(227,127,51)" rx="2" ry="2" />
-<text  x="1111.89" y="207.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (9 samples, 1.47%)</title><rect x="1166.8" y="293" width="17.4" height="15.0" fill="rgb(241,97,28)" rx="2" ry="2" />
-<text  x="1169.82" y="303.5" ></text>
-</g>
-<g >
-<title>operator (2 samples, 0.33%)</title><rect x="10.0" y="213" width="3.9" height="15.0" fill="rgb(248,53,31)" rx="2" ry="2" />
-<text  x="13.00" y="223.5" ></text>
-</g>
-<g >
-<title>std::allocator_traits&lt;std::allocator&lt;PageId&gt; (1 samples, 0.16%)</title><rect x="844.3" y="277" width="1.9" height="15.0" fill="rgb(218,225,17)" rx="2" ry="2" />
-<text  x="847.30" y="287.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (3 samples, 0.49%)</title><rect x="554.6" y="277" width="5.8" height="15.0" fill="rgb(211,113,51)" rx="2" ry="2" />
-<text  x="557.62" y="287.5" ></text>
-</g>
-<g >
-<title>all (611 samples, 100%)</title><rect x="10.0" y="405" width="1180.0" height="15.0" fill="rgb(223,169,43)" rx="2" ry="2" />
-<text  x="13.00" y="415.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1107.0" y="261" width="1.9" height="15.0" fill="rgb(229,135,44)" rx="2" ry="2" />
-<text  x="1109.96" y="271.5" ></text>
-</g>
-<g >
-<title>PageIdHash::operator() (4 samples, 0.65%)</title><rect x="807.6" y="277" width="7.7" height="15.0" fill="rgb(220,91,15)" rx="2" ry="2" />
-<text  x="810.61" y="287.5" ></text>
-</g>
-<g >
-<title>std::char_traits&lt;char&gt;::copy (1 samples, 0.16%)</title><rect x="564.3" y="197" width="1.9" height="15.0" fill="rgb(216,20,13)" rx="2" ry="2" />
-<text  x="567.27" y="207.5" ></text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (11 samples, 1.80%)</title><rect x="1134.0" y="309" width="21.2" height="15.0" fill="rgb(233,51,3)" rx="2" ry="2" />
-<text  x="1136.99" y="319.5" >s..</text>
-</g>
-<g >
-<title>__GI__IO_default_xsputn (1 samples, 0.16%)</title><rect x="1105.0" y="245" width="2.0" height="15.0" fill="rgb(251,24,0)" rx="2" ry="2" />
-<text  x="1108.02" y="255.5" ></text>
-</g>
-<g >
-<title>_int_free (1 samples, 0.16%)</title><rect x="1153.3" y="117" width="1.9" height="15.0" fill="rgb(226,30,21)" rx="2" ry="2" />
-<text  x="1156.31" y="127.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1107.0" y="229" width="1.9" height="15.0" fill="rgb(220,143,26)" rx="2" ry="2" />
-<text  x="1109.96" y="239.5" ></text>
-</g>
-<g >
-<title>operator (2 samples, 0.33%)</title><rect x="817.3" y="245" width="3.8" height="15.0" fill="rgb(209,131,0)" rx="2" ry="2" />
-<text  x="820.27" y="255.5" ></text>
-</g>
-<g >
-<title>std::hash&lt;std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="1155.2" y="277" width="3.9" height="15.0" fill="rgb(242,199,17)" rx="2" ry="2" />
-<text  x="1158.24" y="287.5" ></text>
-</g>
-<g >
-<title>std::char_traits&lt;char&gt;::compare (2 samples, 0.33%)</title><rect x="784.4" y="181" width="3.9" height="15.0" fill="rgb(238,137,16)" rx="2" ry="2" />
-<text  x="787.44" y="191.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1108.9" y="277" width="1.9" height="15.0" fill="rgb(234,17,41)" rx="2" ry="2" />
-<text  x="1111.89" y="287.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Mod_range_hashing::operator() (1 samples, 0.16%)</title><rect x="1161.0" y="245" width="2.0" height="15.0" fill="rgb(238,68,35)" rx="2" ry="2" />
-<text  x="1164.03" y="255.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="832.7" y="149" width="1.9" height="15.0" fill="rgb(215,98,19)" rx="2" ry="2" />
-<text  x="835.72" y="159.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.16%)</title><rect x="27.4" y="213" width="1.9" height="15.0" fill="rgb(247,209,33)" rx="2" ry="2" />
-<text  x="30.38" y="223.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="10.0" y="261" width="3.9" height="15.0" fill="rgb(252,137,15)" rx="2" ry="2" />
-<text  x="13.00" y="271.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="54.4" y="229" width="3.9" height="15.0" fill="rgb(220,178,38)" rx="2" ry="2" />
-<text  x="57.42" y="239.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (6 samples, 0.98%)</title><rect x="514.1" y="149" width="11.5" height="15.0" fill="rgb(246,204,35)" rx="2" ry="2" />
-<text  x="517.06" y="159.5" ></text>
-</g>
-<g >
-<title>operator (2 samples, 0.33%)</title><rect x="54.4" y="213" width="3.9" height="15.0" fill="rgb(233,199,20)" rx="2" ry="2" />
-<text  x="57.42" y="223.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (3 samples, 0.49%)</title><rect x="1112.7" y="245" width="5.8" height="15.0" fill="rgb(226,142,10)" rx="2" ry="2" />
-<text  x="1115.75" y="255.5" ></text>
-</g>
-<g >
-<title>MultiThreadedPageRankComputer::WorkerData::wait (270 samples, 44.19%)</title><rect x="33.2" y="325" width="521.4" height="15.0" fill="rgb(240,112,31)" rx="2" ry="2" />
-<text  x="36.18" y="335.5" >MultiThreadedPageRankComputer::WorkerData::wait</text>
-</g>
-<g >
-<title>operator (2 samples, 0.33%)</title><rect x="554.6" y="229" width="3.9" height="15.0" fill="rgb(235,222,50)" rx="2" ry="2" />
-<text  x="557.62" y="239.5" ></text>
-</g>
-<g >
-<title>std:: (1 samples, 0.16%)</title><rect x="1105.0" y="325" width="2.0" height="15.0" fill="rgb(217,1,29)" rx="2" ry="2" />
-<text  x="1108.02" y="335.5" ></text>
-</g>
-<g >
-<title>std::allocator_traits&lt;std::allocator&lt;PageId&gt; (1 samples, 0.16%)</title><rect x="1107.0" y="309" width="1.9" height="15.0" fill="rgb(207,39,33)" rx="2" ry="2" />
-<text  x="1109.96" y="319.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Map_base&lt;PageId, (13 samples, 2.13%)</title><rect x="1159.1" y="325" width="25.1" height="15.0" fill="rgb(216,191,36)" rx="2" ry="2" />
-<text  x="1162.10" y="335.5" >s..</text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1128.2" y="245" width="1.9" height="15.0" fill="rgb(208,217,54)" rx="2" ry="2" />
-<text  x="1131.20" y="255.5" ></text>
-</g>
-<g >
-<title>std::char_traits&lt;char&gt;::copy (6 samples, 0.98%)</title><rect x="502.5" y="53" width="11.6" height="15.0" fill="rgb(251,53,53)" rx="2" ry="2" />
-<text  x="505.47" y="63.5" ></text>
-</g>
-<g >
-<title>_int_malloc (2 samples, 0.33%)</title><rect x="817.3" y="213" width="3.8" height="15.0" fill="rgb(221,12,27)" rx="2" ry="2" />
-<text  x="820.27" y="223.5" ></text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (3 samples, 0.49%)</title><rect x="834.6" y="277" width="5.8" height="15.0" fill="rgb(220,201,41)" rx="2" ry="2" />
-<text  x="837.65" y="287.5" ></text>
-</g>
-<g >
-<title>std::lock_guard&lt;std::mutex&gt;::lock_guard (30 samples, 4.91%)</title><rect x="566.2" y="325" width="57.9" height="15.0" fill="rgb(253,226,46)" rx="2" ry="2" />
-<text  x="569.20" y="335.5" >std::l..</text>
-</g>
-<g >
-<title>__gnu_cxx::new_allocator&lt;PageId&gt;::construct&lt;PageId, (1 samples, 0.16%)</title><rect x="1107.0" y="293" width="1.9" height="15.0" fill="rgb(216,57,39)" rx="2" ry="2" />
-<text  x="1109.96" y="303.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (7 samples, 1.15%)</title><rect x="537.2" y="261" width="13.6" height="15.0" fill="rgb(211,67,22)" rx="2" ry="2" />
-<text  x="540.23" y="271.5" ></text>
-</g>
-<g >
-<title>std::vector&lt;Page, (1 samples, 0.16%)</title><rect x="1103.1" y="341" width="1.9" height="15.0" fill="rgb(224,47,34)" rx="2" ry="2" />
-<text  x="1106.09" y="351.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="840.4" y="197" width="2.0" height="15.0" fill="rgb(227,69,17)" rx="2" ry="2" />
-<text  x="843.44" y="207.5" ></text>
-</g>
-<g >
-<title>std::pair&lt;PageId (6 samples, 0.98%)</title><rect x="1137.9" y="229" width="11.5" height="15.0" fill="rgb(210,119,10)" rx="2" ry="2" />
-<text  x="1140.86" y="239.5" ></text>
-</g>
-<g >
-<title>__gnu_cxx::new_allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (5 samples, 0.82%)</title><rect x="473.5" y="197" width="9.7" height="15.0" fill="rgb(242,104,23)" rx="2" ry="2" />
-<text  x="476.50" y="207.5" ></text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (13 samples, 2.13%)</title><rect x="525.6" y="277" width="25.2" height="15.0" fill="rgb(226,189,12)" rx="2" ry="2" />
-<text  x="528.65" y="287.5" >s..</text>
-</g>
-<g >
-<title>std::_Destroy&lt;Page&gt; (1 samples, 0.16%)</title><rect x="1103.1" y="277" width="1.9" height="15.0" fill="rgb(249,80,26)" rx="2" ry="2" />
-<text  x="1106.09" y="287.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Mod_range_hashing::operator() (10 samples, 1.64%)</title><rect x="788.3" y="261" width="19.3" height="15.0" fill="rgb(207,157,18)" rx="2" ry="2" />
-<text  x="791.30" y="271.5" ></text>
-</g>
-<g >
-<title>PageId::PageId (4 samples, 0.65%)</title><rect x="1122.4" y="325" width="7.7" height="15.0" fill="rgb(249,44,29)" rx="2" ry="2" />
-<text  x="1125.41" y="335.5" ></text>
-</g>
-<g >
-<title>std::unordered_set&lt;PageId, (2 samples, 0.33%)</title><rect x="1184.2" y="341" width="3.9" height="15.0" fill="rgb(252,177,46)" rx="2" ry="2" />
-<text  x="1187.21" y="351.5" ></text>
-</g>
-<g >
-<title>__lll_unlock_wake (1 samples, 0.16%)</title><rect x="624.1" y="261" width="2.0" height="15.0" fill="rgb(250,187,38)" rx="2" ry="2" />
-<text  x="627.14" y="271.5" ></text>
-</g>
-<g >
-<title>_int_malloc (1 samples, 0.16%)</title><rect x="31.2" y="165" width="2.0" height="15.0" fill="rgb(215,150,14)" rx="2" ry="2" />
-<text  x="34.24" y="175.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1118.5" y="325" width="2.0" height="15.0" fill="rgb(210,32,3)" rx="2" ry="2" />
-<text  x="1121.54" y="335.5" ></text>
-</g>
-<g >
-<title>__GI___libc_malloc (1 samples, 0.16%)</title><rect x="815.3" y="229" width="2.0" height="15.0" fill="rgb(238,114,20)" rx="2" ry="2" />
-<text  x="818.34" y="239.5" ></text>
-</g>
-<g >
-<title>__GI___libc_free (1 samples, 0.16%)</title><rect x="1188.1" y="149" width="1.9" height="15.0" fill="rgb(209,69,4)" rx="2" ry="2" />
-<text  x="1191.07" y="159.5" ></text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (3 samples, 0.49%)</title><rect x="13.9" y="245" width="5.8" height="15.0" fill="rgb(242,205,9)" rx="2" ry="2" />
-<text  x="16.86" y="255.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="1118.5" y="293" width="2.0" height="15.0" fill="rgb(217,137,35)" rx="2" ry="2" />
-<text  x="1121.54" y="303.5" ></text>
-</g>
-<g >
-<title>std::condition_variable::wait(std::unique_lock&lt;std::mutex&gt;&amp;) (207 samples, 33.88%)</title><rect x="58.3" y="293" width="399.8" height="15.0" fill="rgb(220,151,23)" rx="2" ry="2" />
-<text  x="61.28" y="303.5" >std::condition_variable::wait(std::unique_lock&lt;std::mu..</text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (5 samples, 0.82%)</title><rect x="834.6" y="293" width="9.7" height="15.0" fill="rgb(212,29,19)" rx="2" ry="2" />
-<text  x="837.65" y="303.5" ></text>
-</g>
-<g >
-<title>__gthread_mutex_unlock (1 samples, 0.16%)</title><rect x="624.1" y="293" width="2.0" height="15.0" fill="rgb(230,40,46)" rx="2" ry="2" />
-<text  x="627.14" y="303.5" ></text>
-</g>
-<g >
-<title>_int_free (1 samples, 0.16%)</title><rect x="832.7" y="101" width="1.9" height="15.0" fill="rgb(228,60,30)" rx="2" ry="2" />
-<text  x="835.72" y="111.5" ></text>
-</g>
-<g >
-<title>std::allocator_traits&lt;std::allocator&lt;std::__detail::_Hash_node&lt;std::pair&lt;PageId (1 samples, 0.16%)</title><rect x="832.7" y="245" width="1.9" height="15.0" fill="rgb(252,214,37)" rx="2" ry="2" />
-<text  x="835.72" y="255.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (1 samples, 0.16%)</title><rect x="558.5" y="229" width="1.9" height="15.0" fill="rgb(210,145,39)" rx="2" ry="2" />
-<text  x="561.48" y="239.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (3 samples, 0.49%)</title><rect x="1112.7" y="309" width="5.8" height="15.0" fill="rgb(234,69,11)" rx="2" ry="2" />
-<text  x="1115.75" y="319.5" ></text>
-</g>
-<g >
-<title>std::_Hashtable&lt;PageId, (4 samples, 0.65%)</title><rect x="1159.1" y="293" width="7.7" height="15.0" fill="rgb(253,208,40)" rx="2" ry="2" />
-<text  x="1162.10" y="303.5" ></text>
-</g>
-<g >
-<title>std::__detail::_Hash_code_base&lt;PageId, (1 samples, 0.16%)</title><rect x="19.7" y="261" width="1.9" height="15.0" fill="rgb(232,125,40)" rx="2" ry="2" />
-<text  x="22.66" y="271.5" ></text>
-</g>
-<g >
-<title>sysmalloc (1 samples, 0.16%)</title><rect x="556.5" y="181" width="2.0" height="15.0" fill="rgb(239,28,48)" rx="2" ry="2" />
-<text  x="559.55" y="191.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (2 samples, 0.33%)</title><rect x="479.3" y="149" width="3.9" height="15.0" fill="rgb(236,114,15)" rx="2" ry="2" />
-<text  x="482.30" y="159.5" ></text>
-</g>
-<g >
-<title>std::__cxx11::basic_string&lt;char, (8 samples, 1.31%)</title><rect x="655.0" y="181" width="15.5" height="15.0" fill="rgb(206,95,18)" rx="2" ry="2" />
-<text  x="658.04" y="191.5" ></text>
-</g>
-<g >
-<title>_IO_vfprintf_internal (1 samples, 0.16%)</title><rect x="1105.0" y="277" width="2.0" height="15.0" fill="rgb(251,213,44)" rx="2" ry="2" />
-<text  x="1108.02" y="287.5" ></text>
-</g>
-<g >
-<title>PageId::~PageId (1 samples, 0.16%)</title><rect x="52.5" y="309" width="1.9" height="15.0" fill="rgb(246,127,0)" rx="2" ry="2" />
-<text  x="55.49" y="319.5" ></text>
+<title>std::__detail::_Equal_helper&lt;PageId, (31 samples, 3.86%)</title><rect x="756.5" y="165" width="45.6" height="15.0" fill="rgb(241,114,53)" rx="2" ry="2" />
+<text  x="759.50" y="175.5" >std:..</text>
 </g>
 </g>
 </svg>
